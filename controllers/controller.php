@@ -58,7 +58,7 @@ abstract class controller
 	public function redirect($url)
 	{
 
-		header("Location: " . $url);
+		header("Location: /" . $url);
 		header("Connection: close");
         exit;
     }

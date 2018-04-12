@@ -15,19 +15,23 @@ class reservation_controller extends controller
         //pokud stránka obdržela argumenty
         if (count($data[1]) == 1 && $data[1][0] != "")
         {   
-            //kontrol jestli má argument správný tvar
+            //kontrola jestli má argument správný tvar
             if (is_numeric($data[1][0]))
             {
-                $date = new MyDate();
-                $date->timestamp = $data[1][0];
+                $date = MyDate::FromTimestamp($data[1][0]);
+                
             }
             else    
+            {
                 $this->redirect("error/4");
+            }
         }
 
         //pokud stránka obdrží více jak 1 argument
         if (count($data[1]) > 1)
+        {
             $this->redirect("error/3");
+        }
 
         //pokud se snaží zobrazit starší datum ... přesměruje na dnešní datum
         if ($date->timestamp < MyDate::Today()->timestamp)
