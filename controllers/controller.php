@@ -12,11 +12,11 @@ abstract class controller
 
     function __construct()
     {
-        $this->root = "../" . $this->main_url;
+        $this->root = "/" . $this->main_url;
         $this->data["footer"] = "Copyright &copy; 2018 Michael Škrášek, Tomáš Szabó, Michal Ruiner, Martin Bielik";
         $this->data["title"] = "rezervace";
         $this->data["root"] = $this->root;
-        $this->data["base"] = ".";
+        $this->data["base"] = "/";
     }
 
     protected function loadCSS()
@@ -58,7 +58,7 @@ abstract class controller
 	public function redirect($url)
 	{
 
-		header("Location: " . $this->root . "/" . $url);
+		header("Location: " . $url);
 		header("Connection: close");
         exit;
     }
