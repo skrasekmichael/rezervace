@@ -20,7 +20,8 @@ class router_controller extends controller
     {
 		$data = $this->parseURL($args[0]);
 		$controller = $data[0];
-		$commands = array_slice($data, 1);
+        $commands = array_slice($data, 1);
+        print_r($commands);
 		return [$controller, $commands];
 	}
 }
