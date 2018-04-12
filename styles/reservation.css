@@ -1,0 +1,135 @@
+/* kalendář */
+
+#reservation{
+    --calendar-size: 40px; 
+    --table-width: 20px;
+    --table-height: 40px;
+}   
+
+#calendar .month_name{
+    text-align: center;
+}
+
+#calendar table tr td{
+    width: var(--calendar-size);
+    height: var(--calendar-size);
+
+    text-align: center;
+
+    padding: 0px;
+}
+
+#calendar table thead tr td{
+    background: cornflowerblue;
+}
+
+#calendar table tr td div{
+    width: var(--calendar-size);
+    height: var(--calendar-size);
+    line-height: var(--calendar-size);
+}
+
+#calendar table tr td a{
+    color: black;
+    text-decoration: none;
+}
+
+#reservation table tr td.blocked{
+    background: rgba(200, 200, 200, 1);
+    color: #444444;
+
+    opacity: 0.5;
+}
+
+#calendar table tr td .this_month{
+    background: silver;
+}
+
+#calendar table tr td .day{
+    background: yellow;
+    cursor: pointer;
+}
+
+#calendar table tr td .day:hover{
+    font-weight: bold;
+}
+
+#calendar table tr td .last_month{
+    background: orange;
+}
+
+#calendar table tr td .next_month{
+    background: orange;
+}
+
+#reservation table tr td .today, #reservation table tr td.now{
+    background: gray;
+}
+
+#calendar table tr td .select_day{
+    background: crimson;
+}
+
+/* tabulka rezervací */
+
+#reservation #table table tr td{
+    position: relative;
+
+    width: 90px;
+    height: var(--table-height);
+
+    text-align: center;
+    margin: 1px;
+    padding: 0px;
+}
+
+#reservation .thead{
+    position: relative;
+    background: cornflowerblue;
+
+    padding-top: 4px;
+}
+
+#reservation .thead:after{
+    position: relative;
+    float: left;
+    content: " ";
+    height: 0px;
+    width: 0px;
+    left: 0px;
+
+    border: solid transparent 25px;
+    border-top-color: cornflowerblue;
+    border-top-width: 20px;
+    border-bottom-width: 0px;
+}
+
+
+#reservation #table table tr td.field{
+    min-width: 130px;
+}
+
+.hour{
+    cursor: pointer;
+    background: yellowgreen;
+}
+
+.hour.selected{
+    background: purple;
+}
+
+.hour.full{
+    background: red;
+}
+
+.hour.empty{
+    background: yellow;
+}
+
+.hour.noempty{
+    background: orange;
+}
+
+#reservation #table table tr td.hour:hover{
+    opacity: 0.8;
+}

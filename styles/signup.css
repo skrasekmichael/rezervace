@@ -1,0 +1,13 @@
+#signup input:focus{
+    background: rgba(0, 128, 255, 0.2);
+    box-shadow: none;
+}
+
+#signup input:focus:invalid{
+    background: rgba(255, 0, 0, 0.5);
+    box-shadow: none;
+}
+
+#signup input:invalid{	
+	box-shadow: none;
+}

@@ -1,0 +1,17 @@
+<nav>
+    <ul>
+        <a href="<?= $root ?>"><li>hlavní strana</li></a>
+        <a href="reservation"><li>rezervace</li></a>
+        <a href="info"><li>info</li></a>
+        <span class="right">
+        <?=
+            (isset($user) && $user->isLogged()) ?
+            "<a href='profile'><li>" . $user->profile() . "</li></a>" .
+            "<a href='signout'><li>odhlásit</li></a>" :
+            "<a href='signin'><li>přihlásit</li></a>" .
+            "<a href='signup'><li>zaregistrovat</li></a>";  
+        ?>
+        </span>
+        <div class="cls"></div>
+    </ul>
+</nav>

@@ -1,0 +1,14 @@
+<div id="create_action" class="tabpanel" index="0">
+    <?php
+        require("nreservation.phtml");
+        if ($user->type->level <= UserType::STAFF)
+            require("event.phtml");
+    ?>
+</div>
+<div class="information"> 
+    <div id="date">Datum: <span></span></div>
+    <div id="from">Od: <span></span></div>
+    <div id="to">Do: <span></span></div>
+    <div id="place">Místa rezervace: <span></span></div>
+    <div id="next">Další rezervace: <span></span></div>
+</div>

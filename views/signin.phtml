@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php require("templates/head.phtml") ?>
+    </head>
+    <body>
+        <header>
+            <?php require("templates/menu.phtml") ?>
+        </header>
+        <article>
+            <form method="post">
+                <table>
+                    <tr>
+                        <td>Email: </td>
+                        <td><input type="email" name="email" required value="<?= isset($_POST["email"]) ? $_POST["email"] : '' ?>"></td>
+                    </tr>
+                    <tr>
+                        <td>Heslo: </td>
+                        <td><input type="password" name="password" required></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" name="signin" value="přihlásit"></td>
+                    </tr>
+                </table>
+            </form>
+            <div class='error'><?= isset($signin_error) ? $signin_error : "" ?></div>
+        </article>
+        <footer>
+            <?= $footer ?>
+        </footer>
+    </body>
+</html>

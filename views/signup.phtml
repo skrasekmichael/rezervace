@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php require("templates/head.phtml") ?>
+    </head>
+    <body>
+        <header>
+            <?php require("templates/menu.phtml") ?>
+        </header>
+        <article>
+            <form method="post">
+                <table id="signup">
+                    <tr>
+                        <td>Email: </td>
+                        <td><input onkeyup="checking_email(this)" type="email" name="email" required value="<?= isset($_POST["email"]) ? $_POST["email"] : '' ?>"></td>
+                    </tr>
+                    <tr>
+                        <td>Heslo: </td>
+                        <td><input onkeyup="checking_password(this)" type="password" name="password" required></td>
+                    </tr>
+                    <tr>
+                        <td>Opakujte heslo: </td>
+                        <td><input onkeyup="checking_password_check(this)" type="password" name="password_check" required></td>
+                    </tr>
+                    <tr>
+                        <td>Jméno: </td>
+                        <td><input type="text" name="fname" required value="<?= isset($_POST["fname"]) ? $_POST["fname"] : '' ?>"></td>
+                    </tr>
+                    <tr>
+                        <td>Přijmení: </td>
+                        <td><input type="text" name="lname" required value="<?= isset($_POST["lname"]) ? $_POST["lname"] : '' ?>"></td>
+                    </tr>
+                    <tr>
+                        <td>Telefoní číslo: </td>
+                        <td><input type="text" name="tel" required value="<?= isset($_POST["tel"]) ? $_POST["tel"] : '' ?>"></td>
+                    </tr>
+                    <tr>
+                        <td>Antispam (aktuální rok): </td>
+                        <td><input type="text" name="year" required></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" name="signup" value="Zaregistrovat" onclick="check_year()"></td>
+                    </tr>
+                </table>
+            </form>
+            <div class='error'><?= isset($signup_error) ? $signup_error : "" ?></div>
+        </article>
+        <footer>
+            <?= $footer ?>
+        </footer>
+    </body>
+</html>
