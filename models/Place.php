@@ -13,6 +13,7 @@ class Place
 
     function load($id, $sport, $field, $price0, $price1, $max, $from, $to)
     {
+        //načtení proměnných
         $this->id = $id;
         $this->sport = $sport;
         $this->field = $field;
@@ -28,6 +29,7 @@ class Place
         return $this->sport . " " . $this->field;
     }
 
+    //vrátí místo podle ID
     public static function GetPlaceById($id)
     {
         $place = new Place();
@@ -36,6 +38,7 @@ class Place
         return $place;
     }
 
+    //načtení všech míst možných k rezervaci
     public static function GetPlaces()
     {
         $array = [];

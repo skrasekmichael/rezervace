@@ -10,6 +10,7 @@ class Action
     public $max = 1;
     public $count = 1;
 
+    //načte akci jako rezervaci
     public function load_as_reservation($id, $from, $to, $place_id, $max, $count)
     {
         $this->type = 0;

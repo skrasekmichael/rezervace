@@ -1,3 +1,4 @@
+//kontrola antispamu
 function check_year()
 {
     let year = $("#signup input[name='year']")[0];
@@ -10,6 +11,7 @@ function check_year()
     } else {  year.setCustomValidity(""); }
 }
 
+//kontrola validity emailu
 function checking_email(email)
 {
     if (!check_email(email.value))
@@ -18,6 +20,7 @@ function checking_email(email)
     } else {  email.setCustomValidity(""); }
 }
 
+//kotrola délky hesla
 function checking_password(password)
 {
     if (password.value.length < 4)
@@ -27,6 +30,7 @@ function checking_password(password)
     } else { password.setCustomValidity(""); }
 }
 
+//kotrola shody hesel
 function checking_password_check(password_check)
 {
     let password = $("#signup input[name='password']")[0];

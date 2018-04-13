@@ -11,12 +11,14 @@ class signup_controller extends controller
 
         if (isset($_POST["signup"]))
         {
+            //antispamová kontrola
             if ($_POST["year"] != date("Y"))
             {
                 $this->data["signup_error"] = "Nesprávně zadaný rok. ";
                 return; 
             }
 
+            //kontrola shody hesel
             if ($_POST["password"] != $_POST["password_check"])
             {
                 $this->data["signup_error"] = "Hesla se neshodují. ";
@@ -29,6 +31,7 @@ class signup_controller extends controller
             $lname = $_POST["lname"];
             $tel = $_POST["tel"];
 
+            //registrace
             $data = User::SignUp($email, $password, $fname, $lname, $tel);
             if ($data[0])
             {

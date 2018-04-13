@@ -4,6 +4,7 @@ class MyDate
 {
     public $timestamp;
 
+    //vrátí aktuální datum a čas
     public static function Now()
     {
         $mydate = new MyDate();
@@ -11,6 +12,7 @@ class MyDate
         return $mydate;
     }
 
+    //vrátí dnešní datum
     public static function Today()
     {
         $mydate = new MyDate();
@@ -18,6 +20,7 @@ class MyDate
         return $mydate;
     }
 
+    //převede na MyDate z timestamp
     public static function FromTimestamp($timestamp)
     {
         $mydate = new MyDate();
@@ -25,6 +28,7 @@ class MyDate
         return $mydate;
     }
 
+    //vracení jednotlivých jednotek
     public function getDay() { return intval(date("d", $this->timestamp)); }
     public function getMonth() { return intval(date("m", $this->timestamp)); }
     public function getYear() { return intval(date("Y", $this->timestamp)); }
@@ -36,6 +40,7 @@ class MyDate
         return cal_days_in_month(CAL_GREGORIAN, $this->getMonth(), $this->getYear());
     }
 
+    //posune vybrané jednotky o zadanou hodnotu 
     public function change($data) 
     { 
         $hour = array_key_exists("hour", $data) ? $data["hour"] : null;
@@ -49,6 +54,7 @@ class MyDate
         $this->getMonth() + $month ?? 0, $this->getDay() + $day ?? 0, $this->getYear() + $year ?? 0);
     }
 
+    //nastaví vybrané jednotky o zadanou hodnotu 
     public function set($data) 
     { 
         $hour = array_key_exists("hour", $data) ? $data["hour"] : null;

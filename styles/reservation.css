@@ -1,4 +1,4 @@
-/* kalendář */
+/* --- kalendář --- */
 
 #reservation{
     --calendar-size: 40px; 
@@ -41,10 +41,12 @@
     opacity: 0.5;
 }
 
+/* dny, které už proběhly */
 #calendar table tr td .this_month{
     background: silver;
 }
 
+/* dny tohoto měsíce */
 #calendar table tr td .day{
     background: yellow;
     cursor: pointer;
@@ -54,23 +56,27 @@
     font-weight: bold;
 }
 
+/* dny minulého měsíce */
 #calendar table tr td .last_month{
     background: orange;
 }
 
+/* dny následujícího měsíce */ 
 #calendar table tr td .next_month{
     background: orange;
 }
 
+/* aktuální den */
 #reservation table tr td .today, #reservation table tr td.now{
     background: gray;
 }
 
+/* označený den */
 #calendar table tr td .select_day{
     background: crimson;
 }
 
-/* tabulka rezervací */
+/* --- tabulka rezervací --- */
 
 #reservation #table table tr td{
     position: relative;
@@ -109,23 +115,28 @@
     min-width: 130px;
 }
 
+/* žádné rezervace */
 .hour{
     cursor: pointer;
     background: yellowgreen;
 }
 
+/* označený čas */
 .hour.selected{
     background: purple;
 }
 
+/* plno */
 .hour.full{
     background: red;
 }
 
+/* rezervace bez uživatelů */
 .hour.empty{
     background: yellow;
 }
 
+/* více jak 1 rezervace */
 .hour.noempty{
     background: orange;
 }

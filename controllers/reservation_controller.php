@@ -19,7 +19,6 @@ class reservation_controller extends controller
             if (is_numeric($data[1][0]))
             {
                 $date = MyDate::FromTimestamp($data[1][0]);
-                
             }
             else    
             {
@@ -40,10 +39,8 @@ class reservation_controller extends controller
         $this->data["date"] = $date;
         $this->data["calendar"] = $this->calendar($this->data["date"]);
 
-        $places = Place::GetPlaces();
-
         $all = new Reservations();
-        $all->load($places, $this->data["date"]);
+        $all->load(Place::GetPlaces(), $this->data["date"]);
         $this->data["allreservation"] = $all->get($date);
     }
 

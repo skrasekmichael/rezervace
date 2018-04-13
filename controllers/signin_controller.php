@@ -9,9 +9,11 @@ class signin_controller extends controller
         $this->data["title"] = "Přihlásit";
         $this->styles[] = "signin";
 
+        //pokud byl odeslán POST požadavek na přihášení
         if (isset($_POST["signin"]))   
         {
             $result = User::SignIn($_POST["email"], $_POST["password"]);
+            //pokud přihlášení proběhlo úspěšně
             if ($result[0])
             {
                 $this->user = $result[1];

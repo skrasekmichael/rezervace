@@ -15,16 +15,19 @@ class compiler_controller extends controller
 		$controller = $data[0];
 		$this->data["user"] = $user;
 
+        //pokud URL obsahuje podstránku
 		if ($controller != "")
 		{
 			$template = $controller;
 			$class = $controller . "_controller";
 
+            //pokud existuje kontroler
 			if (file_exists("controllers/$class.php"))
 				$this->controller = new $class;
 			else 
 				$this->redirect("error/404/1");
 
+            //předávání parametrů mezi hlavním kontrolerem a kontrolerem podstránky
 			$this->controller->user = $user;
 			$this->controller->data = $this->data;
 			$this->controller->main($data);
@@ -34,13 +37,14 @@ class compiler_controller extends controller
 
 			if ($this->controller->template == "index")
 			{
+                //pokud existuje pohled
 				if (file_exists("views/$template.phtml"))
 					$this->template = $template;
 				else
 					$this->redirect("error/404/2");
 			}
 		}	
-		
+        
 		$this->loadJS();
 		$this->loadCSS();
     }

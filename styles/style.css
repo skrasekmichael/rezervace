@@ -5,13 +5,13 @@ body{
     background: #444444;
 }
 
-/* hlavní sekce */
+/* --- hlavní sekce --- */
 article{
     background: white;
     padding: 10px;
 }
 
-/* zápatí */
+/* --- zápatí --- */
 footer{
     background: #444444;
     color: white;
@@ -20,7 +20,7 @@ footer{
     padding: 10px;
 }
 
-/* menu */
+/* --- menu --- */
 nav{
     position: relative;
     width: 100%;
@@ -82,7 +82,7 @@ nav ul a li:hover{
     padding-left: 5px;
 }
 
-/* ostatní */
+/* --- ostatní --- */
 .right{
     float: right;
 }
@@ -99,7 +99,7 @@ nav ul a li:hover{
     font-weight: bold;
 }
 
-/* tab panel */
+/* --- tab panel --- */
 
 .tabpanel{
     position: relative;
@@ -172,7 +172,7 @@ nav ul a li:hover{
     float: left;
 }
 
-/* tooltip */
+/* --- tooltip --- */
 
 [tooltip]{
     position: relative;

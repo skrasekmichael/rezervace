@@ -16,7 +16,7 @@ function autoloader($class)
 
 spl_autoload_register("autoloader");
 
-require("connect.php");
+require("../connect.php");
 Db::connect($host, $user, $password, $database);
 
 $router = new router_controller();

@@ -10,6 +10,8 @@ class Reservations
     public function load($places, $date)
     {
         $this->places = $places;
+
+        //deklarace otevírací doby
         for ($i = 0; $i < count($places); $i++)
         {
             $hour = new Hour();
@@ -17,29 +19,35 @@ class Reservations
             $this->hours[$places[$i]->sport . $places[$i]->field] = $hour;
         }
 
-        //klasické rezervace
+        //nasčtení rezervací
         $data = Db::query_all("SELECT * FROM reservation ORDER BY `from`");
         for ($i = 0; $i < count($data); $i++)
         {   
+            //načtení akce
             $action = new Action();
             $action->load_as_reservation($data[$i]["idreservation"], $data[$i]["from"], $data[$i]["to"], $data[$i]["place"], 1, $data[$i]["count"]);
             $key = $action->places[0]->sport . $action->places[0]->field;
-            $this->data[$key][strtotime($action->from)] = $action;
             
-            $count = Db::query("SELECT * FROM user_has_reservation WHERE reservation_idreservation = " . $action->id);
-            $from = MyDate::FromTimestamp(strtotime($action->from));
-            $to = MyDate::FromTimestamp(strtotime($action->to));
-            $next_day = MyDate::FromTimestamp($date->timestamp);
+            //$this->data[$key][strtotime($action->from)] = $action; ... old version
+            
+            $count = Db::query("SELECT * FROM user_has_reservation WHERE reservation_idreservation = " . $action->id); //počet rezervací místa
+            $from = MyDate::FromTimestamp(strtotime($action->from)); //otevírací doba
+            $to = MyDate::FromTimestamp(strtotime($action->to)); //zavírací doba
+
+            $next_day = MyDate::FromTimestamp($date->timestamp); 
             $next_day->change(["day" => 1]);
 
             /*echo $from->toString() . " > " . $date->toString() . " = " . ($from->timestamp > $date->timestamp) . ";";
-            echo $to->toString() . " < " . $next_day->toString() . " = " . ($to->timestamp < $next_day->timestamp) . ";<br>";*/
+            echo $to->toString() . " < " . $next_day->toString() . " = " . ($to->timestamp < $next_day->timestamp) . ";<br>"; ... for debuging*/
+
+            //pokud datum rezervace souhlasí s vybraným datem
             if ($from->timestamp > $date->timestamp && $to->timestamp < $next_day->timestamp)
             {
+                //projití otevírycí doby po 30 min
                 for ($j = $from->getHour(); $j < $to->getHour(); $j += 0.5)
                 {
-                    $this->hours[$key]->full[(string)$j] += $count;
-                    $this->hours[$key]->count = abs(abs($from->getHour() - $to->getHour() - 0.5) - $j);
+                    $this->hours[$key]->full[(string)$j] += $count; //nastavení obsazenosti v dane půlhodině
+                    $this->hours[$key]->count = abs(abs($from->getHour() - $to->getHour() - 0.5) - $j); //délka rezervace
                 }
             }
         }
@@ -47,12 +55,16 @@ class Reservations
 
     public function get($date)
     {
+        //řídící proměnné
         $print = "";
         $create = true;
         $count = count($this->places);
+
+        //projde všechny místa k rezervac
         for ($i = 0; $i < $count; $i++)
         {
-            if ($create)
+            //pokud se má vytvořit nová záložka
+            if ($create) 
             {
                 $place = $this->places[$i];
                 $print .= "<div class='title'>" . $place->sport . "</div><div class='tab'>";
@@ -60,6 +72,8 @@ class Reservations
 
                 $adate = MyDate::FromTimestamp($date->timestamp);
                 $adate->set(["hour" => $place->open_from, "min" => 0, "sec" => 0]);
+
+                //hlavička s časy
                 for ($j = $place->open_from - 1; $j < $place->open_to; $j += 1)
                 {
                     $print .= "<td colspan='2'><div class='thead'>" . $adate->toString("H:i") . "</div></td>";
@@ -70,72 +84,94 @@ class Reservations
                 $create = false;
             }
 
+            //přidání řádku se rezervacemi místa vybraného dne
             $print .= $this->get_row($this->places[$i], $date);
+
+            //pokud se změnil typ místa
             if ($i + 1 < $count && $this->places[$i + 1]->sport != $this->places[$i]->sport)
             {
-                $print .= "</table></div>";
-                $create = true;
+                $print .= "</table></div>"; //uknčení tabulky
+                $create = true; //povolení vytvořit novou založku
             }
         }
         return $print . "</table></div>";
     }
 
+    //rezervace vybraného místa na vybraný den
     private function get_row($place, $date)
     {
         $adate = MyDate::FromTimestamp($date->timestamp);
-        $adate->change(["hour" => $place->open_from]); 
+        $adate->change(["hour" => $place->open_from]); //nastavení datumu na čas otevření
     
-        $field_as_class = str_replace(".", "", str_replace(" ", "_", $place->field));
+        $field_as_class = str_replace(".", "", str_replace(" ", "_", $place->field)); //převedení druhu místa na CSS třídu
+        
         $row = "<tr class='". $field_as_class."'>";
         $row .= "<td class='field'>" . $place->field . "</td><td></td>";
+        
+        //řídící proměnné
         $td = 0;
         $key = $place->sport . $place->field;
 
+        //procházení po 30 min
         for ($j = $place->open_from; $j < $place->open_to; $j += 0.5)
         {
             $class = "hour";
             $text = "";
+
+            //nastavení akce po kliknutí
             $onclick = "onclick=\"set('" . $place->sport . "', '" . $place->field . "', '" . $adate->timestamp . "', $td, '$field_as_class')\"";
 
-            $span = 1;
+            $span = 1; //výchozí šířka buňky
+
+            //zablokování rezervací do minulosti
             if ($adate->timestamp + 30 * 60 < MyDate::Now()->timestamp)
                 $class = "blocked";
-            else if ($adate->timestamp < MyDate::Now()->timestamp)
+            else if ($adate->timestamp < MyDate::Now()->timestamp) //zablokování rezervací na aktuální čas
                 $class = "now";
-            else if ($this->hours[$key]->full[$j] == 0)
+            else if ($this->hours[$key]->full[$j] == 0) //volno
             {         
                 $text = "0/" . $place->max;
                 $td++;
             }
             else
             {
-                if ($this->hours[$key]->full[(string)$j] == $place->max)
+                // ... na tuto dobu jsem vytvořené rezervace
+
+                //pokud je naplňěn maximální počet rezervací místa
+                if ($this->hours[$key]->full[(string)$j] == $place->max) 
                 {
                     $class .= " full";
                     $text = $place->max . "/" . $place->max;
                 }
-                else if ($this->hours[$key]->full[(string)$j] > 0)
+                else if ($this->hours[$key]->full[(string)$j] > 0) //ještě není plno
                 {
                     $class .= " noempty";
                     $text = $this->hours[$key]->full[(string)$j] . "/" . $place->max;
                 }
 
-                $c = $this->hours[$key]->count;
+                $c = $this->hours[$key]->count; //délka rezervace uživatele
+
+                //pokud je místo pro 1 rezervaci
                 if ($place->max == 1)
                 {
+                    //spojí se čas do dlouhého bloku
                     $adate->change(["min" => $c * 60]); 
                     $j += $c - 0.5;
                     $span = 2 * $c;
                 }
 
-                $td++;
+                $td++; //byla přidána buňka
             } 
 
+            //text po najetí myši
             $tooltip = ($text != "") ? "tooltip='obsazeno $text'" : "";
 
+            //přidání buňky
             $row .= "<td $tooltip colspan='$span' " . ($class == "hour" ? $onclick : "") . " class='$class'></td>";  
+
+            //pokud je šířka buňky 1
             if ($span == 1)
-                $adate->change(["min" => 30]); 
+                $adate->change(["min" => 30]); //posune se čas o 30 min
         }
         return $row . "<td></td></tr>";
     }

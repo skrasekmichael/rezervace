@@ -16,6 +16,7 @@ class User
 
     public function isLogged()
     {
+        //pokud je uživatel GUEST ... není přihlášený
         return !($this->type->level == UserType::GUEST);
     }
 
@@ -24,26 +25,34 @@ class User
         $this->init($id);
     }
 
+    //vrátí lštu zobrazující v menu
     public function profile()
     {
         return "<div class='profile_bar'><div class='avatar'><img src='" . $this->avatars[$this->avatar] . "'></div><div class='name'>" . $this->firstName . "&nbsp;" . $this->lastName . "</div></div>";
     }
 
+    //načtení uživatele z databáze s daným ID
     private function init($id)
     {
-        $this->type = UserType::FromLevel(UserType::GUEST);
+        $this->type = UserType::FromLevel(UserType::GUEST); //výchozí typ uživatele
         $this->id = $id;
+
         $data = Db::query_one("SELECT * FROM user WHERE iduser = $id");
 
-        $this->type = UserType::FromId($data[1]);
+        $this->type = UserType::FromId($data[1]); //přepsání typu uživatele
+
+        //pokud je účet neaktivní
         if ($this->type->level == UserType::REGISTRED)
         {
+            //aktivace účtu
             $this->type = UserType::FromLevel(UserType::ACTIV);
             $this->update($this->id, "type", Db::query_one("SELECT idusertype, level FROM usertype WHERE level = " . UserType::ACTIV)[1]);
         }
 
+        //pokud se nejedná o GUESTA
         if ($this->type->level != UserType::GUEST)
         {
+            //načtení uživatelských informací
             $this->email = $data[2];
             $this->password = $data[3];
             $this->firstName = $data[4];
@@ -75,16 +84,21 @@ class User
             return [false, "Uživatel s tímto emailem je již zaregistrován. "];
     }
 
+    //přihlášení uživatele
     public static function SignIn($email, $password)
     {
-        $password = hash("SHA512", $password . $email);
-        $data = Db::query_all("SELECT iduser, email, password FROM user WHERE email = '$email'");
+        $password = hash("SHA512", $password . $email); //vrátí otisk hesla + soli (emailu), který je uložený v databázi
+        $data = Db::query_all("SELECT iduser, email, password FROM user WHERE email = '$email'"); 
+
+        //pokud uživtael s tímto emailem existuje
         if (count($data) == 1)
         {
+            //pokud se otisk hesla shoduje s otiskem v databázi
             if ($data[0][2] == $password)
             {
+                //načte uživatele s tímto ID
                 $user = new User($data[0][0]);
-                return [true, $user];
+                return [true, $user]; 
             }
             else
                 return [false, "Nesprávně zadané heslo. "];

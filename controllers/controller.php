@@ -12,6 +12,7 @@ abstract class controller
 
     function __construct()
     {
+        //výchozí proměnné
         $this->root = "/" . $this->main_url;
         $this->data["footer"] = "Copyright &copy; 2018 Michael Škrášek, Tomáš Szabó, Michal Ruiner, Martin Bielik";
         $this->data["title"] = "rezervace";
@@ -19,7 +20,7 @@ abstract class controller
         $this->data["base"] = "/";
     }
 
-    protected function loadCSS()
+    protected function loadCSS()  
     {
         $this->data["styles"] = "";
         for ($i = 0; $i < count($this->styles); $i++)
@@ -51,13 +52,16 @@ abstract class controller
 
     public function print_result()
     {
+        //extrahuje pole jako proměnné
         extract($this->data);
+        //načte pohled
         require("./views/" . $this->template . ".phtml");
     }
 	
 	public function redirect($url)
 	{
 
+        //přesměrování
 		header("Location: /" . $url);
 		header("Connection: close");
         exit;

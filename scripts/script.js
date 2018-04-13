@@ -1,9 +1,11 @@
+//validace emailu
 function check_email(email)
 {
 	let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
 }
 
+//rozšíření pro redirect stránky s POST požadavkem
 $.extend({
     redirectPost: function(location, args)
     {
@@ -20,31 +22,37 @@ window.onload = function()
     init();
 }
 
+//inicializace stránky
 function init()
 {
     tabpanels();
 }
 
+//načtení všech tab panelů
 function tabpanels()
 {
     let panels = $(".tabpanel");
+    //procházení všech tabpanelů
     for (let i = 0; i < panels.length; i++)
     {
         let panel = panels[i];
-        panel.innerHTML += "<span class='default'></span><span class='cls'></span>";
+        panel.innerHTML += "<span class='default'></span><span class='cls'></span>"; //přidání spanu pro úpravu velikosti
 
-        let index = panel.getAttribute("index");
-        let size = tabpanel(panel.getElementsByTagName("div"), index);
+        let index = panel.getAttribute("index"); //index výchozí tab záložky
+        let size = tabpanel(panel.getElementsByTagName("div"), index); //načtení tab panelu
 
+        //výchozí velikosti
         let w = panel.offsetWidth;
         let h = panel.offsetHeight;
 
+        //pokud byly překročeny
         if (w < size[0])
             w = size[0];
 
         if (h < size[1])
             h = size[1];
 
+        //nastavení velikosti
         panel.getElementsByClassName("default")[0].setAttribute("style", "margin-left: " + (-panel.offsetWidth) + "px; width: " + w + "px; height: " + h + "px;");
     }
 }
@@ -53,16 +61,22 @@ function tabpanel(panel, index)
 {
     let w = 0;
     let h = 0;
+
+    //procházení všech tab záložek
     for (let i = 0; i < panel.length; i += 2)
     {
         let title = panel[i];
+
+        //nastavení události
         title.onclick = function(){
             change_tab_panel(panel, i);
         };
 
+        //pokud se jedná o právě zobrazovanou tab záložku
         if (i == index * 2)
             change_tab_panel(panel, i);
 
+        //kontrola velikotí
         if (i + 1 < panel.length)
         {
             if (w < panel[i + 1].offsetWidth)
@@ -76,6 +90,7 @@ function tabpanel(panel, index)
     return [w, h];
 }
 
+//změna prohlížené tab záložky
 function change_tab_panel(divs, index)
 {
     for (let i = 0; i < divs.length; i++)
@@ -87,10 +102,11 @@ function change_tab_panel(divs, index)
             i++;
         }
         else
-            divs[i].classList.remove("selected");
-    }
+            divs[i].classList.remove("selected"); 
+    } 
 }
 
+//doplnění čísel před text
 function to_len(val, len)
 {
     val = val.toString();
@@ -101,6 +117,7 @@ function to_len(val, len)
     return val;
 }
 
+//naformátovaní datumu from timestamp
 function date_format(date, format)
 {
     //Y-m-d H:i:s

@@ -2,6 +2,8 @@
 
 class UserType
 {
+    //konstatnty tyoů uživatelů s oprávněním
+    //[TODO] nastavím automaticky z databáze   
     const ADMINISTRATOR = 1; 
     const STAFF = 2;   
     const VIP = 3;   
@@ -13,6 +15,7 @@ class UserType
     public $level;
     public $decription;
 
+    //načte typ uživatele podle ID
     public static function FromId($id)
     {
         $data = Db::query_one("SELECT * FROM usertype WHERE idusertype = $id");
@@ -23,6 +26,7 @@ class UserType
         return $user;
     }
 
+    //vrátí typ uživatele podle oprávnění
     public static function FromLevel($level)
     {
         $data = Db::query_one("SELECT * FROM usertype WHERE level = $level");
