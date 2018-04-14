@@ -39,7 +39,18 @@ function tabpanels()
         panel.innerHTML += "<span class='default'></span><span class='cls'></span>"; //přidání spanu pro úpravu velikosti
 
         let index = panel.getAttribute("index"); //index výchozí tab záložky
-        let size = tabpanel(panel.getElementsByTagName("div"), index); //načtení tab panelu
+
+        let _tabpanel = panel.getElementsByTagName("div");
+        let p = [];
+
+        for (let j = 0; j < _tabpanel.length; j++)
+        {
+            if (_tabpanel[j].classList.contains("tab") ||
+                _tabpanel[j].classList.contains("title"))
+                p.push(_tabpanel[j])             
+        }
+
+        let size = tabpanel(p, index); //načtení tab panelu
 
         //výchozí velikosti
         let w = panel.offsetWidth;
@@ -66,7 +77,6 @@ function tabpanel(panel, index)
     for (let i = 0; i < panel.length; i += 2)
     {
         let title = panel[i];
-
         //nastavení události
         title.onclick = function(){
             change_tab_panel(panel, i);
