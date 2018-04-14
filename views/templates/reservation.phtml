@@ -1,7 +1,7 @@
 <div id="create_action" class="tabpanel" index="0">
     <?php
         require("nreservation.phtml");
-        if ($user->type->level <= UserType::STAFF)
+        if ($user->type->level <= STAFF)
             require("event.phtml");
     ?>
 </div>

@@ -45,3 +45,9 @@ function res_info(index, time, duration, places)
         }
     }
 }
+
+function check_datetime(datetime)
+{
+    let re = /^(([0]?[1-9]|1[0-2])/([0-2]?[0-9]|3[0-1])/[1-2]\d{3}) (20|21|22|23|[0-1]?\d{1}):([0-5]?\d{1})$/;
+    return re.test(datetime)
+}

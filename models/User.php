@@ -17,7 +17,7 @@ class User
     public function isLogged()
     {
         //pokud je uživatel GUEST ... není přihlášený
-        return !($this->type->level == UserType::GUEST);
+        return !($this->type->level == GUEST);
     }
 
     public function __construct($id)
@@ -34,7 +34,7 @@ class User
     //načtení uživatele z databáze s daným ID
     private function init($id)
     {
-        $this->type = UserType::FromLevel(UserType::GUEST); //výchozí typ uživatele
+        $this->type = UserType::FromLevel(GUEST); //výchozí typ uživatele
         $this->id = $id;
 
         $data = Db::query_one("SELECT * FROM user WHERE iduser = $id");
@@ -42,15 +42,15 @@ class User
         $this->type = UserType::FromId($data[1]); //přepsání typu uživatele
 
         //pokud je účet neaktivní
-        if ($this->type->level == UserType::REGISTRED)
+        if ($this->type->level == REGISTRED)
         {
             //aktivace účtu
-            $this->type = UserType::FromLevel(UserType::ACTIV);
-            $this->update($this->id, "type", Db::query_one("SELECT idusertype, level FROM usertype WHERE level = " . UserType::ACTIV)[1]);
+            $this->type = UserType::FromLevel(ACTIV);
+            $this->update($this->id, "type", Db::query_one("SELECT idusertype, level FROM usertype WHERE level = " . ACTIV)[1]);
         }
 
         //pokud se nejedná o GUESTA
-        if ($this->type->level != UserType::GUEST)
+        if ($this->type->level != GUEST)
         {
             //načtení uživatelských informací
             $this->email = $data[2];

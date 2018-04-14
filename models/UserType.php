@@ -1,15 +1,22 @@
 <?php
 
+//konstanty typů uživatelů s oprávněním
+$_usertypes = Db::query_all("SELECT level, name FROM usertype");
+for ($i = 0; $i < count($_usertypes); $i++)
+    eval("const " . $_usertypes[$i]["name"] . " = " . $_usertypes[$i]["level"] . ";");
+
+
 class UserType
 {
-    //konstatnty tyoů uživatelů s oprávněním
-    //[TODO] nastavím automaticky z databáze   
+    /*
     const ADMINISTRATOR = 1; 
     const STAFF = 2;   
     const VIP = 3;   
     const ACTIV = 4; 
     const REGISTRED = 5; 
     const GUEST = 6;
+    ... old version
+    */
 
     public $id;
     public $level;
