@@ -1,8 +1,12 @@
 <?php
 
+//načtení avatarů
+foreach (glob("images/avatars/*.png") as $file)
+    User::$avatars[] = $file;
+
 class User
 {
-    private $avatars = ["https://upload.wikimedia.org/wikipedia/commons/f/f4/User_Avatar_2.png"];
+    public static $avatars = [];
 
     public $type;
     public $firstName;
@@ -10,7 +14,7 @@ class User
     public $email;
     public $tel;
     public $id;
-    public $avatar = 0;
+    public $avatar = 1;
     
     private $password;
 
@@ -28,12 +32,14 @@ class User
     //vrátí lštu zobrazující v menu
     public function profile()
     {
-        return "<div class='profile_bar'><div class='avatar'><img src='" . $this->avatars[$this->avatar] . "'></div><div class='name'>" . $this->firstName . "&nbsp;" . $this->lastName . "</div></div>";
+        return "<div class='profile_bar'><div class='avatar'><img src='" . User::$avatars[$this->avatar] . "'></div><div class='name'>" . $this->firstName . "&nbsp;" . $this->lastName . "</div></div>";
     }
 
     //načtení uživatele z databáze s daným ID
     private function init($id)
     {
+
+
         $this->type = UserType::FromLevel(GUEST); //výchozí typ uživatele
         $this->id = $id;
 
@@ -46,7 +52,7 @@ class User
         {
             //aktivace účtu
             $this->type = UserType::FromLevel(ACTIV);
-            $this->update($this->id, "type", Db::query_one("SELECT idusertype, level FROM usertype WHERE level = " . ACTIV)[1]);
+            $this->update("type", Db::query_one("SELECT idusertype, level FROM usertype WHERE level = " . ACTIV)[1]);
         }
 
         //pokud se nejedná o GUESTA
@@ -62,9 +68,14 @@ class User
         }
     }
 
-    private function update($id, $var, $value)
+    private function update($var, $value)
     {
-        Db::query("UPDATE user SET $var = $value WHERE iduser = $id");
+        Db::query("UPDATE user SET $var = $value WHERE iduser = " . $this->id);
+    }
+
+    public function set_avatar($index)
+    {
+        $this->update("avatar", $index);
     }
 
     public function getDay($date)
@@ -77,7 +88,7 @@ class User
         if (Db::query("SELECT email FROM user WHERE email = '$email'") == 0)
         {
             $password = hash("SHA512", $password . $email);
-            Db::query("INSERT INTO user (iduser, type, email, password, firstname, lastname, tel, avatar) VALUES (NULL, " . UserType::FromLevel(UserType::REGISTRED)->id . ", '$email', '$password', '$fname', '$lname', '$tel', 0)");
+            Db::query("INSERT INTO user (iduser, type, email, password, firstname, lastname, tel, avatar) VALUES (NULL, " . UserType::FromLevel(UserType::REGISTRED)->id . ", '$email', '$password', '$fname', '$lname', '$tel', 1)");
             return [true, "Registrace proběhla úspěšbě. "];
         }
         else

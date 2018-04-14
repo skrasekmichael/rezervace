@@ -10,7 +10,7 @@
         <article>
             <h1>Profil</h1>
             <h2><?= $user->firstName . " " . $user->lastName ?></h2>
-            <div class='tabpanel' index="0">
+            <div class='tabpanel' index="2">
                 <div class='title'>Informace</div>
                 <div class="tab">
                     <p>
@@ -24,9 +24,40 @@
                 <div class="tab">
                     ...
                 </div>
-                <div class='title'>Nastavení</div>
+                <div class='title'>Nastavení účtu</div>
                 <div class="tab">
-                    ...
+                    <form method="post">
+                        <h3>avatar</h3>
+                        <?= $avatars ?>
+                        <input type="hidden" name="avatar_index" id="avatar_index" value="<?= $user->avatar ?>">
+                        <input type="submit" name="avatar" value="Změnit avatara">
+                    </form>
+                    <form method="post">
+                        <h3></h3>
+                    </form>
+                    <form method="post">
+                        <h3>změna hesla</h3>
+                        <table>
+                            <tr>
+                                <td>Staré heslo: </td>
+                                <td><input type="password" name="old_password"></td>
+                            </tr>
+                            <tr>
+                                <td>Nové heslo: </td>
+                                <td><input type="password" name="new_password"></td>
+                            </tr>
+                            <tr>
+                                <td>Nové heslo znovu: </td>
+                                <td><input type="password" name="check_new_password"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="submit" name="change_password" value="Změnit heslo"></td>
+                            </tr>
+                        </table>
+                    </form>
+                    <form method="post">
+                        <h3>smazat účet</h3>
+                    </form>
                 </div>
             </div>
             <div class='cls'></div>

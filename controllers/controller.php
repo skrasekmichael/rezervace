@@ -67,6 +67,12 @@ abstract class controller
         exit;
     }
 
+    public function refresh()
+    {
+        header("Refresh:0");
+        exit;
+    }
+
     public function load_home()
     {
         $this->redirect("");

@@ -1,0 +1,36 @@
+/* --- seznam avatarů --- */
+
+.avatars{
+    width: auto;
+}
+
+.avatars li{
+    float: left;
+    position: relative;
+    list-style-type: none;
+
+    padding: 3px;
+
+    width: 80px;
+    height: 80px;
+
+    background: white;
+    border: solid white 3px;
+
+    cursor: pointer;
+}
+
+.avatars li:hover{
+    background: skyblue;
+    border-color: skyblue;
+}
+
+
+.avatars li.select{
+    border-color: skyblue;
+}
+
+.avatars li img{
+    max-width: 80px;
+    max-height: 80px;
+}
