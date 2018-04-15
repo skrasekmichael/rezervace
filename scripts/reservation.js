@@ -1,3 +1,16 @@
+var _index, _time, _duration, _places, _sport, _fclass;
+
+window.onload = function()
+{
+    init();
+
+    $("#duration:input").bind('keyup mouseup', function () {
+        let duration = $(this).val()
+        select(_index, _sport, _fclass, duration);
+        res_info(_index, _time, duration, _places);
+    });
+}
+
 //nastaví rezervační údaje
 function set(sport, field, start, index, fclass)
 {
@@ -6,15 +19,8 @@ function set(sport, field, start, index, fclass)
     {
         let datetime = new Date(start * 1000);
 
-        $("#reservation #table table tr td.hour").removeClass("selected"); //odstranění dříve označených časů
         let duration = $("input[name='duration']")[0].value;
-        let cells = $("." + sport + " ." + fclass + " .hour");
-
-        //označení časů
-        for (let i = 0; i < duration; i++)
-        {
-            cells[index + i].classList.add("selected"); 
-        }
+        select(index, sport, fclass, duration);
 
         //nastavení údahů
         //čas
@@ -30,6 +36,24 @@ function set(sport, field, start, index, fclass)
         }
 
         res_info(index, datetime, duration, places);
+
+        _index = index;
+        _time = datetime;
+        _places = places;
+        _fclass = fclass;
+        _sport = sport;
+    }
+}
+
+function select(index, sport, fclass, duration)
+{
+    $("#reservation #table table tr td.hour").removeClass("selected"); //odstranění dříve označených časů
+    let cells = $("." + sport + " ." + fclass + " .hour");
+
+    //označení časů
+    for (let i = 0; i < duration; i++)
+    {
+        cells[index + i].classList.add("selected"); 
     }
 }
 
@@ -46,8 +70,12 @@ function res_info(index, time, duration, places)
     }
 }
 
+/*
 function check_datetime(datetime)
 {
     let re = /^(([0]?[1-9]|1[0-2])/([0-2]?[0-9]|3[0-1])/[1-2]\d{3}) (20|21|22|23|[0-1]?\d{1}):([0-5]?\d{1})$/;
     return re.test(datetime)
 }
+... nefunguje
+*/
+
