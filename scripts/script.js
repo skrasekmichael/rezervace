@@ -1,3 +1,5 @@
+var isLogged = false;
+
 //validace emailu
 function check_email(email)
 {
@@ -141,4 +143,53 @@ function date_format(date, format)
     format = format.replace("s", to_len(date.getSeconds(), 2));
 
     return format;
+}
+
+function sleep(ms) 
+{
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+  
+setLogged();
+async function setLogged()
+{
+    ajax("isLogged", [0], function(yn, result){
+        isLogged = result;
+        console.log(result);
+    });
+    await sleep(100);
+}
+
+async function logOut()
+{
+    ajax("logOut", [0], function(yn, result){
+        console.log(result);
+    });
+    await sleep(100);
+    location.reload();
+}
+
+function ajax(fname, args, callback)
+{
+    $.ajax({
+        type: "POST",
+        url: 'ajax.php',
+        dataType: 'json',
+        data: { functionname: fname, arguments: args },
+
+        success: function (obj, textstatus) 
+        {
+            if (callback != null)
+            {
+                if(!('error' in obj)) 
+                {
+                    return callback(true, obj.result);
+                }
+                else 
+                {
+                    return callback(false, obj.error);
+                }
+            }
+        }
+    });
 }

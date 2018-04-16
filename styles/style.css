@@ -54,6 +54,7 @@ nav ul a li{
     text-align: center;
     float: left;
     list-style-type: none;
+    cursor: pointer;
 }
 
 nav ul a li:hover{

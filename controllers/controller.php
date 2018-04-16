@@ -29,7 +29,7 @@ abstract class controller
 
     protected function loadJS()
     {
-        $this->data["scripts"] = "<script type='text/javascript'>var isLogged = " . $this->data["user"]->isLogged() . ";</script>";
+        $this->data["scripts"] = "";
         for ($i = 0; $i < count($this->scripts); $i++)
             $this->data["scripts"] .= $this->getJS($this->scripts[$i]);
     }
