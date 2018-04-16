@@ -28,6 +28,11 @@ class MyDate
         return $mydate;
     }
 
+    public function clone()
+    {
+        return MyDate::FromTimestamp($this->timestamp);
+    }
+
     //vracení jednotlivých jednotek
     public function getDay() { return intval(date("d", $this->timestamp)); }
     public function getMonth() { return intval(date("m", $this->timestamp)); }

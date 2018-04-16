@@ -38,10 +38,53 @@ class reservation_controller extends controller
 
         $this->data["date"] = $date;
         $this->data["calendar"] = $this->calendar($this->data["date"]);
+        $this->data["repeat"] = $this->repeat($date);
+
+        $repeating = new ComboBox();
+        $repeating->init($this->repeat_type($date));
+        $this->data["repeat_combobox"] = $repeating;
 
         $all = new Reservations();
         $all->load(Place::GetPlaces(), $this->data["date"]);
         $this->data["allreservation"] = $all->get($date);
+    }
+
+    private function repeat($date)
+    {
+        $inflection = ["ý pondělí", "ý úterý", "ou středu", "ý čtvrtek", "ý pátek", "ou sobotu", "ou neděli"];
+        return "každ" . $inflection[$date->getWeeksDay() - 1];
+    }
+
+    private function repeat_type($date)
+    {
+        $data = [];
+        $data[] = "vlastní";
+
+        $end_year = new MyDate();
+        $end_year->set(["year" => $date->getYear() + 1]);
+        $end_year->change(["day" => -1]);
+        $data[] = "do konce roku: " . $this->get_to_date($date->clone(), $end_year);
+        
+        $end_month = new MyDate();
+        $end_month->set(["year" => $date->getYear(),"month" => $date->getMonth() + 1]);
+        $end_month->change(["day" => -1]);
+        $data[] = "do konce měsíce: " . $this->get_to_date($date->clone(), $end_month);
+
+        return $data;
+    }
+
+    private function get_to_date($start, $end)
+    {
+        $index = 0;
+        while (true)
+        {
+            if ($start->timestamp > $end->timestamp)
+                return $index;
+            
+            $start->change(["day" => 7]);
+            $index++;
+        }
+        return $index;
     }
 
     private function calendar($date)
@@ -56,14 +99,14 @@ class reservation_controller extends controller
         //přepínání mezi měsíci
         $table .= "<div class='month_name'>";
         
-        $previous = MyDate::FromTimestamp($date->timestamp);
+        $previous = $date->clone();
         $previous->change(["month" => -1]);
         $previous->set(["day" => 1]);
 
         $table .= "<td><a href='reservation/" . $previous->timestamp . "'><div class='to_left'><</div></a></td>";
         $table .= "<td colspan='5'>" . $months[$date->getMonth() - 1] . " " . $date->getYear() . "</td>";
 
-        $next = MyDate::FromTimestamp($date->timestamp);
+        $next = $date->clone();
         $next->change(["month" => 1]);
         $next->set(["day" => 1]);
 
@@ -76,7 +119,7 @@ class reservation_controller extends controller
             $table .= "<td class='day_name'>" . $days[$i] . "</td>";
         $table .= "</tr></thead>";
 
-        $adate = MyDate::FromTimestamp($date->timestamp);
+        $adate = $date->clone();
         $adate->set(["day" => 1]);
         $index = $adate->getWeeksDay() - 1;
 

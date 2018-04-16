@@ -78,4 +78,3 @@ function check_datetime(datetime)
 }
 ... nefunguje
 */
-

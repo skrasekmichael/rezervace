@@ -11,12 +11,17 @@ class ComboBox
 
     public function get()
     {
-        $print = "<select><option value=''></option>";
+        $print = "<select>";
         for ($i = 0; $i < count($this->data); $i++)
         {
-            $print .= "<option value='" . $this->data[$i]->id . "'>" . $this->data[$i]->toString() . "</option>";
+            $print .= "<option value='" . $this->data[$i] . "'>" . $this->data[$i] . "</option>";
         }
         $print .= "</select>";
-        echo $print;
+        return $print;
+    }
+
+    public function print()
+    {
+        echo $this->get();
     }
 }
