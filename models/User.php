@@ -88,7 +88,7 @@ class User
         return [true, "heslo bylo změněno"];
     }
 
-    public function set_avatar($index)
+    public function setAvatar($index)
     {
         $this->update("avatar", $index);
     }

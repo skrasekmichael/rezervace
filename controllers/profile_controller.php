@@ -11,7 +11,7 @@ class profile_controller extends controller
 
         if (isset($_POST["avatar"]))
         {
-            $this->user->set_avatar($_POST["avatar_index"]);
+            $this->user->setAvatar($_POST["avatar_index"]);
             $this->refresh();
         }
 
@@ -21,6 +21,7 @@ class profile_controller extends controller
             if ($result[0])
                 $this->refresh();
 
+            $_POST = [];
             $this->data["passchange_error"] = $result[1];
             $this->data["tabpanel_index"] = 2;
         }
