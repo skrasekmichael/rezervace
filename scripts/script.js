@@ -28,6 +28,7 @@ window.onload = function()
 function init()
 {
     tabpanels();
+    gallery.load();
 }
 
 //načtení všech tab panelů

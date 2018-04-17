@@ -6,8 +6,8 @@ abstract class controller
     protected $main_url = "";
     protected $template = "index";
     protected $root;
-    protected $scripts = ["script"];
-    protected $styles = ["style"];
+    protected $scripts = ["script", "gallery"];
+    protected $styles = ["style", "gallery"];
     public $user;
 
     function __construct()
