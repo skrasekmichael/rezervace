@@ -38,8 +38,6 @@ class User
     //načtení uživatele z databáze s daným ID
     private function init($id)
     {
-
-
         $this->type = UserType::FromLevel(GUEST); //výchozí typ uživatele
         $this->id = $id;
 
@@ -70,7 +68,24 @@ class User
 
     private function update($var, $value)
     {
-        Db::query("UPDATE user SET $var = $value WHERE iduser = " . $this->id);
+        Db::query("UPDATE user SET $var = '$value' WHERE iduser = " . $this->id);
+    }
+
+    public function changePassword($old, $new, $new_check)
+    {
+        if (strlen($new) < 4)
+            return [false, "heslo musí mít alespoň 4 znaky"];
+
+        if ($new != $new_check)
+            return [false, "hesla se neshodují"];
+
+        $password = hash("SHA512", $old . $this->email);
+        if ($password != $this->password)
+            return [false, "nesprávně zadané heslo"];
+
+        $new_password = hash("SHA512", $new . $this->email);
+        $this->update("password", $new_password);
+        return [true, "heslo bylo změněno"];
     }
 
     public function set_avatar($index)

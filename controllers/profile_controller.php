@@ -15,6 +15,16 @@ class profile_controller extends controller
             $this->refresh();
         }
 
+        if (isset($_POST["change_password"]))
+        {
+            $result = $this->user->changePassword($_POST["old_password"], $_POST["new_password"], $_POST["check_new_password"]);
+            if ($result[0])
+                $this->refresh();
+
+            $this->data["passchange_error"] = $result[1];
+            $this->data["tabpanel_index"] = 2;
+        }
+
         $this->styles[] = "profile";
         $this->scripts[] = "profile";
         $this->data["title"] = $this->user->firstName . " " . $this->user->lastName;
