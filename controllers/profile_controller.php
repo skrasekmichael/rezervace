@@ -36,8 +36,9 @@ class profile_controller extends controller
     {
         $list = "<ul class='avatars'>";
         $images = User::$avatars;
-        for ($i = ($this->user->type->level <= STAFF) ? 0 : 1; $i < count($images); $i++)
-            $list .= "<li " . (($i == $this->user->avatar) ? "class='select' " : "")  . " onclick='select_avatar($i)'><img src='" . $images[$i] . "' alt='$i'></li>";
+        $start = ($this->user->type->level <= STAFF) ? 0 : 1;
+        for ($i = $start; $i < count($images); $i++)
+            $list .= "<li " . (($i == $this->user->avatar) ? "class='select' " : "")  . " onclick='select_avatar(" . ($i - $start) . ")'><img src='" . $images[$i] . "' alt='$i'></li>";
         $list .= "</ul><div class='cls'></div>";
         return $list;
     }
