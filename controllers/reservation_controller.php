@@ -37,7 +37,7 @@ class reservation_controller extends controller
             $this->redirect("reservation/" . MyDate::Today()->timestamp);
 
         $this->data["date"] = $date;
-        $this->data["calendar"] = $this->calendar($this->data["date"]);
+        $this->data["calendar"] = $this->calendar($date);
         $this->data["repeat"] = $this->repeat($date);
 
         $repeating = new ComboBox();
@@ -45,8 +45,19 @@ class reservation_controller extends controller
         $this->data["repeat_combobox"] = $repeating;
 
         $all = new Reservations();
-        $all->load(Place::GetPlaces(), $this->data["date"]);
+        $all->load(Place::GetPlaces(), $date);
         $this->data["allreservation"] = $all->get($date);
+
+        if (isset($_POST["reservation"]))
+        {
+            $from = $_POST["from"];
+            $duration = $_POST["duration"];
+            $to = MyDate::FromTimestamp(strtotime($from));
+            $to->change(["min" => $duration * 30]);
+            $to = $to->toString("Y-m-d H:i:s");
+
+
+        }
     }
 
     private function repeat($date)
@@ -147,9 +158,9 @@ class reservation_controller extends controller
 
             //pokud je datum starší jak dnešní, nemůže se rezervovat
             if ($adate->timestamp >= MyDate::Today()->timestamp)
-                $table .= "<td><a href='reservation/" . $adate->timestamp . "'><div class='day" . $class . "'>" . $adate->getDay() . "</div></a></td>";    
+                $table .= "<td><a href='reservation/" . $adate->timestamp . "'><div class='number day" . $class . "'>" . $adate->getDay() . "</div></a></td>";    
             else
-                $table .= "<td class='blocked'>" . $adate->getDay() . "</td>";
+                $table .= "<td class='number blocked'>" . $adate->getDay() . "</td>";
 
             //pokud je nedělě, ukončí se řádek
             if ($index == 6)

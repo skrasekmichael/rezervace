@@ -76,7 +76,7 @@ class Reservations
                 //hlavička s časy
                 for ($j = $place->open_from - 1; $j < $place->open_to; $j += 1)
                 {
-                    $print .= "<td colspan='2'><div class='thead'>" . $adate->toString("H:i") . "</div></td>";
+                    $print .= "<td colspan='2'><div class='thead number'>" . $adate->toString("H:i") . "</div></td>";
                     $adate->change(["min" => 60]);
                 }
 
@@ -167,7 +167,7 @@ class Reservations
             $tooltip = ($text != "") ? "tooltip='obsazeno $text'" : "";
 
             //přidání buňky
-            $row .= "<td $tooltip colspan='$span' " . ($class == "hour" ? $onclick : "") . " class='$class'></td>";  
+            $row .= "<td $tooltip colspan='$span' " . ($class == "hour" ? $onclick : "") . " class='number $class'></td>";  
 
             //pokud je šířka buňky 1
             if ($span == 1)

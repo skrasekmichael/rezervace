@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans');
+
 body{
     padding: 0px;
     margin: 0px;
     
     background: #444444;
+
+    font-family: "Alegreya Sans";
 }
 
 /* --- hlavní sekce --- */
@@ -106,6 +110,10 @@ nav ul a li:hover{
 
 .l{
     left: 0px;
+}
+
+.number{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* --- tab panel --- */
