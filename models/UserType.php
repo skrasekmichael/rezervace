@@ -13,7 +13,7 @@ class UserType
     const STAFF = 2;   
     const VIP = 3;   
     const ACTIV = 4; 
-    const REGISTRED = 5; 
+    const REGISTERED = 5; 
     const GUEST = 6;
     ... old version
     */

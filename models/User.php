@@ -21,7 +21,7 @@ class User
     public function isLogged()
     {
         //pokud je uživatel GUEST ... není přihlášený
-        return !($this->type->level == GUEST);
+        return !($this->type->level == 6);
     }
 
     public function __construct($id)
@@ -38,7 +38,7 @@ class User
     //načtení uživatele z databáze s daným ID
     private function init($id)
     {
-        $this->type = UserType::FromLevel(GUEST); //výchozí typ uživatele
+        $this->type = UserType::FromLevel(6); //výchozí typ uživatele
         $this->id = $id;
 
         $data = Db::query_one("SELECT * FROM user WHERE iduser = $id");
@@ -46,15 +46,15 @@ class User
         $this->type = UserType::FromId($data[1]); //přepsání typu uživatele
 
         //pokud je účet neaktivní
-        if ($this->type->level == REGISTRED)
+        if ($this->type->level == 5)
         {
             //aktivace účtu
-            $this->type = UserType::FromLevel(ACTIV);
-            $this->update("type", Db::query_one("SELECT idusertype, level FROM usertype WHERE level = " . ACTIV)[1]);
+            $this->type = UserType::FromLevel(4);
+            $this->update("type", Db::query_one("SELECT idusertype, level FROM usertype WHERE level = " . 4)[1]);
         }
 
         //pokud se nejedná o GUESTA
-        if ($this->type->level != GUEST)
+        if ($this->type->level != 6)
         {
             //načtení uživatelských informací
             $this->email = $data[2];
@@ -103,7 +103,7 @@ class User
         if (Db::query("SELECT email FROM user WHERE email = '$email'") == 0)
         {
             $password = hash("SHA512", $password . $email);
-            Db::query("INSERT INTO user (iduser, type, email, password, firstname, lastname, tel, avatar) VALUES (NULL, " . UserType::FromLevel(UserType::REGISTERED)->id . ", '$email', '$password', '$fname', '$lname', '$tel', 1)");
+            Db::query("INSERT INTO user (iduser, type, email, password, firstname, lastname, tel, avatar) VALUES (NULL, " . UserType::FromLevel(UserType::5)->id . ", '$email', '$password', '$fname', '$lname', '$tel', 1)");
             return [true, "Registrace proběhla úspěšbě. "];
         }
         else
