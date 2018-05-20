@@ -103,7 +103,9 @@ class User
         if (Db::query("SELECT email FROM user WHERE email = '$email'") == 0)
         {
             $password = hash("SHA512", $password . $email);
+
             Db::query("INSERT INTO user (iduser, type, email, password, firstname, lastname, tel, avatar) VALUES (NULL, " . UserType::FromLevel(REGISTRED)->id . ", '$email', '$password', '$fname', '$lname', '$tel', 1)");
+
             return [true, "Registrace proběhla úspěšbě. "];
         }
         else
