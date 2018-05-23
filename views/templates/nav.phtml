@@ -3,10 +3,9 @@
         <a href="<?= $root ?>"><li>hlavní strana</li></a>
         <a href="reservation"><li>rezervace</li></a>
         <a href="info"><li>info</li></a>
-        <?=
+        <?= 
             ($user->type->level <= STAFF) ?
             "<a href='tools'><li>nástroje</li></a>" : "";
->>>>>>>     "<a href='tools'><li>nástroje</li></a>" : ""; 01e6cfb2bd218204d0bc9cc27fdbb1ed1351520b
         ?>
         <span class="right">
         <?=
