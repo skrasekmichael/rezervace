@@ -42,12 +42,12 @@ class tools_controller extends controller
                 }
         }       */
         
-        //př. jak bych to ufělal
+        //př. jak bych to udělal
         $list_of_users = "<table>";
-        $users = Db::query_all("SELECT * FROM user");
+        $users = User::GetUsers();
         for ($i = 0; $i < count($users); $i++)
         {
-            $list_of_users .= "<tr><td>" . $users[$i]["firstname"] . "</td><td>" . $users[$i]["lastname"] .  "</td><td>funkce 1</td><td>funnkce 2 ...</tr>";
+            $list_of_users .= "<tr><td>" . $user->firstName . "</td><td>" . $user->lastName .  "</td><td>funkce 1</td><td>funnkce 2 ...</tr>";
         }
         $list_of_users .= "</table>";
         $this->data["users"] = $list_of_users;
