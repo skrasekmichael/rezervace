@@ -1,16 +1,22 @@
-<script src="..\rezervace\scripts\�sprava.js"></script>
+
+<!-- 
+    když chceš importovat JS ... dělá se to v kontroleru 
+    př. $this->scripts[] = "sprava";
+    PS. to stejný i s CSS ;)
+    <script src="..\rezervace\scripts\sprava.js"></script>
+-->
 <!-- uk�e mo�nost p�id�n� usera -->
-<button id="e_u">Vytvo�it nov�ho u�ivatele</button><br /><br />
+<button id="e_u">Vytvořit nov�ho u�ivatele</button><br /><br />
 
 <!-- m� vz�t hodnoty a ud�lat nov�ho usera-->
 <table border="4" id="tableCreate" style="display:'none';">
    <tr>
-        <th>Jm�no</th>
-        <td><input name="jmeno" value='Jm�no' onfocus="this.value=''"></td>
+        <th>Jméno</th>
+        <td><input name="jmeno" value='Jméno' onfocus="this.value=''"></td>
     </tr>
     <tr>
-        <th>P�ijmen�</th>
-        <td><input name="prijmeni" value="P��jmen�" onfocus="this.value=''"></td>
+        <th>Přijmení</th>
+        <td><input name="prijmeni" value="Přijmení" onfocus="this.value=''"></td>
     </tr>
     <tr>
         <th>Heslo</th>
@@ -25,7 +31,7 @@
         <td><input name="tel" value="Telefon" onfocus="this.value=''"></td>
     </tr>
     <tr>
-        <th>Pr�vo</th>
+        <th>Práva</th>
         <td><input name="level" value="Level" onfocus="this.value=''"></td>
    </tr>
     <tr>
@@ -34,16 +40,16 @@
 </table>
 <br /><br />
 
-Vymazat u�ivatele:&nbsp;&nbsp;&nbsp;<input name="znicit" value="ID" onfocus="this.value=''" size="5">
+Vymazat uživatele:&nbsp;&nbsp;&nbsp;<input name="znicit" value="ID" onfocus="this.value=''" size="5">
 <br />
-<button onClick="ChooseTable::delUser" id="delUser">V�maz</button>
+<button onClick="ChooseTable::delUser" id="delUser">Vymaz</button>
 <br /><br />
 <table border="2" id="tableData">
-    <th>Jm�no</th>
-    <th>P�ijmen�</th>
+    <th>Jméno</th>
+    <th>Přijmení</th>
     <th>Email</th>
     <th>Telefon</th>
-    <th>Pr�vo</th>
+    <th>Práva</th>
     <th>ID</th>   
 </table>
 

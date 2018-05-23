@@ -7,6 +7,7 @@ class tools_controller extends controller
 	public function main($data)
 	{	
         $this->data["title"] = "Správa";
+        $this->scripts[] = "sprava";
     //uvidime co z toho bude, chtel bych aby se nacetla value z tlacitka v dalsi
     //navigaci ohledne spravy a pak ve switchem se udelala spravna tabulka
     //zkusim to udelat do patku, a kdyz ne, tak ti reknu

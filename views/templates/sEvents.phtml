@@ -1,12 +1,12 @@
 <script src="..\scripts\sprava.js"></script>
 
 <!-- uk�e mo�nost p�id�n� Eventu -->
-<input type="button" id="e_u" value="Vytvo�it novou ud�lost"><br /><br />
+<input type="button" id="e_u" value="Vytvořit novou událost"><br /><br />
 <!-- m� vz�t hodnoty a ud�lat nov� event-->
 <table border="4" id="tableCreate" style="display:'none';">
    <tr> 
-    <th>N�zev</th>
-    <td><input name="nazev" value='N�zev' onfocus="this.value=''"></td>
+    <th>Název</th>
+    <td><input name="nazev" value='Název' onfocus="this.value=''"></td>
     </tr><tr>
     <th>Od</th>
     <td><input name="od" value="Od" onfocus="this.value=''"></td>
@@ -26,12 +26,12 @@
 <br /><br />
 
 
-Vymazat ud�lost:&nbsp;&nbsp;&nbsp;<input id="znicit" value="ID" onfocus="this.value=''" size="5">
+Vymazat událost:&nbsp;&nbsp;&nbsp;<input id="znicit" value="ID" onfocus="this.value=''" size="5">
 <br />
-<button onClick="delEvent" id="delEvent">V�maz</button>
+<button onClick="delEvent" id="delEvent">Vymaz</button>
 <br /><br />
 <table border="2" id="tableData">
-    <th>N�zev</th>
+    <th>Název</th>
     <th>Od</th>
     <th>Do</th>
     <th>Popis</th>
