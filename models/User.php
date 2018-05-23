@@ -104,7 +104,9 @@ class User
         $data = Db::query_all("SELECT * FROM user");
         for ($i = 0; $i < count($data); $i++)
         {
-            $users[] = new User($data[$i]["iduser"]);
+            $user = new User($data[$i]["iduser"]);
+            if ($user->type->level != GUEST)
+                $users[] = $user;
         }
         return $users;
     }

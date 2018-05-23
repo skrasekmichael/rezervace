@@ -45,7 +45,7 @@ class tools_controller extends controller
         //př. jak bych to udělal
         $list_of_users = "<table>";
         $users = User::GetUsers();
-        for ($i = 0; $i < count($users); $i++)
+        foreach ($users as $user)
         {
             $list_of_users .= "<tr><td>" . $user->firstName . "</td><td>" . $user->lastName .  "</td><td>funkce 1</td><td>funnkce 2 ...</tr>";
         }
