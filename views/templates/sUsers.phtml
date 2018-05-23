@@ -1,0 +1,49 @@
+<script src="..\rezervace\scripts\ásprava.js"></script>
+<!-- ukáže možnost pøidání usera -->
+<button id="e_u">Vytvoøit nového uživatele</button><br /><br />
+
+<!-- má vzít hodnoty a udìlat nového usera-->
+<table border="4" id="tableCreate" style="display:'none';">
+   <tr>
+        <th>Jméno</th>
+        <td><input name="jmeno" value='Jméno' onfocus="this.value=''"></td>
+    </tr>
+    <tr>
+        <th>Pøijmení</th>
+        <td><input name="prijmeni" value="Pøíjmení" onfocus="this.value=''"></td>
+    </tr>
+    <tr>
+        <th>Heslo</th>
+        <td><input name="heslo" value="Heslo" onfocus="this.value=''"></td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td><input name="email" value="Email" onfocus="this.value=''"></td>
+    </tr>
+    <tr>
+        <th>Telefon</th>
+        <td><input name="tel" value="Telefon" onfocus="this.value=''"></td>
+    </tr>
+    <tr>
+        <th>Právo</th>
+        <td><input name="level" value="Level" onfocus="this.value=''"></td>
+   </tr>
+    <tr>
+        <td colspan="2"><button style="width:250px;" id="pridat">OK</button></th>
+    </tr>
+</table>
+<br /><br />
+
+Vymazat uživatele:&nbsp&nbsp&nbsp<input name="znicit" value="ID" onfocus="this.value=''" size="5">
+<br />
+<button onClick="ChooseTable::delUser" id="delUser">Výmaz</button>
+<br /><br />
+<table border="2" id="tableData">
+    <th>Jméno</th>
+    <th>Pøijmení</th>
+    <th>Email</th>
+    <th>Telefon</th>
+    <th>Právo</th>
+    <th>ID</th>   
+</table>
+

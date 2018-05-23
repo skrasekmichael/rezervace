@@ -60,7 +60,6 @@ abstract class controller
 	
 	public function redirect($url)
 	{
-
         //přesměrování
 		header("Location: /" . $url);
 		header("Connection: close");

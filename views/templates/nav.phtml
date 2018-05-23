@@ -1,8 +1,12 @@
-<nav>
+﻿<nav>
     <ul>
         <a href="<?= $root ?>"><li>hlavní strana</li></a>
         <a href="reservation"><li>rezervace</li></a>
         <a href="info"><li>info</li></a>
+        <?=
+            (isset($user) && $user->isLogged() && $user->type->level == "ADMIN")  ?
+        "<a href="info"><li>Správa</li></a>" : <li>GUEST</li>;
+        ?>
         <span class="right">
         <?=
             (isset($user) && $user->isLogged()) ?

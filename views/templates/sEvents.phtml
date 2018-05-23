@@ -1,0 +1,42 @@
+<script src="..\scripts\sprava.js"></script>
+
+<!-- ukáže možnost pøidání Eventu -->
+<input type="button" id="e_u" value="Vytvoøit novou událost"><br /><br />
+<!-- má vzít hodnoty a udìlat nový event-->
+<table border="4" id="tableCreate" style="display:'none';">
+   <tr> 
+    <th>Název</th>
+    <td><input name="nazev" value='Název' onfocus="this.value=''"></td>
+    </tr><tr>
+    <th>Od</th>
+    <td><input name="od" value="Od" onfocus="this.value=''"></td>
+    </tr><tr>
+    <th>Do</th>
+    <td><input name="do" value="Do" onfocus="this.value=''"></td>
+    </tr><tr>
+    <th>Popis</th>
+    <td><input name="popis" value="Popis" onfocus="this.value=''"></td>
+    </tr><tr>
+    <th>Barva</th>
+    <td><input name="barva" value="HEX" onfocus="this.value=''"></td>
+    </tr><tr>
+    <td colspan="2"><button style="width:250px;" id="pridat">OK</button></td>
+   </tr>
+</table>
+<br /><br />
+
+
+Vymazat událost:&nbsp&nbsp&nbsp<input id="znicit" value="ID" onfocus="this.value=''" size="5">
+<br />
+<button onClick="delEvent" id="delEvent">Výmaz</button>
+<br /><br />
+<table border="2" id="tableData">
+    <th>Název</th>
+    <th>Od</th>
+    <th>Do</th>
+    <th>Popis</th>
+    <th>ID</th>
+    <th>Change</th>
+    
+</table>
+
