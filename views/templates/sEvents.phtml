@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 <!-- ukáže možnost pøidání Eventu -->
 <input type="button" onclick="showTable()" id="e_u" value="Vytvoøit novou událost"><br /><br />
 <!-- má vzít hodnoty a udìlat nový event-->
@@ -6,6 +7,15 @@
    <tr> 
     <th>Název</th>
     <td><input id="name" value='Název' onfocus="this.value=''"></td>
+=======
+<!-- ukï¿½e moï¿½nost pï¿½idï¿½nï¿½ Eventu -->
+<input type="button" id="e_u" value="VytvoÅ™it novou udÃ¡lost"><br /><br />
+<!-- mï¿½ vzï¿½t hodnoty a udï¿½lat novï¿½ event-->
+<table border="4" id="tableCreate" style="display:'none';">
+   <tr> 
+    <th>NÃ¡zev</th>
+    <td><input name="nazev" value='NÃ¡zev' onfocus="this.value=''"></td>
+>>>>>>> 3ee17c37d5a5a3d305fdbd84d2affc9a556add2d
     </tr><tr>
     <th>Od</th>
     <td><input id="from"" value="Od" onfocus="this.value=''"></td>
@@ -26,12 +36,12 @@
 <br /><br />
 
 
-Vymazat událost:&nbsp&nbsp&nbsp<input id="znicit" value="ID" onfocus="this.value=''" size="5">
+Vymazat udÃ¡lost:&nbsp;&nbsp;&nbsp;<input id="znicit" value="ID" onfocus="this.value=''" size="5">
 <br />
-<button onClick="delEvent" id="delEvent">Výmaz</button>
+<button onClick="delEvent" id="delEvent">Vymaz</button>
 <br /><br />
 <table border="2" id="tableData">
-    <th>Název</th>
+    <th>NÃ¡zev</th>
     <th>Od</th>
     <th>Do</th>
     <th>Popis</th>

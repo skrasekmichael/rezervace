@@ -12,6 +12,26 @@
     <tr>
         <th>Pøijmení</th>
         <td><input id="surname" value="Pøíjmení" onfocus="this.value=''"></td>
+=======
+<!-- 
+    kdyÅ¾ chceÅ¡ importovat JS ... dÄ›lÃ¡ se to v kontroleru 
+    pÅ™. $this->scripts[] = "sprava";
+    PS. to stejnÃ½ i s CSS ;)
+    <script src="..\rezervace\scripts\sprava.js"></script>
+-->
+<!-- ukï¿½e moï¿½nost pï¿½idï¿½nï¿½ usera -->
+<button id="e_u">VytvoÅ™it novï¿½ho uï¿½ivatele</button><br /><br />
+
+<!-- mï¿½ vzï¿½t hodnoty a udï¿½lat novï¿½ho usera-->
+<table border="4" id="tableCreate" style="display:'none';">
+   <tr>
+        <th>JmÃ©no</th>
+        <td><input name="jmeno" value='JmÃ©no' onfocus="this.value=''"></td>
+    </tr>
+    <tr>
+        <th>PÅ™ijmenÃ­</th>
+        <td><input name="prijmeni" value="PÅ™ijmenÃ­" onfocus="this.value=''"></td>
+>>>>>>> 3ee17c37d5a5a3d305fdbd84d2affc9a556add2d
     </tr>
     <tr>
         <th>Heslo</th>
@@ -26,8 +46,13 @@
         <td><input id="telNumber" value="Telefonní èíslo" onfocus="this.value=''"></td>
     </tr>
     <tr>
+<<<<<<< HEAD
         <th>Právo</th>
         <td><input id="level" value="ID práv" onfocus="this.value=''"></td>
+=======
+        <th>PrÃ¡va</th>
+        <td><input name="level" value="Level" onfocus="this.value=''"></td>
+>>>>>>> 3ee17c37d5a5a3d305fdbd84d2affc9a556add2d
    </tr>
     <tr>
         <td><button onclick="saveTable()" style="width:125px;" id="pridat">OK</button></td>
@@ -36,15 +61,15 @@
 </table>
 <br /><br />
 
-Vymazat uživatele:&nbsp&nbsp&nbsp<input name="znicit" value="ID" onfocus="this.value=''" size="5">
+Vymazat uÅ¾ivatele:&nbsp;&nbsp;&nbsp;<input name="znicit" value="ID" onfocus="this.value=''" size="5">
 <br />
-<button onClick="ChooseTable::delUser" id="delUser">Výmaz</button>
+<button onClick="ChooseTable::delUser" id="delUser">Vymaz</button>
 <br /><br />
 <table border="2" id="tableData">
-    <th>Jméno</th>
-    <th>Pøijmení</th>
+    <th>JmÃ©no</th>
+    <th>PÅ™ijmenÃ­</th>
     <th>Email</th>
     <th>Telefon</th>
-    <th>Právo</th>
+    <th>PrÃ¡va</th>
     <th>ID</th>   
 </table>

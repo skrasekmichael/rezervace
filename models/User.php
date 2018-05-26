@@ -98,6 +98,19 @@ class User
         //vrátí pole s rezervacemi dne
     }
 
+    public static function GetUsers()
+    {
+        $users = [];
+        $data = Db::query_all("SELECT * FROM user");
+        for ($i = 0; $i < count($data); $i++)
+        {
+            $user = new User($data[$i]["iduser"]);
+            if ($user->type->level != GUEST)
+                $users[] = $user;
+        }
+        return $users;
+    }
+
     public static function SignUp($email, $password, $fname, $lname, $tel)
     {
         if (Db::query("SELECT email FROM user WHERE email = '$email'") == 0)
