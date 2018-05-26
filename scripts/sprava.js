@@ -1,31 +1,54 @@
 function changeTable(){
-    if (document.location.href == "C:\Users\User\Desktop\temata\rezervace\views\templates\sEvents.phtml"){
-        let newUrl="C:\Users\User\Desktop\temata\rezervace\views\templates\sUsers.phtml";
+    if (document.location.href == "templates\sEvents.phtml"){ //here
+        let newUrl="templates\sUsers.phtml";                  //here
         document.location.replace(newUrl);
     }else{
-        let newUrl= "C:\Users\User\Desktop\temata\rezervace\views\templates\sEvents.phtml";
+        let newUrl= "templates\sEvents.phtml";                //here
         document.location.replace(newUrl);
     }
 }
 
 function showTable(){
-    let tableCreate = document.getElementById("tableCreate");
-    let btnShow = document.getElementById("e_u");
+    var tableCreate = document.getElementById("tableCreate");
+    var btnShow = document.getElementById("e_u");
     
-    btnShow.onclick = function(){
-        tableCreate.style.display="inline";
-        btnShow.style.display="none";
-    }
+    tableCreate.style.display="inline";
+    btnShow.style.display="none";
 }
 
-function hideTable(){
-    let tableCreate = document.getElementById("tableCreate");
-    let btnShow = document.getElementById("e_u");
-    let btnCreate = document.getElementById("pridat");
-    
-    btnCreate.onclick = function(){
-        tableCreate.style.display="none";
-        btnShow.style.display="inline";
-    }
+function saveTableUser(){
+    ChooseTable::saveUser;
+    hideTableUser();
+}
 
+function hideTableUser(){
+    var tableCreate = document.getElementById("tableCreate");
+    var btnShow = document.getElementById("e_u");
+    document.getElementById("name").value="Jméno";
+    document.getElementById("surname").value="Pøíjmení";
+    document.getElementById("password").value="Heslo";
+    document.getElementById("email").value="Email";
+    document.getElementById("telNumber").value="Telefonní èíslo";
+    document.getElementById("level").value="ID práva";
+        
+    tableCreate.style.display="none";
+    btnShow.style.display="inline";
+}
+
+function saveTableEvent(){
+    ChooseTable::saveEvent;
+    hideTableEvent();
+}
+
+function hideTableEvent(){
+    var tableCreate = document.getElementById("tableCreate");
+    var btnShow = document.getElementById("e_u");
+    document.getElementById("name").value="Název";
+    document.getElementById("from").value="Od";
+    document.getElementById("to").value="Do";
+    document.getElementById("description").value="Popis";
+    document.getElementById("color").value="HEX";
+        
+    tableCreate.style.display="none";
+    btnShow.style.display="inline";
 }
