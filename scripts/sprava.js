@@ -1,4 +1,4 @@
-function changeTable(){
+Ôªøfunction changeTable(){
     if (document.location.href == "templates\sEvents.phtml"){ //here
         let newUrl="templates\sUsers.phtml";                  //here
         document.location.replace(newUrl);
@@ -24,12 +24,12 @@ function saveTableUser(){
 function hideTableUser(){
     var tableCreate = document.getElementById("tableCreate");
     var btnShow = document.getElementById("e_u");
-    document.getElementById("name").value="JmÈno";
-    document.getElementById("surname").value="P¯ÌjmenÌ";
+    document.getElementById("name").value="Jm√©no";
+    document.getElementById("surname").value="P≈ô√≠jmen√≠";
     document.getElementById("password").value="Heslo";
     document.getElementById("email").value="Email";
-    document.getElementById("telNumber").value="TelefonnÌ ËÌslo";
-    document.getElementById("level").value="ID pr·va";
+    document.getElementById("telNumber").value="Telefonn√≠ ƒç√≠slo";
+    document.getElementById("level").value="ID pr√°va";
         
     tableCreate.style.display="none";
     btnShow.style.display="inline";
@@ -43,7 +43,7 @@ function saveTableEvent(){
 function hideTableEvent(){
     var tableCreate = document.getElementById("tableCreate");
     var btnShow = document.getElementById("e_u");
-    document.getElementById("name").value="N·zev";
+    document.getElementById("name").value="N√°zev";
     document.getElementById("from").value="Od";
     document.getElementById("to").value="Do";
     document.getElementById("description").value="Popis";

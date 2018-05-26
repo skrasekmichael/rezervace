@@ -1,47 +1,36 @@
-
-<<<<<<< HEAD
-<!-- ukáže možnost pøidání Eventu -->
-<input type="button" onclick="showTable()" id="e_u" value="Vytvoøit novou událost"><br /><br />
-<!-- má vzít hodnoty a udìlat nový event-->
+ï»¿<!-- ukÃ¡Å¾e moÅ¾nost pÅ™idÃ¡nÃ­ Eventu -->
+<input type="button" onclick="showTable()" id="e_u" value="VytvoÅ™it novou udÃ¡lost"><br /><br />
+<!-- mÃ¡ vzÃ­t hodnoty a udÄ›lat novÃ½ event-->
 <table border="4" id="tableCreate" style="display:'none';">
    <tr> 
-    <th>Název</th>
-    <td><input id="name" value='Název' onfocus="this.value=''"></td>
-=======
-<!-- ukï¿½e moï¿½nost pï¿½idï¿½nï¿½ Eventu -->
-<input type="button" id="e_u" value="VytvoÅ™it novou udÃ¡lost"><br /><br />
-<!-- mï¿½ vzï¿½t hodnoty a udï¿½lat novï¿½ event-->
-<table border="4" id="tableCreate" style="display:'none';">
-   <tr> 
-    <th>NÃ¡zev</th>
-    <td><input name="nazev" value='NÃ¡zev' onfocus="this.value=''"></td>
->>>>>>> 3ee17c37d5a5a3d305fdbd84d2affc9a556add2d
+        <th>NÃ¡zev</th>
+        <td><input id="name" value='NÃ¡zev' onfocus="this.value=''"></td>
     </tr><tr>
-    <th>Od</th>
-    <td><input id="from"" value="Od" onfocus="this.value=''"></td>
+        <th>Od</th>
+        <td><input id="from"" value="Od" onfocus="this.value=''"></td>
     </tr><tr>
-    <th>Do</th>
-    <td><input id="to" value="Do" onfocus="this.value=''"></td>
+        <th>Do</th>
+        <td><input id="to" value="Do" onfocus="this.value=''"></td>
     </tr><tr>
-    <th>Popis</th>
-    <td><input id="description" value="Popis" onfocus="this.value=''"></td>
+        <th>Popis</th>
+        <td><input id="description" value="Popis" onfocus="this.value=''"></td>
     </tr><tr>
-    <th>Barva</th>
-    <td><input id="color" value="HEX" onfocus="this.value=''"></td>
+        <th>Barva</th>
+        <td><input id="color" value="HEX" onfocus="this.value=''"></td>
     </tr><tr>
-    <td><button style="width:125px;" id="pridat" onclick="saveTableEvent()">OK</button></td>
-    <td><button style="width:125px;" id="zrusit" onclick="hideTableEvent()">Zrušit</button></td>
+        <td><button style="width:125px;" id="pridat" onclick="saveTableEvent()">OK</button></td>
+        <td><button style="width:125px;" id="zrusit" onclick="hideTableEvent()">ZruÅ¡it</button></td>
    </tr>
 </table>
 <br /><br />
 
 
-Vymazat udÃ¡lost:&nbsp;&nbsp;&nbsp;<input id="znicit" value="ID" onfocus="this.value=''" size="5">
+Vymazat udÄ‚Ë‡lost:&nbsp;&nbsp;&nbsp;<input id="znicit" value="ID" onfocus="this.value=''" size="5">
 <br />
 <button onClick="delEvent" id="delEvent">Vymaz</button>
 <br /><br />
 <table border="2" id="tableData">
-    <th>NÃ¡zev</th>
+    <th>NÄ‚Ë‡zev</th>
     <th>Od</th>
     <th>Do</th>
     <th>Popis</th>
