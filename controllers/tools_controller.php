@@ -6,7 +6,7 @@ class tools_controller extends controller
 	
 	public function main($data)
 	{	
-        if (!$this->user->userType->level < STAFF)
+        if ($this->user->type->level > STAFF)
             $this->redirect("error/404");
 
         $this->data["title"] = "Správa";
