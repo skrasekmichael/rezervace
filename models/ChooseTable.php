@@ -2,50 +2,61 @@
 class ChooseTable
 {
     private $helpNum = -1;
-    public $rows = array;
+    public $rows = [];
     
-    //natáhne usery z databáze 
-    function loadUsers(){
+    //natï¿½hne usery z databï¿½ze 
+    function loadUsers()
+    {
+        /* 
+            toto je poÅ¡eÃ©fenÃ½ ve tÅ™Ã­dÄ› User
         while($row = mysql_fetch_array(Db::query_all("SELECT * FROM user")){
             $rows[$helpNum][$row]
-        }
-        return $rows;
+        } */
+        return User::GetUsers();
     }
-    //natáhne Eventy z databáze 
-    function loadEvents(){
-        while($row = mysql_fetch_array(Db::query_all("SELECT * FROM events")){
+    //natï¿½hne Eventy z databï¿½ze 
+    function loadEvents()
+    {
+        while($row = mysql_fetch_array(Db::query_all("SELECT * FROM events"))
+        {
             $rows[$helpNum][$row]
         }
         return $rows;
     }
-    //admin vytvoøí usera
+    //admin vytvoï¿½ï¿½ usera
     function createUser($type, $email, $password, $firstname, $lastname, $tel, $avatar){
+        /*
+            toto je poÅ¡eÃ©fenÃ½ ve tÅ™Ã­dÄ› User
         if (Db::query("SELECT email FROM user WHERE email = '$email'") == 0)
         {
             $password = hash("SHA512", $password . $email);
             $query="INSERT INTO user (iduser, type, email, password, firstname, lastname, tel, avatar) VALUES (NULL, '$type', '$email', '$password', '$firstname', '$lastname', '$tel', '$avatar');";
-            return [true, "Vytvoøení nového uživatele probìhlo úspìšbì. "];
+            return [true, "Vytvoï¿½enï¿½ novï¿½ho uï¿½ivatele probï¿½hlo ï¿½spï¿½bï¿½. "];
         }
         else
-            return [false, "Uživatel s tímto emailem je již vytvoøen. "];
-        }
+            return [false, "Uï¿½ivatel s tï¿½mto emailem je jiï¿½ vytvoï¿½en. "];
+        }*/
+
+        return User::SignUp($email, $password, $firstname, $lastname, $tel);
+    }
     //admin vytvori novy Event
     function createEvent($name, $from, $to, $count, $desc){
         if (Db::query("SELECT for FROM event WHERE for = '$name'") == 0)
         {
             $query="INSERT INTO event (idevent, for, from, to, count, description) VALUES (NULL, $name, $from, $to, $count, $desc);";
-            return [true, "Událost byla úspìšnì vytvoøena."];
+            return [true, "Udï¿½lost byla ï¿½spï¿½nï¿½ vytvoï¿½ena."];
         }
         else
-            return [false, "Událost je již vytvoøená."];
+            return [false, "Udï¿½lost je jiï¿½ vytvoï¿½enï¿½."];
     }
-    //admin smaže Event
+    //admin smaï¿½e Event
     function delEvent($id){
         Db::query_all("DELETE * FROM events WHERE idevent='$id'");
         return loadEvents();
     }
-    //admin smaže usera
+    //admin smaï¿½e usera
     function delUser($id){
+        //tohle asi taky pÅ™esunu do tÅ™Ã­dy user ... tady to z hlediska logiky nemÃ¡ co dÄ›lat
         Db::query_all("DELETE * FROM user WHERE iduser='$id'");
         return loadUsers();
     }
