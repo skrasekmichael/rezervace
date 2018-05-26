@@ -6,6 +6,9 @@ class tools_controller extends controller
 	
 	public function main($data)
 	{	
+        if (!$this->user->userType->level < STAFF)
+            $this->redirect("error/404");
+
         $this->data["title"] = "Správa";
         $this->scripts[] = "sprava";
     //uvidime co z toho bude, chtel bych aby se nacetla value z tlacitka v dalsi
