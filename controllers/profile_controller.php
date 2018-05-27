@@ -26,8 +26,6 @@ class profile_controller extends controller
             $this->data["tabpanel_index"] = 2;
         }
 
-        $this->styles[] = "profile";
-        $this->scripts[] = "profile";
         $this->data["title"] = $this->user->firstName . " " . $this->user->lastName;
         $this->data["avatars"] = $this->get_images();
     }

@@ -7,7 +7,6 @@ class signin_controller extends controller
 	public function main($data)
 	{	
         $this->data["title"] = "Přihlásit";
-        $this->styles[] = "signin";
 
         //pokud byl odeslán POST požadavek na přihášení
         if (isset($_POST["signin"]))   

@@ -7,8 +7,6 @@ class reservation_controller extends controller
 	public function main($data)
 	{	
         $this->data["title"] = "Rezervace";
-        $this->styles[] = "reservation";
-        $this->scripts[] = "reservation";
 
         $date = MyDate::Today();
 
