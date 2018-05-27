@@ -6,17 +6,17 @@
     <body>
         <header>
             <?php require("templates/nav.phtml") ?>
-            <h1>Správa</h1>
         </header>
         <article>
-        Úživatelské účty:
-        <?= $users ?> 
-        <?php 
-            require("templates/navSprava.phtml");
-            //ty události se budou dát dělat na kartě rezervace ... (je tam GUI pro dny a hodiny) ... už je to z části hotoví
-            //require("templates/sEvents.phtml"); proto už existuje šablona event.phml :D
-            require("templates/sUsers.phtml"); 
-        ?>
+            <h1>Správa</h1>
+            <h2>Úživatelské účty: </h2>
+            <?= $users ?> 
+            <?php 
+                require("templates/navSprava.phtml");
+                //ty události se budou dát dělat na kartě rezervace ... (je tam GUI pro dny a hodiny) ... už je to z části hotoví
+                //require("templates/sEvents.phtml"); proto už existuje šablona event.phml :D
+                require("templates/sUsers.phtml"); 
+            ?>
         </article>
         <footer>
             <?= $footer ?>
