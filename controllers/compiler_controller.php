@@ -43,7 +43,10 @@ class compiler_controller extends controller
 				else
 					$this->redirect("error/404/2");
 			}
-		}	
+        }	
+
+        $this->styles[] = $controller;
+        $this->scripts[] = $controller;
         
 		$this->loadJS();
 		$this->loadCSS();
