@@ -17,7 +17,9 @@ function showTable(){
 }
 
 function saveTableUser(){
-    ChooseTable::saveUser;
+    /*
+    wtf...
+    ChooseTable::saveUser;*/
     hideTableUser();
 }
 
@@ -36,7 +38,9 @@ function hideTableUser(){
 }
 
 function saveTableEvent(){
-    ChooseTable::saveEvent;
+    /* 
+    wtf..
+    ChooseTable::saveEvent; */
     hideTableEvent();
 }
 
