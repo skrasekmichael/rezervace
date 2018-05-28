@@ -1,40 +1,48 @@
-﻿<!-- ukáže možnost přidání Eventu -->
-<input type="button" onclick="showTable()" id="e_u" value="Vytvořit novou událost"><br /><br />
+﻿<h2>Správa událostí: </h2>
+
+<!-- ukáže možnost přidání Eventu -->
+<input type="button" onclick="showTableUser()" id="e_u" value="Vytvořit novou událost"><br /><br />
 <!-- má vzít hodnoty a udělat nový event-->
-<table border="4" id="tableCreate" style="display:'none';">
-   <tr> 
-        <th>Název</th>
-        <td><input id="name" value='Název' onfocus="this.value=''"></td>
-    </tr><tr>
-        <th>Od</th>
-        <td><input id="from" value="Od" onfocus="this.value=''"></td>
-    </tr><tr>
-        <th>Do</th>
-        <td><input id="to" value="Do" onfocus="this.value=''"></td>
-    </tr><tr>
-        <th>Popis</th>
-        <td><input id="description" value="Popis" onfocus="this.value=''"></td>
-    </tr><tr>
-        <th>Barva</th>
-        <td><input id="color" value="HEX" onfocus="this.value=''"></td>
-    </tr><tr>
-        <td><button style="width:125px;" id="pridat" onclick="saveTableEvent()">OK</button></td>
-        <td><button style="width:125px;" id="zrusit" onclick="hideTableEvent()">Zrušit</button></td>
-   </tr>
-</table>
+<form method="post">
+    <table border="4" id="tableCreate" style="display:'none';">
+        <tr> 
+            <th>Název</th>
+            <td><input id="name" value='Název' onfocus="this.value=''" required></td>
+        </tr><tr>
+            <th>Od</th>
+            <td><input id="from" value="Od" onfocus="this.value=''" required></td>
+        </tr><tr>
+            <th>Do</th>
+            <td><input id="to" value="Do" onfocus="this.value=''" required></td>
+        </tr><tr>
+            <th>Popis</th>
+            <td><input id="description" value="Popis" onfocus="this.value=''" required></td>
+        </tr><tr>
+            <th>Barva</th>
+            <td><input id="color" type="color" maxlength="7"></td>
+        </tr><tr>
+            <td><input type="submit" style="width:125px;" id="pridat" value="OK"></td>
+            <td><button style="width:125px;" id="zrusit" onclick="hideTableEvent()">Zrušit</button></td>
+        </tr>
+    </table>
+</form>
 <br /><br />
 
 
-Vymazat událost:&nbsp;&nbsp;&nbsp;<input id="znicit" value="ID" onfocus="this.value=''" size="5">
-<br />
-<button onClick="delEvent" id="delEvent">Vymaz</button>
+<form method="post">
+    Vymazat událost:&nbsp;&nbsp;&nbsp;<input id="znicit" value="ID" onfocus="this.value=''" maxlength="4">
+    <br />
+    <input type="submit" id="delEvent" value="Vymaz">
+</form>
 <br /><br />
+
+
 <table border="2" id="tableData">
-    <th>NĂˇzev</th>
+    <th>Název</th>
     <th>Od</th>
     <th>Do</th>
     <th>Popis</th>
     <th>ID</th>
     <th>Change</th>
     
-</table>    
+</table>

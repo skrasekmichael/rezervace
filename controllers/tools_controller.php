@@ -2,56 +2,38 @@
 
 class tools_controller extends controller
 {
-    protected $controller;
-	
+    protected $controller;        
+    public $choice;
+    	
 	public function main($data)
 	{	
         if ($this->user->type->level > STAFF)
             $this->redirect("error/404");
 
         $this->data["title"] = "Správa";
-    //uvidime co z toho bude, chtel bych aby se nacetla value z tlacitka v dalsi
-    //navigaci ohledne spravy a pak ve switchem se udelala spravna tabulka
-    //zkusim to udelat do patku, a kdyz ne, tak ti reknu
-        
-    
-    //v kontroleru nesmíš vypisovat ... uložíš to do $this->data["jméno proměnný"] a to pak vypíšeš v pohledu ;)
-    /*
-    switch($choice){
-            case "Události":
-                $data = ChooseTable::loadEvents;
-                if($data[0]){
-                    foreach ($data as $row){
-                        echo "<tr>$row[1]</tr>";
-                        echo "<tr>$row[2]</tr>";
-                        echo "<tr>$row[3]</tr>";
-                        echo "<tr>$row[4]</tr>";
-                        echo "<tr>$row[5]</tr>";
-                        echo "<tr>$row[0]</tr>";
-                    }
-                }
-                
-            case "Uživatelé":
-                $data = ChooseTable::loadUsers;
-                if($data[0]){
-                    foreach ($data as $row){
-                        echo "<tr>$row[1]</tr>";
-                        echo "<tr>$row[2]</tr>";
-                        echo "<tr>$row[3]</tr>";
-                        echo "<tr>$row[4]</tr>";
-                        echo "<tr>$row[5]</tr>";
-                    }
-                }
-        }       */
-        
-        //př. jak bych to udělal
-        $list_of_users = "<table>";
-        $users = User::GetUsers();
-        foreach ($users as $user)
+        $choice = $_POST["vyber"];
+        if($choice.name=="bUsers")
         {
-            $list_of_users .= "<tr><td>" . $user->firstName . "</td><td>" . $user->lastName .  "</td><td>funkce 1</td><td>funnkce 2 ...</tr>";
+            $list_of_users = "<table>";
+            $users = User::GetUsers();
+            foreach ($users as $user)
+            {
+                $list_of_users .= "<tr><td>" . $user->firstName . "</td><td>" . $user->lastName .  "</td><td>Edit</td><td>X</tr>";
+            }
+            $list_of_users .= "</table>";
+            $this->data["users"] = $list_of_users;
+        }else
+        {
+            //code for loading sEvents table
+            $list_of_events = "<table>";
+            $events = sEvents::loadEvents();
+            foreach ($events as $event)
+            {
+                $list_of_event .= "<tr><td>" . $event->name . "</td><td>" . $event->from .  "</td><td>".$event->to."</td><td>".$event->description."</td><td>Edit</td><td>X</td></tr>";
+            }
+            $list_of_users .= "</table>";
+            $this->data["users"] = $list_of_users;
+        
         }
-        $list_of_users .= "</table>";
-        $this->data["users"] = $list_of_users;
     }
 }

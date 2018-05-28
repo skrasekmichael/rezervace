@@ -1,44 +1,47 @@
 ﻿
-
+<h2>Správa uživatelských účtů: </h2>
 <!-- ukáže možnost přidání usera -->
-<button id="e_u" onclick="showTable()">Vytvořit nového uživatele</button><br /><br />
+<input type="button" onclick="showTableUser()" id="e_u" value="Vytvořit nového uživatele"><br /><br />
 <!-- má vzít hodnoty a udělat nového usera-->
-<p id="pas"></p>
+<form method="post">
 <table border="4" id="tableCreate" style="display:'none';">
    <tr>
         <th>Jméno</th>
-        <td><input id="name" value='Jméno' onfocus="this.value=''"></td>
+        <td><input type="text" id="name" value='Jméno' onfocus="this.value=''" required></td>
     </tr>
     <tr>
         <th>Přijmení</th>
-        <td><input id="surname" value="Příjmení" onfocus="this.value=''"></td>
+        <td><input type="text" id="surname" value="Příjmení" onfocus="this.value=''" required></td>
     </tr>
     <tr>
         <th>Heslo</th>
-        <td><input id="password" value="Heslo" onfocus="this.value=''"></td>
+        <td><input type="password" style="width:155px;" id="password" value="Heslo" onfocus="this.value=''" required></td>
     </tr>
     <tr>
-        <th>Email</th>
-        <td><input id="email" value="Email" onfocus="this.value=''"></td>
+        <th>Email</th>                                  
+        <td><input type="email" id="email" value="Email" onfocus="this.value=''" required></td>
     </tr>
     <tr>
         <th>Telefon</th>
-        <td><input id="telNumber" value="Telefonní číslo" onfocus="this.value=''"></td>
+        <td><input  type="number" id="telNumber" value="Telefonní číslo" onfocus="this.value=''" maxlength="15" required></td>
     </tr>
     <tr>
         <th>Právo</th>
-        <td><input id="level" value="ID práv" onfocus="this.value=''"></td>
+        <td><input type="number" id="level" value="ID práv" onfocus="this.value=''" maxlength="1" required></td>
    </tr>
     <tr>
-        <td><button onclick="saveTable()" style="width:125px;" id="pridat">OK</button></td>
-        <td><button onclick="hideTable()" style="width:125px;" id="zrusit">Zrušit</button></td>
+        <td><input type="submit" onclick="hideTableUser()" style="width:125px;" id="pridat" value="OK"></td>
+        <td><button style="width:155px;" id="zrusit" onclick="hideTableUser()">Zrušit</button></td>
     </tr>
 </table>
+</form>
 <br /><br />
 
-Vymazat uživatele:&nbsp;&nbsp;&nbsp;<input name="znicit" value="ID" onfocus="this.value=''" size="5">
+<form method="post">
+Vymazat uživatele:&nbsp;&nbsp;&nbsp;<input id="znicit" value="ID" onfocus="this.value=''" maxlength="4">
 <br />
-<button onClick="ChooseTable::delUser" id="delUser">Vymaz</button>
+<input type="submit" id="delUser" value="Vymaz">
+</form>
 <br /><br />
 <table border="2" id="tableData">
     <th>Jméno</th>
@@ -47,4 +50,6 @@ Vymazat uživatele:&nbsp;&nbsp;&nbsp;<input name="znicit" value="ID" onfocus="th
     <th>Telefon</th>
     <th>Práva</th>
     <th>ID</th>   
+    
+    <?= $users ?>
 </table>

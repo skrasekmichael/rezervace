@@ -16,13 +16,6 @@ function showTable(){
     btnShow.style.display="none";
 }
 
-function saveTableUser(){
-    /*
-    wtf...
-    ChooseTable::saveUser;*/
-    hideTableUser();
-}
-
 function hideTableUser(){
     var tableCreate = document.getElementById("tableCreate");
     var btnShow = document.getElementById("e_u");
@@ -35,13 +28,6 @@ function hideTableUser(){
         
     tableCreate.style.display="none";
     btnShow.style.display="inline";
-}
-
-function saveTableEvent(){
-    /* 
-    wtf..
-    ChooseTable::saveEvent; */
-    hideTableEvent();
 }
 
 function hideTableEvent(){
