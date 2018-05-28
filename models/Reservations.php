@@ -29,8 +29,9 @@ class Reservations
             $key = $action->places[0]->sport . $action->places[0]->field;
             
             //$this->data[$key][strtotime($action->from)] = $action; ... old version
+
+            //$count = Db::query("SELECT * FROM user_has_reservation WHERE reservation_idreservation = " . $action->id); //počet rezervací místa
             
-            $count = Db::query("SELECT * FROM user_has_reservation WHERE reservation_idreservation = " . $action->id); //počet rezervací místa
             $from = MyDate::FromTimestamp(strtotime($action->from)); //otevírací doba
             $to = MyDate::FromTimestamp(strtotime($action->to)); //zavírací doba
 
@@ -43,11 +44,13 @@ class Reservations
             //pokud datum rezervace souhlasí s vybraným datem
             if ($from->timestamp > $date->timestamp && $to->timestamp < $next_day->timestamp)
             {
+                $start = $from->getHour() + $from->getMin() / 60;
+                $end = $to->getHour() + $to->getMin() / 60;
                 //projití otevírycí doby po 30 min
-                for ($j = $from->getHour(); $j < $to->getHour(); $j += 0.5)
+                for ($j = $start; $j < $end; $j += 0.5)
                 {
-                    $this->hours[$key]->full[(string)$j] += $count; //nastavení obsazenosti v dane půlhodině
-                    $this->hours[$key]->count = abs(abs($from->getHour() - $to->getHour() - 0.5) - $j); //délka rezervace
+                    $this->hours[$key]->full[(string)$j] += $action->count; //nastavení obsazenosti v dane půlhodině
+                    $this->hours[$key]->count = abs(abs($start - $end)); //délka rezervace
                 }
             }
         }
@@ -128,14 +131,14 @@ class Reservations
                 $class = "blocked";
             else if ($adate->timestamp < MyDate::Now()->timestamp) //zablokování rezervací na aktuální čas
                 $class = "now";
-            else if ($this->hours[$key]->full[$j] == 0) //volno
+            else if ($this->hours[$key]->full[(string)$j] == 0) //volno
             {         
                 $text = "0/" . $place->max;
                 $td++;
             }
             else
             {
-                // ... na tuto dobu jsem vytvořené rezervace
+                // ... na tuto dobu jsou vytvořené rezervace
 
                 //pokud je naplňěn maximální počet rezervací místa
                 if ($this->hours[$key]->full[(string)$j] == $place->max) 
@@ -167,7 +170,7 @@ class Reservations
             $tooltip = ($text != "") ? "tooltip='obsazeno $text'" : "";
 
             //přidání buňky
-            $row .= "<td $tooltip colspan='$span' " . ($class == "hour" ? $onclick : "") . " class='number $class'></td>";  
+            $row .= "<td $tooltip colspan='$span' " . ($class == "hour" ? $onclick : "") . " class='$class'></td>";  
 
             //pokud je šířka buňky 1
             if ($span == 1)

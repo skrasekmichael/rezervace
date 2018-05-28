@@ -21,4 +21,10 @@ class Action
         $this->count = $count;
         $this->places[] = Place::GetPlaceById($place_id);
     }
+
+    public static function CreadteReservation()
+    {
+        
+    }
+
 }
