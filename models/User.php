@@ -15,6 +15,8 @@ class User
     public $tel;
     public $id;
     public $avatar = 1;
+    //public $credit = 0;
+    //public $bankNumber;
     
     private $password;
 
@@ -63,6 +65,8 @@ class User
             $this->lastName = $data[5];
             $this->tel = $data[6];
             $this->avatar = $data[7];
+            //$this->credit = $data[8];
+            //$this->bankNumber = $data[9];
         }
     }
 
