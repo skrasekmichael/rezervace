@@ -1,5 +1,5 @@
 <?php
-class ChooseTable
+class sEvent
 {
     private $helpNum = -1;
     public $rows = [];
@@ -28,4 +28,5 @@ class ChooseTable
         Db::query_all("DELETE * FROM events WHERE idevent='$id'");
         return loadEvents();
     }
-?>                 
+}
+          

@@ -3,6 +3,10 @@
     <form method="post">
         <table>
             <tr>
+                <td>Rezervovat: </td>
+                <td class="places"></td>
+            </tr>
+            <tr>
                 <td>Od: </td>
                 <td><input type="datetime" name="from" value="<?= $_POST["from"] ?? "" ?>"></td>
             </tr>
@@ -13,12 +17,8 @@
             <tr>
                 <td>Opakovat: </td>
                 <td><?= $repeat ?></td>
-                <td><?= $repeat_combobox->get() ?></td>
+                <td><select onchange="repeat_val_change(this)"><?= $repeat_combobox->get() ?></select></td>
                 <td><input type="number" name="count" value="1" min="1"></td>
-            </tr>
-            <tr>
-                <td>Rezervovat: </td>
-                <td class="places"></td>
             </tr>
             <tr>
                 <td>Rezervovat pro počet lidí: </td>

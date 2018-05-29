@@ -37,19 +37,13 @@
 </form>
 <br /><br />
 
-<form method="post">
-Vymazat uživatele:&nbsp;&nbsp;&nbsp;<input id="znicit" value="ID" onfocus="this.value=''" maxlength="4">
-<br />
-<input type="submit" id="delUser" value="Vymaz">
-</form>
-<br /><br />
 <table border="2" id="tableData">
+    <th>ID</th>
     <th>Jméno</th>
     <th>Přijmení­</th>
     <th>Email</th>
     <th>Telefon</th>
-    <th>Práva</th>
-    <th>ID</th>   
-    
+    <th>Práva</th>   
+    <th>Smazat</th>
     <?= $users ?>
 </table>

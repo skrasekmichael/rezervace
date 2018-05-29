@@ -3,37 +3,44 @@
 class tools_controller extends controller
 {
     protected $controller;        
-    public $choice;
     	
 	public function main($data)
 	{	
         if ($this->user->type->level > STAFF)
             $this->redirect("error/404");
 
-        $this->data["title"] = "Správa";
-        $choice = $_POST["vyber"];
-        if($choice.name=="bUsers")
+        if (isset($_POST["delete_user"]))
         {
-            $list_of_users = "<table>";
-            $users = User::GetUsers();
-            foreach ($users as $user)
-            {
-                $list_of_users .= "<tr><td>" . $user->firstName . "</td><td>" . $user->lastName .  "</td><td>Edit</td><td>X</tr>";
-            }
-            $list_of_users .= "</table>";
-            $this->data["users"] = $list_of_users;
-        }else
-        {
-            //code for loading sEvents table
-            $list_of_events = "<table>";
-            $events = sEvents::loadEvents();
-            foreach ($events as $event)
-            {
-                $list_of_event .= "<tr><td>" . $event->name . "</td><td>" . $event->from .  "</td><td>".$event->to."</td><td>".$event->description."</td><td>Edit</td><td>X</td></tr>";
-            }
-            $list_of_users .= "</table>";
-            $this->data["users"] = $list_of_users;
-        
+            $user_id = $_POST["user_id"];
+            User::DeleteUser($user_id);
+            $this->refresh();
         }
+
+        $this->data["title"] = "Správa";
+
+        $list_of_users = "";
+        $users = User::GetUsers();
+        foreach ($users as $user)
+        {
+            $list_of_users .= "<form method='post'><tr>";
+            $list_of_users .= "<td><input type='hidden' value='" . $user->id . "' name='user_id'>" . $user->id . "</td><td>" . $user->firstName . "</td><td>" . $user->lastName .  "</td>";
+            $list_of_users .= "<td>" . $user->email . "</td><td>" . $user->tel . "</td><td>" . $user->type->decription . "</td><td><input type='submit' name='delete_user' value='smazat'></td>";
+            $list_of_users .= "</tr></form>";
+        }
+        $this->data["users"] = $list_of_users;
+
+        //code for loading sEvents table
+        $list_of_events = "<table>";
+        //tohle udělám v budoucím modelu event
+        // $events = sEvent::loadEvents();
+
+        /*
+        foreach ($events as $event)
+        {
+            $list_of_event .= "<tr><td>" . $event->name . "</td><td>" . $event->from .  "</td><td>".$event->to."</td><td>".$event->description."</td><td>Edit</td><td>X</td></tr>";
+        }
+        */
+        $list_of_events .= "</table>";
+        $this->data["events"] = $list_of_events; 
     }
 }

@@ -150,12 +150,15 @@ class User
         }
     }
     
-    //admin smaže usera
-    function delUser($id){
-        if (Db::query("SELECT iduser FROM user WHERE iduser='$id'") == 1){
-            Db::query("DELETE * FROM user WHERE iduser='$id'");
+    //mazání uživatele
+    public static function DeleteUser($id)
+    {
+        if (Db::query("SELECT iduser FROM user WHERE iduser=$id") == 1)
+        {
+            Db::query("DELETE FROM user WHERE iduser=$id");
             return [true, "Vymazání se podařilo"];
-        }else
+        }
+        else
             return [false,"Uživatel s daným ID neexistuje!"];
     }
 }
