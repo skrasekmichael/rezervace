@@ -33,7 +33,7 @@ class Db
 	
 	// Spustí dotaz a vrátí z něj první sloupec prvního řádku
     public static function query_first($query, $arguments = array()) {
-		$result = self::query_first($query, $arguments);
+		$result = self::query_one($query, $arguments);
 		return $result[0];
 	}
 	
