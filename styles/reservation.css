@@ -2,7 +2,7 @@
 
 #reservation{
     --calendar-size: 40px; 
-    --table-width: 20px;
+    --table-width: 24px;
     --table-height: 40px;
 }   
 
@@ -83,6 +83,7 @@
 
     width: 90px;
     height: var(--table-height);
+    width: var(--table-width);
 
     text-align: center;
     margin: 1px;

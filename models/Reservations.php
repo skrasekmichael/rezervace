@@ -47,7 +47,6 @@ class Reservations
                 {
                     $this->hours[$key]->full[(string)$j] += $action->for; //nastavení obsazenosti v dane půlhodině
                     $this->hours[$key]->count = abs($start - $end); //délka rezervace
-                    echo $this->hours[$key]->count . "<br>";
                 }
             }
         }
@@ -167,7 +166,7 @@ class Reservations
             $tooltip = ($text != "") ? "tooltip='obsazeno $text'" : "";
 
             //přidání buňky
-            $row .= "<td $tooltip colspan='$span' " . ($class == "hour" ? $onclick : "") . " class='$class'></td>";  
+            $row .= "<td $tooltip " . ($span > 1 ? "colspan='$span' " : "") . ($class == "hour" ? $onclick : "") . " class='$class'></td>";  
 
             //pokud je šířka buňky 1
             if ($span == 1)
