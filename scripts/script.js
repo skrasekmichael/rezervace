@@ -29,6 +29,14 @@ function init()
 {
     tabpanels();
     gallery.load();
+    dragobjects();
+}
+
+function dragobjects()
+{
+    let elems = $(".drag");
+    for (let i = 0; i < elems.length; i++)
+        drag_element(elems[i]);
 }
 
 //načtení všech tab panelů
@@ -137,7 +145,7 @@ function date_format(date, format)
     format = format.toLowerCase();
 
     format = format.replace("y", date.getFullYear());
-    format = format.replace("m", to_len(date.getMonth(), 2));
+    format = format.replace("m", to_len(date.getMonth() + 1, 2));
     format = format.replace("d", to_len(date.getDate(), 2));
     format = format.replace("h", to_len(date.getHours(), 2));
     format = format.replace("i", to_len(date.getMinutes(), 2));
@@ -193,4 +201,38 @@ function ajax(fname, args, callback)
             }
         }
     });
+}
+
+var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+var drag_object;
+
+function drag_element(element) 
+{
+    let e = $("#" + element.id + " .header")[0];
+    e.onmousedown = function(e)
+    {
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+
+        drag_object = element;
+        document.onmousemove = move;
+        document.onmouseup = up;
+    }
+}
+
+function move(e)
+{
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    drag_object.style.top = (drag_object.offsetTop - pos2) + "px";
+    drag_object.style.left = (drag_object.offsetLeft - pos1) + "px";
+}
+
+function up()
+{
+    document.onmousemove = null;
+    document.onmouseup = null;
 }
