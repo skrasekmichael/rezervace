@@ -2,21 +2,22 @@
 
 class ComboBox
 {
-    private $data;
+    public $data;
+    public $second_data;
 
-    function init($data)
+    function init($data, $second_data)
     {
         $this->data = $data;
+        $this->second_data = $second_data;
     }
 
     public function get()
     {
-        $print = "<select>";
+        $print = "";
         for ($i = 0; $i < count($this->data); $i++)
         {
-            $print .= "<option value='" . $this->data[$i] . "'>" . $this->data[$i] . "</option>";
+            $print .= "<option value='" . $this->data[$i] . " " . $this->second_data[$i] . "'>" . $this->data[$i] . "</option>";
         }
-        $print .= "</select>";
         return $print;
     }
 

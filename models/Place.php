@@ -38,6 +38,13 @@ class Place
         return $place;
     }
 
+    public static function GetPlace($sport, $field)
+    {
+        $place_id = Db::query_first("SELECT idplace, sport, field FROM place WHERE sport = '$sport' AND field = '$field' ORDER BY sport");
+        $place = Place::GetPlaceById($place_id);
+        return $place;
+    }
+
     //načtení všech míst možných k rezervaci
     public static function GetPlaces()
     {

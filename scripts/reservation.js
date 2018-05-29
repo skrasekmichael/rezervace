@@ -1,14 +1,21 @@
-var _index, _time, _duration, _places, _sport, _fclass;
+var _index, _start, _duration, _places, _sport, _fclass;
 
 window.onload = function()
 {
+    time_ragne();
     init();
 
     $("#duration:input").bind('keyup mouseup', function () {
         let duration = $(this).val()
         select(_index, _sport, _fclass, duration);
-        res_info(_index, _time, duration, _places);
+        res_info(_index, _start, duration, _places);
     });
+}
+
+function time_ragne()
+{
+    let range = "<div id='uic_time_from' class='drag'><div class='header'>from</div></di>";
+    $("body")[0].innerHTML += range;
 }
 
 //nastaví rezervační údaje
@@ -29,16 +36,14 @@ function set(sport, field, start, index, fclass)
             from[i].value = date_format(datetime, "Y-m-d H:i:s");
 
         //místo rezervace
-        let places = $(".places");
-        for (let i = 0; i < places.length; i++)
-        {
-            places[i].innerHTML = "<label name='sport'>" + sport + "</label> - <label name='field'>" + field + "</label>";
-        }
+        let places = "<input type='hidden' name='sport' value='" + sport + "'><input type='hidden' name='field' value='" + field + "'>" + sport + " - " + field;
+        $(".places")[0].innerHTML = places;
+        
 
-        res_info(index, datetime, duration, places);
+        res_info(index, start, duration, places);
 
         _index = index;
-        _time = datetime;
+        _start = start;
         _places = places;
         _fclass = fclass;
         _sport = sport;
@@ -58,16 +63,32 @@ function select(index, sport, fclass, duration)
 }
 
 //zobrazí info o rezervaci
-function res_info(index, time, duration, places)
+function res_info(index, start, duration, places)
 {
+    let time = new Date(start * 1000);
     let selected = $("#reservation #table table tr td.selected");
     for (let i = 0; i < selected.length; i++)
     {
+        console.log(selected[i].classList.value);
         if (selected[i].classList.value == "hour selected")
         {
             $(".information #date span")[0].innerHTML = date_format(time, "Y-m-d");
+            $(".information #from span")[0].innerHTML = date_format(time, "H:i");
+            $(".information #to span")[0].innerHTML = date_format(new Date(start * 1000 + 3600000 * duration / 2), "H:i");
+            $(".information #place span")[0].innerHTML = places;
+
         }
     }
+}
+
+function repeat_val_change(select)
+{
+    console.log(select.selectedIndex);
+    $("#rpindex")[0].value = select.selectedIndex;
+    if (select.selectedIndex == 0)
+        $("#rpnumber")[0].style.visibility = "visible";
+    else
+        $("#rpnumber")[0].style.visibility = "hidden";
 }
 
 /*

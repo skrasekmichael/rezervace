@@ -19,23 +19,19 @@ class Reservations
             $this->hours[$places[$i]->sport . $places[$i]->field] = $hour;
         }
 
-        //nasčtení rezervací
+        //načtení rezervací
         $data = Db::query_all("SELECT * FROM reservation ORDER BY `from`");
         for ($i = 0; $i < count($data); $i++)
         {   
             //načtení akce
             $action = new Action();
-            $action->load_as_reservation($data[$i]["idreservation"], $data[$i]["from"], $data[$i]["to"], $data[$i]["place"], 1, $data[$i]["count"]);
+            $action->load_as_reservation($data[$i]["idreservation"], $data[$i]["from"], $data[$i]["to"], $data[$i]["place"], 1, $data[$i]["count"], $data[$i]["for"]);
             $key = $action->places[0]->sport . $action->places[0]->field;
-            
-            //$this->data[$key][strtotime($action->from)] = $action; ... old version
 
-            //$count = Db::query("SELECT * FROM user_has_reservation WHERE reservation_idreservation = " . $action->id); //počet rezervací místa
-            
             $from = MyDate::FromTimestamp(strtotime($action->from)); //otevírací doba
             $to = MyDate::FromTimestamp(strtotime($action->to)); //zavírací doba
 
-            $next_day = MyDate::FromTimestamp($date->timestamp); 
+            $next_day = $date->clone(); 
             $next_day->change(["day" => 1]);
 
             /*echo $from->toString() . " > " . $date->toString() . " = " . ($from->timestamp > $date->timestamp) . ";";
@@ -46,11 +42,12 @@ class Reservations
             {
                 $start = $from->getHour() + $from->getMin() / 60;
                 $end = $to->getHour() + $to->getMin() / 60;
-                //projití otevírycí doby po 30 min
+                //projití otevírací doby po 30 min
                 for ($j = $start; $j < $end; $j += 0.5)
                 {
-                    $this->hours[$key]->full[(string)$j] += $action->count; //nastavení obsazenosti v dane půlhodině
-                    $this->hours[$key]->count = abs(abs($start - $end)); //délka rezervace
+                    $this->hours[$key]->full[(string)$j] += $action->for; //nastavení obsazenosti v dane půlhodině
+                    $this->hours[$key]->count = abs($start - $end); //délka rezervace
+                    echo $this->hours[$key]->count . "<br>";
                 }
             }
         }
@@ -73,7 +70,7 @@ class Reservations
                 $print .= "<div class='title'>" . $place->sport . "</div><div class='tab'>";
                 $print .= "<table class='". $place->sport ."'><thead><tr><td></td>";
 
-                $adate = MyDate::FromTimestamp($date->timestamp);
+                $adate = $date->clone();
                 $adate->set(["hour" => $place->open_from, "min" => 0, "sec" => 0]);
 
                 //hlavička s časy
@@ -103,12 +100,12 @@ class Reservations
     //rezervace vybraného místa na vybraný den
     private function get_row($place, $date)
     {
-        $adate = MyDate::FromTimestamp($date->timestamp);
+        $adate = $date->clone();
         $adate->change(["hour" => $place->open_from]); //nastavení datumu na čas otevření
-    
+
         $field_as_class = str_replace(".", "", str_replace(" ", "_", $place->field)); //převedení druhu místa na CSS třídu
         
-        $row = "<tr class='". $field_as_class."'>";
+        $row = "<tr class='". $field_as_class . "'>";
         $row .= "<td class='field'>" . $place->field . "</td><td></td>";
         
         //řídící proměnné

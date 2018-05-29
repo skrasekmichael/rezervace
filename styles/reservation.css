@@ -144,3 +144,13 @@
 #reservation #table table tr td.hour:hover{
     opacity: 0.8;
 }
+
+#uic_time_from{
+    
+    position: absolute;
+    background: blue;
+}
+
+#uic_time_from .header{
+    padding: 10px;
+}

@@ -39,22 +39,27 @@ class reservation_controller extends controller
         $this->data["repeat"] = $this->repeat($date);
 
         $repeating = new ComboBox();
-        $repeating->init($this->repeat_type($date));
+        $data = $this->repeat_type($date);
+        $repeating->init($data[0], $data[1]);
         $this->data["repeat_combobox"] = $repeating;
 
         $all = new Reservations();
         $all->load(Place::GetPlaces(), $date);
         $this->data["allreservation"] = $all->get($date);
 
-        if (isset($_POST["reservation"]))
+        if ($this->user->isLogged() && isset($_POST["reservation"]))
         {
             $from = $_POST["from"];
             $duration = $_POST["duration"];
             $to = MyDate::FromTimestamp(strtotime($from));
             $to->change(["min" => $duration * 30]);
             $to = $to->toString("Y-m-d H:i:s");
+            $place_id = Place::GetPlace($_POST["sport"], $_POST["field"])->id;
+            $for = $_POST["npeople"];
+            $index = $_POST["cindex"];
+            $count = ($index == 0) ? $_POST["count"] : $repeating->second_data[$index];
 
-
+            Action::CreateReservation($place_id, $from, $to, $count, $for, $this->user->id);
         }
     }
 
@@ -67,19 +72,19 @@ class reservation_controller extends controller
     private function repeat_type($date)
     {
         $data = [];
-        $data[] = "vlastní";
+        $data[] = "";
 
         $end_year = new MyDate();
         $end_year->set(["year" => $date->getYear() + 1]);
         $end_year->change(["day" => -1]);
-        $data[] = "do konce roku: " . $this->get_to_date($date->clone(), $end_year);
+        $data[] =  $this->get_to_date($date->clone(), $end_year);
         
         $end_month = new MyDate();
         $end_month->set(["year" => $date->getYear(),"month" => $date->getMonth() + 1]);
         $end_month->change(["day" => -1]);
-        $data[] = "do konce měsíce: " . $this->get_to_date($date->clone(), $end_month);
+        $data[] = $this->get_to_date($date->clone(), $end_month);
 
-        return $data;
+        return [["vlastní", "do konce měsíce:", "do konce roku:"], $data];
     }
 
     private function get_to_date($start, $end)
