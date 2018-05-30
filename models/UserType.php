@@ -3,7 +3,7 @@
 //konstanty typů uživatelů s oprávněním
 $_usertypes = Db::query_all("SELECT level, name FROM usertype");
 for ($i = 0; $i < count($_usertypes); $i++)
-    eval("const " . $_usertypes[$i]["name"] . " = " . $_usertypes[$i]["level"] . ";");
+    define($_usertypes[$i]["name"], $_usertypes[$i]["level"]);
 
 
 class UserType
