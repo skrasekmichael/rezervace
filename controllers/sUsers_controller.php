@@ -21,8 +21,4 @@ class sUsers_controller extends controller
         else
             $this->data["signup_error"] = $data[1];
     }
-    public function delUser($data)
-    {
-        $data = User::DelUser();
-    }
 }
