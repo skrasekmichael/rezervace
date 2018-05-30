@@ -4,52 +4,51 @@ class Reservations
 {
     private $data = [];
     private $places = [];
-    private $dates = [];
-    private $hours = [];
+    private $days = [];
 
-    public function load($places, $date)
+    public function load($date, $user = null)
     {
-        $this->places = $places;
+        $this->places = Place::GetPlaces();
+        $this->data = $this->filter_reservations(Reservation::GetReservations($user), $date);
 
-        //deklarace otevírací doby
-        for ($i = 0; $i < count($places); $i++)
-        {
-            $hour = new Hour();
-            $hour->load($places[$i]);
-            $this->hours[$places[$i]->sport . $places[$i]->field] = $hour;
+        for ($i = 0; $i < count($this->places); $i++)
+        {   
+            $interval = new DayInterval();
+            $interval->init($this->places[$i]);
+            $key = $this->places[$i]->getKey();
+            $this->days[$key] = $interval;
         }
 
-        //načtení rezervací
-        $data = Db::query_all("SELECT * FROM reservation ORDER BY `from`");
-        for ($i = 0; $i < count($data); $i++)
-        {   
-            //načtení akce
-            $action = new Action();
-            $action->load_as_reservation($data[$i]["idreservation"], $data[$i]["from"], $data[$i]["to"], $data[$i]["place"], 1, $data[$i]["count"], $data[$i]["for"]);
-            $key = $action->places[0]->sport . $action->places[0]->field;
+        for ($i = 0; $i < count($this->data); $i++)
+        {
+            $r = $this->data[$i];
+            $key = $r->place->getKey();
+            $se = $r->get_start_end();
 
-            $from = MyDate::FromTimestamp(strtotime($action->from)); //otevírací doba
-            $to = MyDate::FromTimestamp(strtotime($action->to)); //zavírací doba
-
-            $next_day = $date->clone(); 
-            $next_day->change(["day" => 1]);
-
-            /*echo $from->toString() . " > " . $date->toString() . " = " . ($from->timestamp > $date->timestamp) . ";";
-            echo $to->toString() . " < " . $next_day->toString() . " = " . ($to->timestamp < $next_day->timestamp) . ";<br>"; ... for debuging*/
-
-            //pokud datum rezervace souhlasí s vybraným datem
-            if ($from->timestamp > $date->timestamp && $to->timestamp < $next_day->timestamp)
+            for ($j = $se[0]; $j < $se[1]; $j++)
             {
-                $start = $from->getHour() + $from->getMin() / 60;
-                $end = $to->getHour() + $to->getMin() / 60;
-                //projití otevírací doby po 30 min
-                for ($j = $start; $j < $end; $j += 0.5)
+                $temp = $r->clone();
+                $temp->duration = $se[1] - $j; 
+                $this->days[$key]->intervals[(string)$j][] = $temp;
+            }
+        }
+    }
+
+    public function filter_reservations($data, $date)
+    {
+        $fdata = [];
+        for ($i = 0; $i < count($data); $i++)
+        {
+            $dates = $data[$i]->get_dates();
+            for ($j = 0; $j < count($dates); $j++)
+            {
+                if ($date->toString("Y-m-d") == $dates[$j]->toString("Y-m-d"))
                 {
-                    $this->hours[$key]->full[(string)$j] += $action->for; //nastavení obsazenosti v dane půlhodině
-                    $this->hours[$key]->count = abs($start - $end); //délka rezervace
+                    $fdata[] = $data[$i];
                 }
             }
         }
+        return $fdata;
     }
 
     public function get($date)
@@ -109,7 +108,7 @@ class Reservations
         
         //řídící proměnné
         $td = 0;
-        $key = $place->sport . $place->field;
+        $key = $place->getKey();
 
         //procházení po 30 min
         for ($j = $place->open_from; $j < $place->open_to; $j += 0.5)
@@ -127,7 +126,7 @@ class Reservations
                 $class = "blocked";
             else if ($adate->timestamp < MyDate::Now()->timestamp) //zablokování rezervací na aktuální čas
                 $class = "now";
-            else if ($this->hours[$key]->full[(string)$j] == 0) //volno
+            else if (count($this->days[$key]->intervals[(string)$j]) == 0) //volno
             {         
                 $text = "0/" . $place->max;
                 $td++;
@@ -136,23 +135,24 @@ class Reservations
             {
                 // ... na tuto dobu jsou vytvořené rezervace
 
+                $np = $this->days[$key]->getCount((string)$j);
+
                 //pokud je naplňěn maximální počet rezervací místa
-                if ($this->hours[$key]->full[(string)$j] == $place->max) 
+                if ($np == $place->max) 
                 {
                     $class .= " full";
                     $text = $place->max . "/" . $place->max;
                 }
-                else if ($this->hours[$key]->full[(string)$j] > 0) //ještě není plno
+                else if ($np > 0) //ještě není plno
                 {
                     $class .= " noempty";
-                    $text = $this->hours[$key]->full[(string)$j] . "/" . $place->max;
+                    $text = $np . "/" . $place->max;
                 }
-
-                $c = $this->hours[$key]->count; //délka rezervace uživatele
 
                 //pokud je místo pro 1 rezervaci
                 if ($place->max == 1)
                 {
+                    $c = $this->days[$key]->intervals[(string)$j][0]->duration;
                     //spojí se čas do dlouhého bloku
                     $adate->change(["min" => $c * 60]); 
                     $j += $c - 0.5;

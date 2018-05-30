@@ -15,13 +15,9 @@ class reservation_controller extends controller
         {   
             //kontrola jestli má argument správný tvar
             if (is_numeric($data[1][0]))
-            {
                 $date = MyDate::FromTimestamp($data[1][0]);
-            }
             else    
-            {
                 $this->redirect("error/4");
-            }
         }
 
         //pokud stránka obdrží více jak 1 argument
@@ -44,7 +40,7 @@ class reservation_controller extends controller
         $this->data["repeat_combobox"] = $repeating;
 
         $all = new Reservations();
-        $all->load(Place::GetPlaces(), $date);
+        $all->load($date);
         $this->data["allreservation"] = $all->get($date);
 
         if ($this->user->isLogged() && isset($_POST["reservation"]))
@@ -59,7 +55,8 @@ class reservation_controller extends controller
             $index = $_POST["cindex"];
             $count = ($index == 0) ? $_POST["count"] : $repeating->second_data[$index];
 
-            Action::CreateReservation($place_id, $from, $to, $count, $for, $this->user->id);
+            Reservation::CreateReservation($place_id, $from, $to, $count, $for, $this->user->id);
+            $this->refresh();
         }
     }
 

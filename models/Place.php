@@ -24,6 +24,11 @@ class Place
         $this->open_to = $to;
     }
 
+    public function getKey()
+    {
+        return $this->sport . $this->field; 
+    }
+
     public function toString()
     {
         return $this->sport . " " . $this->field;
