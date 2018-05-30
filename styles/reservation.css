@@ -122,6 +122,11 @@
     background: yellowgreen;
 }
 
+/* více jak 1 rezervace */
+.hour.noempty{
+    background: orange;
+}
+
 /* označený čas */
 .hour.selected{
     background: purple;
@@ -135,11 +140,6 @@
 /* rezervace bez uživatelů */
 .hour.empty{
     background: yellow;
-}
-
-/* více jak 1 rezervace */
-.hour.noempty{
-    background: orange;
 }
 
 #reservation #table table tr td.hour:hover{

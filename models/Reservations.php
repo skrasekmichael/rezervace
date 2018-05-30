@@ -25,7 +25,7 @@ class Reservations
             $key = $r->place->getKey();
             $se = $r->get_start_end();
 
-            for ($j = $se[0]; $j < $se[1]; $j++)
+            for ($j = $se[0]; $j < $se[1]; $j += 0.5)
             {
                 $temp = $r->clone();
                 $temp->duration = $se[1] - $j; 
@@ -123,9 +123,15 @@ class Reservations
 
             //zablokování rezervací do minulosti
             if ($adate->timestamp + 30 * 60 < MyDate::Now()->timestamp)
+            {
                 $class = "blocked";
+                $onclick = null;
+            }
             else if ($adate->timestamp < MyDate::Now()->timestamp) //zablokování rezervací na aktuální čas
+            {
                 $class = "now";
+                $onclick = null;
+            }
             else if (count($this->days[$key]->intervals[(string)$j]) == 0) //volno
             {         
                 $text = "0/" . $place->max;
@@ -134,12 +140,12 @@ class Reservations
             else
             {
                 // ... na tuto dobu jsou vytvořené rezervace
-
                 $np = $this->days[$key]->getCount((string)$j);
 
                 //pokud je naplňěn maximální počet rezervací místa
                 if ($np == $place->max) 
                 {
+                    $onclick = null;
                     $class .= " full";
                     $text = $place->max . "/" . $place->max;
                 }
@@ -166,7 +172,7 @@ class Reservations
             $tooltip = ($text != "") ? "tooltip='obsazeno $text'" : "";
 
             //přidání buňky
-            $row .= "<td $tooltip " . ($span > 1 ? "colspan='$span' " : "") . ($class == "hour" ? $onclick : "") . " class='$class'></td>";  
+            $row .= "<td $tooltip " . ($span > 1 ? "colspan='$span' " : "") . ($onclick ?? "") . " class='$class'></td>";  
 
             //pokud je šířka buňky 1
             if ($span == 1)

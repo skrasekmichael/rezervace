@@ -55,7 +55,7 @@ class Reservation
 
     public static function CreateReservation($place_id, $from, $to, $count, $for, $user_id)
     {
-        Db::query("INSERT INTO reservation (`idreservation`, `userid`, `place`, `from`, `to`, `count`, `for`) VALUES (null, $iduser_id, $place_id, '$from', '$to', $count, $for)");
+        Db::query("INSERT INTO reservation (`idreservation`, `iduser`, `place`, `from`, `to`, `count`, `for`) VALUES (null, $user_id, $place_id, '$from', '$to', $count, $for)");
     }
 
     public static function GetReservation($id)
