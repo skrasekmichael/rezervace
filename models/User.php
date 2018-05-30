@@ -74,6 +74,12 @@ class User
     {
         Db::query("UPDATE user SET $var = '$value' WHERE iduser = " . $this->id);
     }
+    
+    private function sumCredit($value)
+    {
+        Db::query("UPDATE user SET credit = SUM('$value'+'$this->user->credit') WHERE iduser = " . $this->id);
+    }
+
 
     public function changePassword($old, $new, $new_check)
     {

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 class tools_controller extends controller
 {

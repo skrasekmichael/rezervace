@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 class profile_controller extends controller
 {
