@@ -8,7 +8,7 @@ class addCredit_controller extends controller
     {
         if(!isset($this->user->bankNumber))
         {
-            $input_bank_number= "Číslo účtu:&nbsp&nbsp&nbsp<input type='number' value='Bankovní účet' name='bank' onfocus='this.value=''' required><br />"
+            $input_bank_number= "Číslo účtu:&nbsp&nbsp&nbsp<input type='number' value='Bankovní účet' name='bank' onfocus='this.value=''' required><br />";
             $this->data["bank"]= $input_bank_number;
         }
     }
@@ -18,14 +18,13 @@ class addCredit_controller extends controller
         if ($checkBox){
             if(isset($_POST["bank"])){
                 $bankNum = $_POST["bank"]; 
-                User::update($this->user->bankNumber, $bankNum);
+                $this->user->update($this->user->bankNumber, $bankNum);
             }
             $newCredits = $_POST["credits"];
-            User::update($newCredits);
+            $this->user->update($newCredits);
             return $this->load_home();
         }
         else
             return $this->data["addCredit_error"] = "Opravdu souhlasíte s převodem? Jestli ano, zatrhněte políčko souhlasu.";    
     }
 }
-?>

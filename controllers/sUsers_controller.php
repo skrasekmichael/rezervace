@@ -25,3 +25,4 @@ class sUsers_controller extends controller
     {
         $data = User::DelUser();
     }
+}
