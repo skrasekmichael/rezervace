@@ -1,41 +1,41 @@
 ﻿<h2>Správa uživatelských účtů: </h2>
 <!-- ukáže možnost přidání usera -->
-<input type="button" onclick="showTableUser()" id="buttonUser" value="Vytvořit nového uživatele"><br /><br />
+<input type="button" id="buttonUser" onclick="hideTableEvent()" value="Vytvořit nového uživatele"><br /><br />
 <!-- má vzít hodnoty a udělat nového usera-->
 <form method="post">
     <table border="4" id="tableUser" style="display:'none';">   
         <tr>        
             <th>Jméno
             </th>        <td>
-                <input type="text" id="name" value='Jméno' onfocus="this.value=''" required></td>    
+                <input type="text" name="name" placeholder="Jméno" required></td>    
         </tr>    
         <tr>        
             <th>Přijmení
             </th>        <td>
-                <input type="text" id="surname" value="Příjmení" onfocus="this.value=''" required></td>    
+                <input type="text" name="surname" placeholder="Příjmení" required></td>    
         </tr>    
         <tr>        
             <th>Heslo
             </th>        <td>
-                <input type="password" style="width:155px;" id="password" value="Heslo" onfocus="this.value=''" required></td>    
+                <input type="password" style="width:155px;" name="password" placeholder="Heslo" required></td>    
         </tr>    
         <tr>        
             <th>Email
             </th>                                           <td>
-                <input type="email" id="email" value="Email" onfocus="this.value=''" required></td>    
+                <input type="email" name="email" placeholder="Email" required></td>    
         </tr>    
         <tr>        
             <th>Telefon
             </th>        <td>
-                <input  type="number" id="telNumber" value="Telefonní číslo" onfocus="this.value=''" maxlength="15" required></td>    
+                <input  type="number" name="telNumber" placeholder="Telefonní číslo" maxlength="9" required></td>    
         </tr>    
         <tr>        
             <th>Právo
             </th>        <td>
-                <input type="number" id="level" value="ID práv" onfocus="this.value=''" maxlength="1" required></td>   
+                <input type="number" name="level" placeholder="ID práv" maxlength="1" required></td>   
         </tr>    
         <tr>        <td>
-                <input type="submit" onclick="hideTableUser()" style="width:125px;" id="pridat" value="OK"></td>        <td>
+                <input type="submit" onclick="hideTableUser()" style="width:125px;" name="pridat" id="pridat" value="OK"></td>        <td>
                 <button style="width:155px;" id="zrusit" onclick="hideTableUser()">Zrušit
                 </button></td>    
         </tr>
@@ -46,7 +46,7 @@
     </th>    
     <th>Jméno
     </th>    
-    <th>Přijmení­
+    <th>Přijmení
     </th>    
     <th>Email
     </th>    
@@ -56,5 +56,6 @@
     </th>        
     <th>Smazat
     </th>    
+    
     <?= $users ?>
 </table>

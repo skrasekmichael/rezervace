@@ -11,6 +11,7 @@
         <?=
             (isset($user) && $user->isLogged()) ?
             "<a href='profile'><li>" . $user->profile() . "</li></a>" .
+            "<a href='addCredit'><li>Dobít kredit</li</a>"
             "<a href='signout'><li>odhlásit</li></a>" :
             "<a href='signin'><li>přihlásit</li></a>" .
             "<a href='signup'><li>zaregistrovat</li></a>";  
