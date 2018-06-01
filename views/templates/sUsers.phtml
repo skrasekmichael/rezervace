@@ -1,6 +1,6 @@
 ﻿<h2>Správa uživatelských účtů: </h2>
 <!-- ukáže možnost přidání usera -->
-<input type="button" id="buttonUser" onclick="hideTableEvent()" value="Vytvořit nového uživatele"><br /><br />
+<input type="button" id="buttonUser" onclick="showTableUser()" value="Vytvořit nového uživatele"><br /><br />
 <!-- má vzít hodnoty a udělat nového usera-->
 <form method="post">
     <table border="4" id="tableUser" style="display:'none';">   
@@ -36,11 +36,12 @@
         </tr>    
         <tr>        <td>
                 <input type="submit" onclick="hideTableUser()" style="width:125px;" name="pridat" id="pridat" value="OK"></td>        <td>
+                </form>
                 <button style="width:155px;" id="zrusit" onclick="hideTableUser()">Zrušit
                 </button></td>    
         </tr>
     </table>
-</form><br /><br />
+<br /><br />
 <table border="2" id="tableData">    
     <th>ID
     </th>    
