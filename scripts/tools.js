@@ -21,7 +21,7 @@ function hideTableUser(){
     document.getElementById("surname").value="";
     document.getElementById("password").value="";
     document.getElementById("email").value="";
-    document.getElementById("telNumber").value=""";
+    document.getElementById("telNumber").value="";
     document.getElementById("level").value="";
         
     tableCreate.style.display="none";

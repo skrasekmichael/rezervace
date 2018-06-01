@@ -5,58 +5,50 @@
 <form method="post">
     <table border="4" id="tableUser" style="display:'none';">   
         <tr>        
-            <th>Jméno
-            </th>        <td>
-                <input type="text" name="name" placeholder="Jméno" required></td>    
+            <th>Jméno</th>
+            <td><input type="text" name="name" placeholder="Jméno" required></td>    
         </tr>    
         <tr>        
-            <th>Přijmení
-            </th>        <td>
-                <input type="text" name="surname" placeholder="Příjmení" required></td>    
+            <th>Přijmení</th>
+            <td><input type="text" name="surname" placeholder="Příjmení" required></td>    
         </tr>    
         <tr>        
-            <th>Heslo
-            </th>        <td>
-                <input type="password" style="width:155px;" name="password" placeholder="Heslo" required></td>    
+            <th>Heslo</th>
+            <td><input type="password" style="width:155px;" name="password" placeholder="Heslo" required></td>    
         </tr>    
         <tr>        
-            <th>Email
-            </th>                                           <td>
-                <input type="email" name="email" placeholder="Email" required></td>    
+            <th>Email</th>
+            <td><input type="email" name="email" placeholder="Email" required></td>    
         </tr>    
         <tr>        
-            <th>Telefon
-            </th>        <td>
-                <input  type="number" name="telNumber" placeholder="Telefonní číslo" maxlength="9" required></td>    
+            <th>Telefon</th>
+            <td><input  type="number" name="telNumber" placeholder="Telefonní číslo" maxlength="9" required></td>    
         </tr>    
         <tr>        
-            <th>Právo
-            </th>        <td>
-                <input type="number" name="level" placeholder="ID práv" maxlength="1" required></td>   
+            <th>Právo</th>
+            <td><input type="number" name="level" placeholder="ID práv" maxlength="1" required></td>   
         </tr>    
-        <tr>        <td>
+        <tr>        
+            <td>
                 <input type="submit" onclick="hideTableUser()" style="width:125px;" name="pridat" id="pridat" value="OK"></td>        <td>
-                </form>
-                <button style="width:155px;" id="zrusit" onclick="hideTableUser()">Zrušit
-                </button></td>    
+                <button style="width:155px;" id="zrusit" onclick="hideTableUser()">Zrušit</button>
+            </td>    
         </tr>
     </table>
+</form>
+
 <br /><br />
-<table border="2" id="tableData">    
-    <th>ID
-    </th>    
-    <th>Jméno
-    </th>    
-    <th>Přijmení
-    </th>    
-    <th>Email
-    </th>    
-    <th>Telefon
-    </th>    
-    <th>Práva
-    </th>        
-    <th>Smazat
-    </th>    
-    
-    <?= $users ?>
+<table border="2" id="tableData">
+    <thead>    
+        <tr>
+            <th>ID</th>
+            <th>Jméno</th>
+            <th>Přijmení</th>
+            <th>Email</th>
+            <th>Telefon</th>
+            <th>Práva</th>
+            <th>Smazat</th>
+        </tr>
+    </thead>
+    <tbody><?= $users ?></tbody>
 </table>
