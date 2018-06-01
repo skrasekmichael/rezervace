@@ -111,8 +111,7 @@
     border-bottom-width: 0px;
 }
 
-
-#reservation #table table tr td.field{
+#reservation #table table tr th.field{
     min-width: 130px;
 }
 
