@@ -27,16 +27,9 @@ window.onload = function()
 //inicializace stránky
 function init()
 {
+
     tabpanels();
     gallery.load();
-    dragobjects();
-}
-
-function dragobjects()
-{
-    let elems = $(".drag");
-    for (let i = 0; i < elems.length; i++)
-        drag_element(elems[i]);
 }
 
 //načtení všech tab panelů
@@ -164,18 +157,8 @@ async function setLogged()
 {
     ajax("isLogged", [0], function(yn, result){
         isLogged = result;
-        console.log(result);
     });
     await sleep(100);
-}
-
-async function logOut()
-{
-    ajax("logOut", [0], function(yn, result){
-        console.log(result);
-    });
-    await sleep(100);
-    location.reload();
 }
 
 function ajax(fname, args, callback)
@@ -203,36 +186,18 @@ function ajax(fname, args, callback)
     });
 }
 
-var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-var drag_object;
-
-function drag_element(element) 
+function load_map()
 {
-    let e = $("#" + element.id + " .header")[0];
-    e.onmousedown = function(e)
-    {
-        pos3 = e.clientX;
-        pos4 = e.clientY;
+    let center  = SMap.Coords.fromWGS84(16.5750461, 49.2913681);
+    let m = new SMap(JAK.gel("map"), center, 16);
+    m.addDefaultLayer(SMap.DEF_BASE).enable();
+    m.addDefaultControls();
 
-        drag_object = element;
-        document.onmousemove = move;
-        document.onmouseup = up;
-    }
-}
+    let layer = new SMap.Layer.Marker();
+    m.addLayer(layer);
+    layer.enable();
 
-function move(e)
-{
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    // set the element's new position:
-    drag_object.style.top = (drag_object.offsetTop - pos2) + "px";
-    drag_object.style.left = (drag_object.offsetLeft - pos1) + "px";
-}
-
-function up()
-{
-    document.onmousemove = null;
-    document.onmouseup = null;
+    let options = {};
+    let marker = new SMap.Marker(center, "TJ Sokol Lelekovice", options);
+    layer.addMarker(marker);   
 }

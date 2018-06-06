@@ -2,15 +2,20 @@
 <html>
     <head>
         <?php require("templates/head.phtml") ?>
+        <script src="https://api.mapy.cz/loader.js"></script>
+	    <script>Loader.load()</script>
     </head>
     <body>
         <header>
             <?php require("templates/nav.phtml") ?>
         </header>
         <article>
-            toto je úvodní strana ... tento školní projekt je super 
-            <br>
-            
+            <h1>TJ Sokol Lelekovice</h1>
+            <section>
+                <h2>Kde nás najdete?</h2>
+                <div id='map'></div>
+                <script type="text/javascript">load_map();</script>
+            </section>
         </article>
         <footer>
             <?= $footer ?>
