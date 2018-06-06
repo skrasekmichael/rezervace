@@ -9,11 +9,7 @@
         </header>
         <article>
             <?php 
-                require("templates/navSprava.phtml");
-                //ty události se budou dát dělat na kartě rezervace ... (je tam GUI pro dny a hodiny) ... už je to z části hotoví
-                //require("templates/sEvents.phtml"); proto už existuje šablona event.phml :D
-                if($choice) ? require("templates/sUsers.phtml") : require("templates/sEvents.phtml")
-                //require("templates/sUsers.phtml"); 
+                require("templates/sUsers.phtml") /* : require("templates/sEvents.phtml") */
             ?>
         </article>
         <footer>

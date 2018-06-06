@@ -9,21 +9,26 @@
         </header>
         <article>
             <form method="post">
-                <table>
-                    <tr>
-                        <td>Email: </td>
-                        <td><input type="email" name="email" required value="<?= isset($_POST["email"]) ? $_POST["email"] : '' ?>"></td>
-                    </tr>
-                    <tr>
-                        <td>Heslo: </td>
-                        <td><input type="password" name="password" required></td>
-                    </tr>
-                    <tr>
-                        <td><input type="submit" name="signin" value="přihlásit"></td>
-                    </tr>
+                <table class="form">
+                    <thead>
+                        <tr><th colspan="2"><h2>Přihlášení</h2></th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Email: </th>
+                            <td><input type="email" name="email" required value="<?= $_POST["email"] ?? '' ?>"></td>
+                        </tr>
+                        <tr>
+                            <th>Heslo: </th>
+                            <td><input type="password" name="password" required></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input class="right" type="submit" name="signin" value="přihlásit"></td>
+                        </tr>
+                    </tbody>
                 </table>
             </form>
-            <div class='error'><?= isset($signin_error) ? $signin_error : "" ?></div>
+            <div class='error'><?= $signin_error ?? "" ?></div>
         </article>
         <footer>
             <?= $footer ?>
