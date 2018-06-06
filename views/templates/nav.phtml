@@ -10,12 +10,18 @@
         <span class="right">
         <?=
             (isset($user) && $user->isLogged()) ?
+<<<<<<< HEAD
             "<li><span class='list-item'>" . $user->name() . "</span><ul>" .
             "<a href='profile'><li>Profil</li></a>" . 
             "<a href='addCredit'><li>Dobít kredit</li></a>" . 
             "<a href='signout'><li>Odhlásit</li></a>" . "
             <div class='cls'></div></ul></li>" . 
             "<a href='profile'>" . $user->avatar() . "</a>":
+=======
+            "<a href='profile'><li>" . $user->profile() . "</li></a>" .
+            "<a href='addCredit'><li>Dobít kredit</li></a>" . 
+            "<a href='signout'><li>odhlásit</li></a>" :
+>>>>>>> 8f92b6cc68e09d6ed1460e2c3ddc7d2c6c2205b7
             "<a href='signin'><li>přihlásit</li></a>" .
             "<a href='signup'><li>zaregistrovat</li></a>";  
         ?>
