@@ -2,20 +2,13 @@ var _index, _start, _duration, _places, _sport, _fclass;
 
 window.onload = function()
 {
-    time_ragne();
     init();
-
+    
     $("#duration:input").bind('keyup mouseup', function () {
         let duration = $(this).val()
         select(_index, _sport, _fclass, duration);
         res_info(_index, _start, duration, _places);
     });
-}
-
-function time_ragne()
-{
-    let range = "<div id='uic_time_from' class='drag'><div class='header'>from</div></di>";
-    $("body")[0].innerHTML += range;
 }
 
 //nastaví rezervační údaje

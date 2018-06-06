@@ -32,9 +32,14 @@ class User
     }
 
     //vrátí lštu zobrazující v menu
-    public function profile()
+    public function name()
     {
-        return "<div class='profile_bar'><div class='avatar'><img src='" . User::$avatars[$this->avatar] . "'></div><div class='name'>" . $this->firstName . "&nbsp;" . $this->lastName . "</div></div>";
+        return "<span class='name'>" . $this->firstName . "&nbsp;" . $this->lastName . "</span>";
+    }
+
+    public function avatar()
+    {
+        return "<span class='avatar'><img src='" . User::$avatars[$this->avatar] . "'></span>";
     }
 
     //načtení uživatele z databáze s daným ID

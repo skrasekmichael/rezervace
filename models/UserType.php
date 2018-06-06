@@ -8,16 +8,6 @@ for ($i = 0; $i < count($_usertypes); $i++)
 
 class UserType
 {
-    /*
-    const ADMINISTRATOR = 1; 
-    const STAFF = 2;   
-    const VIP = 3;   
-    const ACTIV = 4; 
-    const REGISTERED = 5; 
-    const GUEST = 6;
-    ... old version
-    */
-
     public $id;
     public $level;
     public $decription;

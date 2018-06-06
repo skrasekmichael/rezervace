@@ -43,6 +43,7 @@ class reservation_controller extends controller
         $all->load($date);
         $this->data["allreservation"] = $all->get($date);
 
+        //vytvoření rezervace
         if ($this->user->isLogged() && isset($_POST["reservation"]))
         {
             $from = $_POST["from"];
@@ -71,15 +72,15 @@ class reservation_controller extends controller
         $data = [];
         $data[] = "";
 
-        $end_year = new MyDate();
-        $end_year->set(["year" => $date->getYear() + 1]);
-        $end_year->change(["day" => -1]);
-        $data[] =  $this->get_to_date($date->clone(), $end_year);
-        
         $end_month = new MyDate();
         $end_month->set(["year" => $date->getYear(),"month" => $date->getMonth() + 1]);
         $end_month->change(["day" => -1]);
         $data[] = $this->get_to_date($date->clone(), $end_month);
+
+        $end_year = new MyDate();
+        $end_year->set(["year" => $date->getYear() + 1]);
+        $end_year->change(["day" => -1]);
+        $data[] =  $this->get_to_date($date->clone(), $end_year);
 
         return [["vlastní", "do konce měsíce:", "do konce roku:"], $data];
     }

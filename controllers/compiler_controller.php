@@ -14,6 +14,7 @@ class compiler_controller extends controller
 
 		$controller = $data[0];
 		$this->data["user"] = $user;
+		$this->data["map"] = false;
 
         //pokud URL obsahuje podstránku
 		if ($controller != "")
@@ -43,7 +44,11 @@ class compiler_controller extends controller
 				else
 					$this->redirect("error/404/2");
 			}
-        }	
+		}	
+		else
+		{
+			$this->data["map"] = true;
+		}
 
         $this->styles[] = $controller;
         $this->scripts[] = $controller;

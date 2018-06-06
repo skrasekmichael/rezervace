@@ -18,7 +18,8 @@ class tools_controller extends controller
         }
         
         //registrace od Admina
-        if (isset($_POST["pridat"]){   
+        if (isset($_POST["pridat"]))
+        {   
             $email = $_POST["email"];
             $password = $_POST["password"];
             $fname = $_POST["name"];
@@ -36,8 +37,9 @@ class tools_controller extends controller
 
         $this->data["title"] = "Správa";
 
-        if (isset($_POST["vyber"])){
-            $this->data["choice"]= $_POST["vyber"]    
+        if (isset($_POST["vyber"]))
+        {
+            $this->data["choice"] = $_POST["vyber"];
         }
     
         $list_of_users = "";
@@ -54,13 +56,16 @@ class tools_controller extends controller
         //code for loading sEvents table
         $list_of_events = "<table>";
         //tohle udělám v budoucím modelu event
+
+        /*
         $events = sEvent::loadEvents();
         foreach ($events as $event)
         {
             $list_of_event .= "<tr><td>" . $event->name . "</td><td>" . $event->from .  "</td><td>".$event->to."</td><td>".$event->description."</td><td><input type='submit' name='delete_event' value='smazat'></td></tr>";
         } 
         $list_of_events .= "</table>";
-        $this->data["events"] = $list_of_events;     
+        $this->data["events"] = $list_of_events;  
+        */   
     }
 }
 

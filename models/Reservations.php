@@ -74,7 +74,7 @@ class Reservations
                 //hlavička s časy
                 for ($j = $place->open_from - 1; $j < $place->open_to; $j += 1)
                 {
-                    $print .= "<td colspan='2'><div class='thead number'>" . $adate->toString("H:i") . "</div></td>";
+                    $print .= "<th colspan='2'><div class='thead number'>" . $adate->toString("H:i") . "</div></th>";
                     $adate->change(["min" => 60]);
                 }
 
@@ -104,7 +104,7 @@ class Reservations
         $field_as_class = str_replace(".", "", str_replace(" ", "_", $place->field)); //převedení druhu místa na CSS třídu
         
         $row = "<tr class='". $field_as_class . "'>";
-        $row .= "<td class='field'>" . $place->field . "</td><td></td>";
+        $row .= "<th class='field'>" . $place->field . "</th><td></td>";
         
         //řídící proměnné
         $td = 0;
@@ -178,6 +178,8 @@ class Reservations
             if ($span == 1)
                 $adate->change(["min" => 30]); //posune se čas o 30 min
         }
-        return $row . "<td></td></tr>";
+        $row .= "<td></td></tr>";
+        $row .= "<tr class='". $field_as_class . " dynamic'><th class='field'></th><td></td><td colspan='24'><div class='drag from'></div><div class='drag to'></div></tr></td>";
+        return $row;
     }
 }
