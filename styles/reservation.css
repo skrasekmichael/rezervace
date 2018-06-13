@@ -136,6 +136,10 @@
     background: red;
 }
 
+.hour.user{
+    background: cornflowerblue;
+}
+
 /* rezervace bez uživatelů */
 .hour.empty{
     background: yellow;

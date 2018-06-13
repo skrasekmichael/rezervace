@@ -201,3 +201,10 @@ function load_map()
     let marker = new SMap.Marker(center, "TJ Sokol Lelekovice", options);
     layer.addMarker(marker);   
 }
+
+function show_message(element)
+{
+    element.style.left = (window.innerWidth - element.offsetWidth) / 2 + "px";
+    element.style.top = (window.innerHeight - element.offsetHeight) / 2 + "px";
+    element.style.visibility = "visible";
+}

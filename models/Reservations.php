@@ -5,11 +5,13 @@ class Reservations
     private $data = [];
     private $places = [];
     private $days = [];
+    private $online = null;
 
-    public function load($date, $user = null)
+    public function load($date, $online, $user = null)
     {
         $this->places = Place::GetPlaces();
         $this->data = $this->filter_reservations(Reservation::GetReservations($user), $date);
+        $this->online = $online;
 
         for ($i = 0; $i < count($this->places); $i++)
         {   
@@ -113,6 +115,7 @@ class Reservations
         //procházení po 30 min
         for ($j = $place->open_from; $j < $place->open_to; $j += 0.5)
         {
+            $your = -1;
             $class = "hour";
             $text = "";
 
@@ -125,12 +128,12 @@ class Reservations
             if ($adate->timestamp + 30 * 60 < MyDate::Now()->timestamp)
             {
                 $class = "blocked";
-                $onclick = null;
+                $onclick = "";
             }
             else if ($adate->timestamp < MyDate::Now()->timestamp) //zablokování rezervací na aktuální čas
             {
                 $class = "now";
-                $onclick = null;
+                $onclick = "";
             }
             else if (count($this->days[$key]->intervals[(string)$j]) == 0) //volno
             {         
@@ -142,10 +145,20 @@ class Reservations
                 // ... na tuto dobu jsou vytvořené rezervace
                 $np = $this->days[$key]->getCount((string)$j);
 
+                //kontrola zda se nejedná o rezervaci online uživatele
+                for ($i = 0; $i < count($this->days[$key]->intervals[(string)$j]) && $your == -1; $i++)
+                {
+                    if ($this->days[$key]->intervals[(string)$j][$i]->user->id == $this->online)
+                    {
+                        $your = $i;
+                        break;
+                    }
+                }
+
                 //pokud je naplňěn maximální počet rezervací místa
                 if ($np == $place->max) 
                 {
-                    $onclick = null;
+                    $onclick = "";
                     $class .= " full";
                     $text = $place->max . "/" . $place->max;
                 }
@@ -166,13 +179,30 @@ class Reservations
                 }
 
                 $td++; //byla přidána buňka
-            } 
+            }
 
             //text po najetí myši
             $tooltip = ($text != "") ? "tooltip='obsazeno $text'" : "";
 
+            //pokud je rezervace online uživatele
+            if ($your != -1)
+            {
+                $class .= " user";
+                $tooltip = "tooltip='vaše rezervace'";
+                $reservation = $this->days[$key]->intervals[(string)$j][$your];
+
+                $week = new MyDate();
+                $week->set(["hour" => 24 * 7]);
+
+                $to = $reservation->to->clone();
+                $to->change(["day" => 7 * $reservation->count]);
+
+                $count = floor(abs(MyDate::Now()->timestamp - $to->timestamp) / $week->timestamp);
+                $onclick = "onclick=\"myres(" . $reservation->id . ", '" . $reservation->from->toString() . "', '" . $reservation->to->toString() . "', '" . $reservation->place->toString() . "', $count, " . $reservation->for . ")\"";
+            }
+
             //přidání buňky
-            $row .= "<td $tooltip " . ($span > 1 ? "colspan='$span' " : "") . ($onclick ?? "") . " class='$class'></td>";  
+            $row .= "<td $tooltip " . ($span > 1 ? "colspan='$span' " : "") . "$onclick class='$class'></td>";  
 
             //pokud je šířka buňky 1
             if ($span == 1)

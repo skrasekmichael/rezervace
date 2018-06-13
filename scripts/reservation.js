@@ -46,7 +46,7 @@ function set(sport, field, start, index, fclass)
 function select(index, sport, fclass, duration)
 {
     $("#reservation #table table tr td.hour").removeClass("selected"); //odstranění dříve označených časů
-    let cells = $("." + sport + " ." + fclass + " .hour");
+    let cells = $("." + sport + " ." + fclass + " .hour"); 
 
     //označení časů
     for (let i = 0; i < duration; i++)
@@ -57,22 +57,41 @@ function select(index, sport, fclass, duration)
 
 //zobrazí info o rezervaci
 function res_info(index, start, duration, places)
-{
+{/*
     let time = new Date(start * 1000);
+    let endtime = new Date(start * 1000 + 3600000 * duration / 2);
+
     let selected = $("#reservation #table table tr td.selected");
     for (let i = 0; i < selected.length; i++)
     {
-        console.log(selected[i].classList.value);
         if (selected[i].classList.value == "hour selected")
         {
-            $(".information #date span")[0].innerHTML = date_format(time, "Y-m-d");
-            $(".information #from span")[0].innerHTML = date_format(time, "H:i");
-            $(".information #to span")[0].innerHTML = date_format(new Date(start * 1000 + 3600000 * duration / 2), "H:i");
-            $(".information #place span")[0].innerHTML = places;
+            $("#rinfo #date span")[0].innerHTML = date_format(time, "Y-m-d");
+            $("#rinfo #from span")[0].innerHTML = date_format(time, "H:i") + val("from", date_format(time, "Y-m-d H:i:s"));
+            $("#rinfo #to span")[0].innerHTML = date_format(endtime, "H:i") + val("to", date_format(endtime, "Y-m-d H:i:s"));
+            $("#rinfo #place span")[0].innerHTML = places;
 
         }
-    }
+    }*/
 }
+
+function myres(id, from, to, place, count, pop)
+{
+    $("#myres [name='id']")[0].value = id;
+    $("#myres .from")[0].innerHTML = from;
+    $("#myres .to")[0].innerHTML = to;
+    $("#myres .place")[0].innerHTML = place;
+    $("#myres .count")[0].innerHTML = count;
+    $("#myres .for")[0].innerHTML = pop;
+    show_message($("#myres")[0]);
+}
+
+/*
+function val(name, value)
+{
+    return "<input type='hidden' name='" + name + "' value='" + value + "'>";
+}
+*/
 
 function repeat_val_change(select)
 {

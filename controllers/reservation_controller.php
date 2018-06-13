@@ -40,7 +40,7 @@ class reservation_controller extends controller
         $this->data["repeat_combobox"] = $repeating;
 
         $all = new Reservations();
-        $all->load($date);
+        $all->load($date, $this->user->id);
         $this->data["allreservation"] = $all->get($date);
 
         //vytvoření rezervace
@@ -57,6 +57,15 @@ class reservation_controller extends controller
             $count = ($index == 0) ? $_POST["count"] : $repeating->second_data[$index];
 
             Reservation::CreateReservation($place_id, $from, $to, $count, $for, $this->user->id);
+            $this->refresh();
+        }
+
+        if (isset($_POST["cancel_reservation"]))
+        {
+            $id = $_POST["id"];
+            $reservation = Reservation::GetReservation($id);
+            if ($this->user->id == $reservation->user->id)
+                Reservation::Delete($id);
             $this->refresh();
         }
     }

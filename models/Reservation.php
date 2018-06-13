@@ -66,6 +66,11 @@ class Reservation
         return $r;
     }
 
+    public static function Delete($id)
+    {
+        Db::query("DELETE FROM reservation WHERE idreservation = $id");
+    }
+
     public static function GetReservations($user = null)
     {
         $rs = [];

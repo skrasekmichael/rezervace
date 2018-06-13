@@ -5,10 +5,36 @@
             require("event.phtml");
     ?>
 </div>
-<div class="information"> 
-    <div id="date">Datum: <span></span></div>
-    <div id="from">Od: <span></span></div>
-    <div id="to">Do: <span></span></div>
-    <div id="place">Místa rezervace: <span></span></div>
-    <div id="next">Další rezervace: <span></span></div>
+
+<div id="myres" class="message_box"> 
+    <form method="post">
+        <input name="id" type="hidden" value="">
+        <table>
+            <tr>
+                <td>Od: </td>
+                <td class="from"></td>
+            </tr>
+            <tr>
+                <td>Do: </td>
+                <td class="to"></td>
+            </tr>
+            <tr>
+                <td>Místo: </td>
+                <td class="place"></td>
+            </tr>
+            <tr>
+                <td>Ještě opakovat: </td>
+                <td><span class="count"></span>x</td>
+            </tr>
+            <tr>
+                <td>Pro počet lidí: </td>
+                <td class="for"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="zrušit rezervaci" name="cancel_reservation"></td>
+                <td><input type="button" value="storno" onclick="$('#myres')[0].style.visibility = 'hidden'"></td>
+            </tr>
+        </table>
+    </form>
 </div>
+
