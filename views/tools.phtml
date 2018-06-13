@@ -8,9 +8,11 @@
             <?php require("templates/nav.phtml") ?>
         </header>
         <article>
-            <?php 
-                require("templates/sUsers.phtml") /* : require("templates/sEvents.phtml") */
-            ?>
+            <section>
+                <?php 
+                    require("templates/sUsers.phtml");
+                ?>
+            </section>
         </article>
         <footer>
             <?= $footer ?>

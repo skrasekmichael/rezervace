@@ -126,13 +126,13 @@ class User
         return $users;
     }
 
-    public static function SignUp($email, $password, $fname, $lname, $tel)
+    public static function SignUp($email, $password, $fname, $lname, $tel, $level = 5)
     {
         if (Db::query("SELECT email FROM user WHERE email = '$email'") == 0)
         {
             $password = hash("SHA512", $password . $email);
             //potreba zmena kvuli creditu
-            Db::query("INSERT INTO user (iduser, type, email, password, firstname, lastname, tel, avatar) VALUES (NULL, " . UserType::FromLevel(REGISTRED)->id . ", '$email', '$password', '$fname', '$lname', '$tel', 1)");
+            Db::query("INSERT INTO user (iduser, type, email, password, firstname, lastname, tel, avatar) VALUES (NULL, " . $level . ", '$email', '$password', '$fname', '$lname', '$tel', 1)");
 
             return [true, "Registrace proběhla úspěšně. "];
         }

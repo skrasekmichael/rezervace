@@ -16,30 +16,40 @@ class tools_controller extends controller
             User::DeleteUser($user_id);
             $this->refresh();
         }
-        
+
+        $this->data["title"] = "Správa";
+
+        $levels_combobox = new ComboBox();
+        $levels = [];
+        $keys = [];
+        $index = 1;
+        while (true)
+        {
+            $type = UserType::FromId($index);
+            if ($type == null) 
+                break;
+            $keys[] = $type->id;
+            $levels[] = $type->description;
+            $index++;
+        } 
+        $levels_combobox->init($levels, $keys);
+        $this->data["levels_combobox"] = $levels_combobox;
+
         //registrace od Admina
-        if (isset($_POST["pridat"]))
+        if (isset($_POST["create_user"]))
         {   
             $email = $_POST["email"];
             $password = $_POST["password"];
             $fname = $_POST["name"];
             $lname = $_POST["surname"];
             $tel = $_POST["telNumber"];
+            $level = $_POST["level"];
             
-            $data = User::SignUp($email, $password, $fname, $lname, $tel);
+            $data = User::SignUp($email, $password, $fname, $lname, $tel, $level);
             if ($data[0])
-            {
                 $this->refresh();
-            }
             else
-                $this->data["signup_error"] = $data[1];
-        }   
-
-        $this->data["title"] = "Správa";
-
-        if (isset($_POST["vyber"]))
-        {
-            $this->data["choice"] = $_POST["vyber"];
+                $this->data["create_account_error"] = $data[1];
         }
     
         $list_of_users = "";
@@ -48,24 +58,10 @@ class tools_controller extends controller
         {
             $list_of_users .= "<form method='post'><tr>";
             $list_of_users .= "<td><input type='hidden' value='" . $user->id . "' name='user_id'>" . $user->id . "</td><td>" . $user->firstName . "</td><td>" . $user->lastName .  "</td>";
-            $list_of_users .= "<td>" . $user->email . "</td><td>" . $user->tel . "</td><td>" . $user->type->decription . "</td><td><input type='submit' name='delete_user' value='smazat'></td>";
+            $list_of_users .= "<td>" . $user->email . "</td><td>" . $user->tel . "</td><td>" . $user->type->description . "</td><td><input type='submit' name='delete_user' value='smazat'></td>";
             $list_of_users .= "</tr></form>";
         }
         $this->data["users"] = $list_of_users;
-          
-        //code for loading sEvents table
-        $list_of_events = "<table>";
-        //tohle udělám v budoucím modelu event
-
-        /*
-        $events = sEvent::loadEvents();
-        foreach ($events as $event)
-        {
-            $list_of_event .= "<tr><td>" . $event->name . "</td><td>" . $event->from .  "</td><td>".$event->to."</td><td>".$event->description."</td><td><input type='submit' name='delete_event' value='smazat'></td></tr>";
-        } 
-        $list_of_events .= "</table>";
-        $this->data["events"] = $list_of_events;  
-        */   
     }
 }
 

@@ -3,3 +3,8 @@
     border: 2px solid #16284C;
     border: collapse;
 }
+
+#tableUser th{
+    text-align: left;
+    width: 150px;
+}

@@ -36,7 +36,7 @@ class reservation_controller extends controller
 
         $repeating = new ComboBox();
         $data = $this->repeat_type($date);
-        $repeating->init($data[0], $data[1]);
+        $repeating->init($data[0], null, $data[1]);
         $this->data["repeat_combobox"] = $repeating;
 
         $all = new Reservations();

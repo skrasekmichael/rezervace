@@ -1,43 +1,43 @@
 ﻿<h2>Správa uživatelských účtů: </h2>
-<!-- ukáže možnost přidání usera -->
-<input type="button" id="buttonUser" onclick="showTableUser()" value="Vytvořit nového uživatele"><br /><br />
-<!-- má vzít hodnoty a udělat nového usera-->
-<form method="post">
-    <table id="tableUser">   
-        <tr>        
-            <th>Jméno</th>
-            <td><input type="text" name="name" placeholder="Jméno" required></td>    
-        </tr>    
-        <tr>        
-            <th>Přijmení</th>
-            <td><input type="text" name="surname" placeholder="Příjmení" required></td>    
-        </tr>    
-        <tr>        
-            <th>Heslo</th>
-            <td><input type="password" style="width:155px;" name="password" placeholder="Heslo" required></td>    
-        </tr>    
-        <tr>        
-            <th>Email</th>
-            <td><input type="email" name="email" placeholder="Email" required></td>    
-        </tr>    
-        <tr>        
-            <th>Telefon</th>
-            <td><input  type="number" name="telNumber" placeholder="Telefonní číslo" maxlength="9" required></td>    
-        </tr>    
-        <tr>        
-            <th>Právo</th>
-            <td><input type="number" name="level" placeholder="ID práv" maxlength="1" required></td>   
-        </tr>    
-        <tr>        
-            <td>
-                <input type="submit" onclick="hideTableUser()" style="width:125px;" name="pridat" id="pridat" value="OK">
-            </td>
-            <td>
-                <button style="width:155px;" id="zrusit" onclick="hideTableUser()">Zrušit</button>
-            </td>    
-        </tr>
-    </table>
-</form>
+
+<input type="button" value="vyvořit nový účet" onclick="show_message($('#create_user')[0])">
+<div class="error"><?= $create_account_error ?? "" ?></div>
+<div id="create_user" class="message_box">
+    <form method="post">
+        <table id="tableUser">
+            <tr>
+                <th>Jméno: </th>
+                <td><input type="text" name="name" placeholder="Jméno" required></td>
+            </tr>
+            <tr>
+                <th>Přijmení: </th>
+                <td><input type="text" name="surname" placeholder="Příjmení" required></td>
+            </tr>
+            <tr>
+                <th>Heslo: </th>
+                <td><input type="password" name="password" placeholder="Heslo" required></td>
+            </tr>
+            <tr>
+                <th>Email: </th>
+                <td><input type="email" name="email" placeholder="Email" required></td>
+            </tr>
+            <tr>
+                <th>Telefon: </th>
+                <td><input type="number" name="telNumber" placeholder="Telefonní číslo" maxlength="9" required></td>
+            </tr>
+            <tr>
+                <th>Právo: </th>
+                <td><select name="level"><?= $levels_combobox->get() ?></select></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="center">
+                    <input type="submit" style="width:125px;" name="create_user" value="OK">
+                    <input type="button" value="zrušit" onclick="$('#create_user')[0].style.visibility = 'hidden'">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
 
 <br /><br />
 <table id="tableData">
