@@ -14,7 +14,7 @@ abstract class controller
     {
         //výchozí proměnné
         $this->root = "/" . $this->main_url;
-        $this->data["footer"] = "Copyright &copy; 2018 Michael Škrášek, Tomáš Szabó, Michal Ruiner, <s>Martin Bielik</s>";
+        $this->data["footer"] = "&copy; 2018 Michael Škrášek, Tomáš Szabó, Michal Ruiner, <s>Martin Bielik</s>";
         $this->data["title"] = "rezervace";
         $this->data["root"] = $this->root;
         $this->data["base"] = "/";

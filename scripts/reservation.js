@@ -31,9 +31,6 @@ function set(sport, field, start, index, fclass)
         //místo rezervace
         let places = "<input type='hidden' name='sport' value='" + sport + "'><input type='hidden' name='field' value='" + field + "'>" + sport + " - " + field;
         $(".places")[0].innerHTML = places;
-        
-
-        res_info(index, start, duration, places);
 
         _index = index;
         _start = start;
@@ -55,26 +52,6 @@ function select(index, sport, fclass, duration)
     }
 }
 
-//zobrazí info o rezervaci
-function res_info(index, start, duration, places)
-{/*
-    let time = new Date(start * 1000);
-    let endtime = new Date(start * 1000 + 3600000 * duration / 2);
-
-    let selected = $("#reservation #table table tr td.selected");
-    for (let i = 0; i < selected.length; i++)
-    {
-        if (selected[i].classList.value == "hour selected")
-        {
-            $("#rinfo #date span")[0].innerHTML = date_format(time, "Y-m-d");
-            $("#rinfo #from span")[0].innerHTML = date_format(time, "H:i") + val("from", date_format(time, "Y-m-d H:i:s"));
-            $("#rinfo #to span")[0].innerHTML = date_format(endtime, "H:i") + val("to", date_format(endtime, "Y-m-d H:i:s"));
-            $("#rinfo #place span")[0].innerHTML = places;
-
-        }
-    }*/
-}
-
 function myres(id, from, to, place, count, pop)
 {
     $("#myres [name='id']")[0].value = id;
@@ -86,28 +63,11 @@ function myres(id, from, to, place, count, pop)
     show_message($("#myres")[0]);
 }
 
-/*
-function val(name, value)
-{
-    return "<input type='hidden' name='" + name + "' value='" + value + "'>";
-}
-*/
-
 function repeat_val_change(select)
 {
-    console.log(select.selectedIndex);
     $("#rpindex")[0].value = select.selectedIndex;
     if (select.selectedIndex == 0)
         $("#rpnumber")[0].style.visibility = "visible";
     else
         $("#rpnumber")[0].style.visibility = "hidden";
 }
-
-/*
-function check_datetime(datetime)
-{
-    let re = /^(([0]?[1-9]|1[0-2])/([0-2]?[0-9]|3[0-1])/[1-2]\d{3}) (20|21|22|23|[0-1]?\d{1}):([0-5]?\d{1})$/;
-    return re.test(datetime)
-}
-... nefunguje
-*/

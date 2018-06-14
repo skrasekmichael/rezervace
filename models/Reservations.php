@@ -209,7 +209,7 @@ class Reservations
                 $adate->change(["min" => 30]); //posune se čas o 30 min
         }
         $row .= "<td></td></tr>";
-        $row .= "<tr class='". $field_as_class . " dynamic'><th class='field'></th><td></td><td colspan='24'><div class='drag from'></div><div class='drag to'></div></tr></td>";
+        //$row .= "<tr class='". $field_as_class . " dynamic'><th class='field'></th><td></td><td colspan='24'><div class='drag from'></div><div class='drag to'></div></tr></td>";
         return $row;
     }
 }
