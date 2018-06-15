@@ -38,14 +38,14 @@ class Place
     public static function GetPlaceById($id)
     {
         $place = new Place();
-        $data = Db::query_one("SELECT * FROM place WHERE idplace = $id ORDER BY sport");
+        $data = Db::query_one("SELECT * FROM place WHERE idplace = :id ORDER BY sport", ["id" => $id]);
         $place->load($data["idplace"], $data["sport"], $data["field"], $data["price0"], $data["price1"], $data["max"], $data["open_from"], $data["open_to"]);
         return $place;
     }
 
     public static function GetPlace($sport, $field)
     {
-        $place_id = Db::query_first("SELECT idplace, sport, field FROM place WHERE sport = '$sport' AND field = '$field' ORDER BY sport");
+        $place_id = Db::query_first("SELECT idplace, sport, field FROM place WHERE sport = ':sport' AND field = ':field' ORDER BY sport", ["sport" => $sport, "field" => $field]);
         $place = Place::GetPlaceById($place_id);
         return $place;
     }

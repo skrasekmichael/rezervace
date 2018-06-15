@@ -60,7 +60,7 @@ class Reservation
         if ($user == null)
             $data = Db::query_all("SELECT * FROM reservation ORDER BY `from`");
         else
-            $data = Db::query_all("SELECT * FROM reservation WHERE iduser = " . $user->id . " ORDER BY `from`");
+            $data = Db::query_all("SELECT * FROM reservation WHERE iduser = :userid ORDER BY `from`", ["userid" => $user->id]);
 
         for ($i = 0; $i < count($data); $i++)
         {   

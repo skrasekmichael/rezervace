@@ -64,4 +64,3 @@ class tools_controller extends controller
         $this->data["users"] = $list_of_users;
     }
 }
-

@@ -14,10 +14,10 @@ class UserType
     //načte typ uživatele podle ID
     public static function FromId($id)
     {
-        if (Db::query("SELECT * FROM usertype WHERE idusertype = $id") == 0)
+        if (Db::query("SELECT * FROM usertype WHERE idusertype = :id", ["id" => $id]) == 0)
             return null;
 
-        $data = Db::query_one("SELECT * FROM usertype WHERE idusertype = $id");
+        $data = Db::query_one("SELECT * FROM usertype WHERE idusertype = :id", ["id" => $id]);
         $user = new UserType();
         $user->id = $data[0];
         $user->level = $data[1];
@@ -28,7 +28,7 @@ class UserType
     //vrátí typ uživatele podle oprávnění
     public static function FromLevel($level)
     {
-        $data = Db::query_one("SELECT * FROM usertype WHERE level = $level");
+        $data = Db::query_one("SELECT * FROM usertype WHERE level = :level", ["level" => $level]);
         $user = new UserType();
         $user->id = $data[0];
         $user->level = $data[1];

@@ -48,7 +48,7 @@ class User
         $this->type = UserType::FromLevel(GUEST); //výchozí typ uživatele
         $this->id = $id;
 
-        $data = Db::query_one("SELECT * FROM user WHERE iduser = $id");
+        $data = Db::query_one("SELECT * FROM user WHERE iduser = :id", ["id" => $id]);
 
         $this->type = UserType::FromId($data[1]); //přepsání typu uživatele
 
@@ -57,7 +57,7 @@ class User
         {
             //aktivace účtu
             $this->type = UserType::FromLevel(ACTIV);
-            $this->update("type", Db::query_one("SELECT idusertype, level FROM usertype WHERE level = " . ACTIV)[1]);
+            $this->update("type", Db::query_one("SELECT idusertype, level FROM usertype WHERE level = $level ", ["level" => ACTIV])[1]);
         }
 
         //pokud se nejedná o GUESTA
@@ -77,12 +77,12 @@ class User
 
     private function update($var, $value)
     {
-        Db::query("UPDATE user SET $var = '$value' WHERE iduser = " . $this->id);
+        Db::query("UPDATE user SET :var = ':value' WHERE iduser = $id", ["id" => $this->id, "var" => $var, "value" => $value]);
     }
     
     private function sumCredit($value)
     {
-        Db::query("UPDATE user SET credit = SUM('$value'+'$this->user->credit') WHERE iduser = " . $this->id);
+        Db::query("UPDATE user SET credit = :credit WHERE iduser = :id", ["id" => $this->id, "credit" => $value + $this->user->credit]);
     }
 
 
@@ -128,11 +128,11 @@ class User
 
     public static function SignUp($email, $password, $fname, $lname, $tel, $level = 5)
     {
-        if (Db::query("SELECT email FROM user WHERE email = '$email'") == 0)
+        if (Db::query("SELECT email FROM user WHERE email = ':email'", ["email" => $email]) == 0)
         {
             $password = hash("SHA512", $password . $email);
             //potreba zmena kvuli creditu
-            Db::query("INSERT INTO user (iduser, type, email, password, firstname, lastname, tel, avatar) VALUES (NULL, " . $level . ", '$email', '$password', '$fname', '$lname', '$tel', 1)");
+            Db::query("INSERT INTO user (iduser, type, email, password, firstname, lastname, tel, avatar) VALUES (NULL, :level, ':email', ':password', ':fname', ':lname', ':tel', 1)", ["level" => $level, "email" => $email, "password" => $password, "fname" => $fname, "lname" => $lname, "tel" => $tel]);
 
             return [true, "Registrace proběhla úspěšně. "];
         }
@@ -144,7 +144,7 @@ class User
     public static function SignIn($email, $password)
     {
         $password = hash("SHA512", $password . $email); //vrátí otisk hesla + soli (emailu), který je uložený v databázi
-        $data = Db::query_all("SELECT iduser, email, password FROM user WHERE email = '$email'"); 
+        $data = Db::query_all("SELECT iduser, email, password FROM user WHERE email = ':email'", ["email" => $email]); 
 
         //pokud uživtael s tímto emailem existuje
         if (count($data) == 1)
@@ -168,9 +168,9 @@ class User
     //mazání uživatele
     public static function DeleteUser($id)
     {
-        if (Db::query("SELECT iduser FROM user WHERE iduser=$id") == 1)
+        if (Db::query("SELECT iduser FROM user WHERE iduser=:id", ["id" => $id]) == 1)
         {
-            Db::query("DELETE FROM user WHERE iduser=$id");
+            Db::query("DELETE FROM user WHERE iduser=:id", ["id" => $id]);
             return [true, "Vymazání se podařilo"];
         }
         else

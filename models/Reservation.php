@@ -55,12 +55,12 @@ class Reservation
 
     public static function CreateReservation($place_id, $from, $to, $count, $for, $user_id)
     {
-        Db::query("INSERT INTO reservation (`idreservation`, `iduser`, `place`, `from`, `to`, `count`, `for`) VALUES (null, $user_id, $place_id, '$from', '$to', $count, $for)");
+        Db::query("INSERT INTO reservation (`idreservation`, `iduser`, `place`, `from`, `to`, `count`, `for`) VALUES (null, :id, :place, ':from', ':to', :count, :for)", ["id" => $user_id, "place" => $palce, "from" => $from, "to" => $to, "count" => $count, "for", $for]);
     }
 
     public static function GetReservation($id)
     {
-        $data = Db::query_one("SELECT * FROM reservation WHERE idreservation = $id ORDER BY `from`");
+        $data = Db::query_one("SELECT * FROM reservation WHERE idreservation = :id ORDER BY `from`", ["id" => $id]);
         $r = new Reservation();
         $r->load($data["idreservation"], $data["iduser"], $data["from"], $data["to"], $data["place"], 1, $data["count"], $data["for"]);
         return $r;
@@ -68,7 +68,7 @@ class Reservation
 
     public static function Delete($id)
     {
-        Db::query("DELETE FROM reservation WHERE idreservation = $id");
+        Db::query("DELETE FROM reservation WHERE idreservation = :id", ["id" => $id]);
     }
 
     public static function GetReservations($user = null)
@@ -77,7 +77,7 @@ class Reservation
         if ($user == null)
             $data = Db::query_all("SELECT * FROM reservation ORDER BY `from`");
         else
-            $data = Db::query_all("SELECT * FROM reservation WHERE iduser = " . $user->id . " ORDER BY `from`");
+            $data = Db::query_all("SELECT * FROM reservation WHERE iduser = :user ORDER BY `from`", ["user" => $user->id]);
 
         for ($i = 0; $i < count($data); $i++)
         {   
