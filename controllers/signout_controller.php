@@ -2,11 +2,11 @@
 
 class signout_controller extends controller
 {
-    protected $controller;
+	protected $controller;
 	
 	public function main($data)
 	{	
-        session_destroy();
-        $this->load_home();
-    }
+		session_destroy();
+		$this->load_home();
+	}
 }

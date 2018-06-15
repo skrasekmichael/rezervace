@@ -16,11 +16,11 @@ class router_controller extends controller
 		return $split_path;
 	}
 
-    public function main($args)
-    {
+	public function main($args)
+	{
 		$data = $this->parseURL($args[0]);
 		$controller = $data[0];
-        $commands = array_slice($data, 1);
+		$commands = array_slice($data, 1);
 		return [$controller, $commands];
 	}
 }

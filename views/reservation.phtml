@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <?php require("templates/head.phtml") ?>
-    </head>
-    <body>
-        <header>
-            <?php require("templates/nav.phtml") ?>
-        </header>
-        <article>
-            <div id="reservation"> 
-                <!-- tabulka s rezervacemi -->
-                <div class='left'> 
-                    <div id="table" class="tabpanel" index="0"><?= $allreservation; ?></div>
-                    <div class='cls'></div>
-                </div>
-                <div class="relative left">
-                    <div class="caption">
-                        <div class="blocked" tooltip="nemožné rezervace"></div>
-                        <div class="now" tooltip="aktuální čas"></div>
-                        <div class="hour" tooltip="volno"></div>
-                        <div class="hour noempty" tooltip="není plno"></div>
-                        <div class="hour full" tooltip="plno"></div>
-                        <div class="hour user" tooltip="vaše rezervace"></div>
-                        <div class="hour selected" tooltip="označený čas"></div>
-                        <span class="cls"></span>
-                    </div>
-                    <div class="cls"></div>
-                </div>
-                <!-- kalendář -->
-                <div class='right'>
-                    <div id="calendar"><?= $calendar ?></div>
-                    <div class='cls'></div>
-                </div>
-                <div class='cls'></div>
-            </div>
-                        
-            <!-- vytváření rezervací -->
-            <?php 
-                if ($user->isLogged()) require("templates/reservation.phtml"); 
-                else echo "Pro rezervaci se musíte <a href='signin'>přihlásit</a>. ";
-            ?>
+	<head>
+		<?php require("templates/head.phtml") ?>
+	</head>
+	<body>
+		<header>
+			<?php require("templates/nav.phtml") ?>
+		</header>
+		<article>
+			<div id="reservation"> 
+				<!-- tabulka s rezervacemi -->
+				<div class='left'> 
+					<div id="table" class="tabpanel" index="0"><?= $allreservation; ?></div>
+					<div class='cls'></div>
+				</div>
+				<div class="relative left">
+					<div class="caption">
+						<div class="blocked" tooltip="nemožné rezervace"></div>
+						<div class="now" tooltip="aktuální čas"></div>
+						<div class="hour" tooltip="volno"></div>
+						<div class="hour noempty" tooltip="není plno"></div>
+						<div class="hour full" tooltip="plno"></div>
+						<div class="hour user" tooltip="vaše rezervace"></div>
+						<div class="hour selected" tooltip="označený čas"></div>
+						<span class="cls"></span>
+					</div>
+					<div class="cls"></div>
+				</div>
+				<!-- kalendář -->
+				<div class='right'>
+					<div id="calendar"><?= $calendar ?></div>
+					<div class='cls'></div>
+				</div>
+				<div class='cls'></div>
+			</div>
+						
+			<!-- vytváření rezervací -->
+			<?php 
+				if ($user->isLogged()) require("templates/reservation.phtml"); 
+				else echo "Pro rezervaci se musíte <a href='signin'>přihlásit</a>. ";
+			?>
 
-            <div class='cls'></div>
-        </article>
-        <footer>
-            <?= $footer ?>
-        </footer>
-    </body>
+			<div class='cls'></div>
+		</article>
+		<footer>
+			<?= $footer ?>
+		</footer>
+	</body>
 </html>

@@ -1,141 +1,145 @@
 /* --- kalendář --- */
 
 #reservation{
-    --calendar-size: 40px; 
-    --table-width: 24px;
-    --table-height: 40px;
+	--calendar-size: 40px; 
+	--table-width: 24px;
+	--table-height: 40px;
 }   
 
 #calendar .month_name{
-    text-align: center;
+	text-align: center;
 }
 
 #calendar table tr td{
-    width: var(--calendar-size);
-    height: var(--calendar-size);
+	width: var(--calendar-size);
+	height: var(--calendar-size);
 
-    text-align: center;
+	text-align: center;
 
-    padding: 0px;
+	padding: 0px;
 }
 
 #calendar table thead tr td{
-    background: cornflowerblue;
+	background: cornflowerblue;
 }
 
 #calendar table tr td div{
-    width: var(--calendar-size);
-    height: var(--calendar-size);
-    line-height: var(--calendar-size);
+	width: var(--calendar-size);
+	height: var(--calendar-size);
+	line-height: var(--calendar-size);
 }
 
 #calendar table tr td a{
-    color: black;
-    text-decoration: none;
+	color: black;
+	text-decoration: none;
 }
 
 .blocked{
-    background: rgba(200, 200, 200, 1);
+	background: rgba(200, 200, 200, 1);
 }
 
 table .blocked{
-    color: #444444;
-    opacity: 0.5;
+	color: #444444;
+	opacity: 0.5;
 }
 
 /* dny, které už proběhly */
 #calendar table tr td .this_month{
-    background: silver;
+	background: silver;
 }
 
 /* dny tohoto měsíce */
 #calendar table tr td .day{
-    background: yellow;
-    cursor: pointer;
+	background: yellow;
+	cursor: pointer;
 }
 
 #calendar table tr td .day:hover{
-    font-weight: bold;
+	font-weight: bold;
 }
 
 /* dny minulého měsíce */
 #calendar table tr td .last_month{
-    background: orange;
+	background: orange;
 }
 
 /* dny následujícího měsíce */ 
 #calendar table tr td .next_month{
-    background: orange;
+	background: orange;
 }
 
 /* aktuální den / čas */
 .today, .now{
-    background: gray;
+	background: gray;
 }
 
 /* označený den */
 #calendar table tr td .select_day{
-    background: crimson;
+	background: crimson;
 }
 
 /* --- tabulka rezervací --- */
 
 #reservation #table table tr td{
-    position: relative;
+	position: relative;
 
-    width: 90px;
-    height: var(--table-height);
-    width: var(--table-width);
+	width: 90px;
+	height: var(--table-height);
+	width: var(--table-width);
 
-    text-align: center;
-    margin: 1px;
-    padding: 0px;
+	text-align: center;
+	margin: 1px;
+	padding: 0px;
 }
 
 #reservation .thead{
-    position: relative;
-    background: cornflowerblue;
+	position: relative;
+	background: cornflowerblue;
 
-    padding-top: 4px;
+	padding-top: 4px;
 }
 
 #reservation .thead:after{
-    position: relative;
-    float: left;
-    content: " ";
-    height: 0px;
-    width: 0px;
-    left: 0px;
+	position: relative;
+	float: left;
+	content: " ";
+	height: 0px;
+	width: 0px;
+	left: 0px;
 
-    border: solid transparent 25px;
-    border-top-color: cornflowerblue;
-    border-top-width: 20px;
-    border-bottom-width: 0px;
+	border: solid transparent 25px;
+	border-top-color: cornflowerblue;
+	border-top-width: 20px;
+	border-bottom-width: 0px;
 }
 
 #reservation #table table tr th.field{
-    min-width: 130px;
+	min-width: 130px;
 }
 
 /* žádné rezervace */
 .hour{
-    cursor: pointer;
-    background: yellowgreen;
+	cursor: pointer;
+	background: yellowgreen;
 }
 
 /* více jak 1 rezervace */
 .hour.noempty{
-    background: orange;
+	background: orange;
 }
 
 /* označený čas */
 .hour.selected{
-    background: purple;
+	background: purple;
 }
 
 /* plno */
 .hour.full{
-    background: red;
+	background: red;
+}
+
+.hour.user{
+	background: cornflowerblue;
 }
 
 .hour.user{
@@ -144,22 +148,26 @@ table .blocked{
 
 /* rezervace bez uživatelů */
 .hour.empty{
-    background: yellow;
+	background: yellow;
+}
+
+#reservation #table table tr td.hour:hover{
+	opacity: 0.8;
 }
 
 /* --- legenda --- */
 
 .caption{
-    position: relative;
-    padding: 50px;
+	position: relative;
+	padding: 50px;
 }
 
 .caption div{
-    position: relative;
-    cursor: auto;
+	position: relative;
+	cursor: auto;
 
-    width: 20px;
-    height: 20px;
+	width: 20px;
+	height: 20px;
 
-    margin: 5px;
+	margin: 5px;
 }

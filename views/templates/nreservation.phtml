@@ -1,32 +1,32 @@
 ﻿<div class='title'>Rezervace</div>
 <div class='tab'>
 <form method="post">
-    <table>
-        <tr>
-            <td>Rezervovat: </td>
-            <td class="places"></td>
-        </tr>
-        <tr>
-            <td>Od: </td>
-            <td><input type="datetime" name="from" value="<?= $_POST["from"] ?? "" ?>"></td>
-        </tr>
-        <tr>
-            <td>Délka rezervace: </td>
-            <td><input type="number" id="duration" name="duration" min="1" value="<?= $_POST["duration"] ?? "1" ?>"></td>
-        </tr>
-        <tr>
-            <td>Opakovat: </td>
-            <td><?= $repeat ?></td>
-            <td><select onchange="repeat_val_change(this)"><?= $repeat_combobox->get() ?></select></td>
-            <td><input id='rpindex' type='hidden' name='cindex' value='0'><input id='rpnumber' type="number" name="count" value="1" min="1"></td>
-        </tr>
-        <tr>
-            <td>Rezervovat pro počet lidí: </td>
-            <td><input type="number" name="npeople" value="1" min="1"></td>
-        </tr>
-        <tr>
-            <td><input type="submit" name="reservation" value="rezervovat"></td>
-        </tr>
-    </table>
-    </form>
+	<table>
+		<tr>
+			<td>Rezervovat: </td>
+			<td class="places"></td>
+		</tr>
+		<tr>
+			<td>Od: </td>
+			<td><input type="datetime" name="from" value="<?= $_POST["from"] ?? "" ?>"></td>
+		</tr>
+		<tr>
+			<td>Délka rezervace: </td>
+			<td><input type="number" id="duration" name="duration" min="1" value="<?= $_POST["duration"] ?? "1" ?>"></td>
+		</tr>
+		<tr>
+			<td>Opakovat: </td>
+			<td><?= $repeat ?></td>
+			<td><select onchange="repeat_val_change(this)"><?= $repeat_combobox->get() ?></select></td>
+			<td><input id='rpindex' type='hidden' name='cindex' value='0'><input id='rpnumber' type="number" name="count" value="1" min="1"></td>
+		</tr>
+		<tr>
+			<td>Rezervovat pro počet lidí: </td>
+			<td><input type="number" name="npeople" value="1" min="1"></td>
+		</tr>
+		<tr>
+			<td><input type="submit" name="reservation" value="rezervovat"></td>
+		</tr>
+	</table>
+	</form>
 </div>

@@ -4,39 +4,39 @@
 <input type="button" id="buttonEvent" onclick="showTableEvent()" value="Vytvořit novou událost"><br /><br />
 <!-- má vzít hodnoty a udělat nový event-->
 <form method="post">
-    <table border="4" id="tableEvent" style="display:'none';">
-        <tr> 
-            <th>Název</th>
-            <td><input type="text" id="name" placeholder="Název" required></td>
-        </tr>
-        <tr>
-            <th>Od</th>
-            <td><input type="date" id="from" placeholder="Od" required></td>
-        </tr>
-        <tr>
-            <th>Do</th>
-            <td><input type="date" id="to" placeholder="Do" required></td>
-        </tr>
-        <tr>
-            <th>Popis</th>
-            <td><input type="text" id="description" placeholder="Popis" required></td>
-        </tr>
-        <tr>
-            <th>Barva</th>
-            <td><input type="color" id="color" size="20" maxlength="7"></td>
-        </tr>
-        <tr>
-            <td><input type="submit" onclick="hideTableEvent()" style="width:125px;" name="pridat" id="pridat" value="OK"></td>
-            <td><button style="width:125px;" id="zrusit" onclick="hideTableEvent()">Zrušit</button></td>
-        </tr>
-    </table>
+	<table border="4" id="tableEvent" style="display:'none';">
+		<tr> 
+			<th>Název</th>
+			<td><input type="text" id="name" placeholder="Název" required></td>
+		</tr>
+		<tr>
+			<th>Od</th>
+			<td><input type="date" id="from" placeholder="Od" required></td>
+		</tr>
+		<tr>
+			<th>Do</th>
+			<td><input type="date" id="to" placeholder="Do" required></td>
+		</tr>
+		<tr>
+			<th>Popis</th>
+			<td><input type="text" id="description" placeholder="Popis" required></td>
+		</tr>
+		<tr>
+			<th>Barva</th>
+			<td><input type="color" id="color" size="20" maxlength="7"></td>
+		</tr>
+		<tr>
+			<td><input type="submit" onclick="hideTableEvent()" style="width:125px;" name="pridat" id="pridat" value="OK"></td>
+			<td><button style="width:125px;" id="zrusit" onclick="hideTableEvent()">Zrušit</button></td>
+		</tr>
+	</table>
 </form><br /><br />
 <table border="2" id="tableData">
-    <th>Název</th>
-    <th>Od</th>
-    <th>Do</th>
-    <th>Popis</th>
-    <th>Smazat</th>
-    
-    <?= $events ?>
+	<th>Název</th>
+	<th>Od</th>
+	<th>Do</th>
+	<th>Popis</th>
+	<th>Smazat</th>
+	
+	<?= $events ?>
 </table>

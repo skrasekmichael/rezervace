@@ -1,172 +1,180 @@
 @import url('https://fonts.googleapis.com/css?family=Alegreya+Sans');
 
 body{
-    padding: 0px;
-    margin: 0px;
-    
-    background: #444444;
+	padding: 0px;
+	margin: 0px;
+	
+	background: #444444;
 
-    font-family: "Alegreya Sans";
+	font-family: "Alegreya Sans";
 }
 
 /* --- hlavní sekce --- */
 article{
-    background: white;
-    padding: 10px;
+	background: white;
+	padding: 10px;
 }
 
 article section{
-    margin-left: 25%;
-    margin-right: 25%;
+	margin-left: 25%;
+	margin-right: 25%;
 }
 
 @media screen and (max-width: 1100px) {
-    article section {
-        margin: 0px;
-    }
+	article section {
+		margin: 0px;
+	}
   }
 
 /* --- zápatí --- */
 footer{
-    background: transparent;
-    color: white;
+	background: transparent;
+	color: white;
 
-    text-align: center;
-    padding: 10px;
+	text-align: center;
+	padding: 10px;
 }
 
 /* --- menu --- */
 nav{
-    position: relative;
-    width: 100%;
+	position: relative;
+	width: 100%;
 
-    margin: 0px;
-    border-bottom: solid black 1px;
-    background: #444444;
+	margin: 0px;
+	border-bottom: solid black 1px;
+	background: #444444;
 
-    --nav-height: 50px;
+	--nav-height: 50px;
 }
 
 nav ul{
-    margin: 0px;
-    padding: 0px;
+	margin: 0px;
+	padding: 0px;
 }
 
 nav ul a{
-    color: black;
-    text-decoration: none;
+	color: black;
+	text-decoration: none;
 }
 
 nav ul a li, nav ul .list-item{
-    margin-left: 1px;
-    padding-left: 25px;
-    padding-right: 25px;
+	margin-left: 1px;
+	padding-left: 25px;
+	padding-right: 25px;
 
-    height: var(--nav-height);
-    line-height: var(--nav-height);
+	height: var(--nav-height);
+	line-height: var(--nav-height);
 
-    background: rgba(255, 255, 255, 0.1);
-    color: #aaaaaa;
-    border-bottom: solid #aaaaaa 3px;    
+	background: rgba(255, 255, 255, 0.1);
+	color: #aaaaaa;
+	border-bottom: solid #aaaaaa 3px;	
 
-    font-size: 17px;
-    font-weight: bold;
+	font-size: 17px;
+	font-weight: bold;
 
-    text-transform: uppercase;
-    text-align: center;
-    float: left;
-    list-style-type: none;
-    cursor: pointer;
+	text-transform: uppercase;
+	text-align: center;
+	float: left;
+	list-style-type: none;
+	cursor: pointer;
 }
 
 nav ul li{
-    padding: 0px;
-    list-style-type: none;
-    float: left;
+	padding: 0px;
+	list-style-type: none;
+	float: left;
 
-    height: var(--nav-height);
-    line-height: var(--nav-height);
+	height: var(--nav-height);
+	line-height: var(--nav-height);
 }
 
 nav ul li:hover ul{
-    visibility: visible;
+	visibility: visible;
 }
 
 nav ul li ul{
-    margin: 0px;
-    padding: 0px;
+	margin: 0px;
+	padding: 0px;
 
-    margin-top: var(--nav-height);
-    top: 3px;
+	margin-top: var(--nav-height);
+	top: 3px;
 
-    z-index: 8;
-    position: relative;
-    visibility: hidden; 
-    
-    width: 100%;
+	z-index: 8;
+	position: relative;
+	visibility: hidden; 
+	
+	width: 100%;
 }
 
 nav ul li ul a li{
-    background: #444444;
-    border-bottom: solid rgba(255, 255, 255, 0.5) 1px;
+	background: #444444;
+	border-bottom: solid rgba(255, 255, 255, 0.5) 1px;
 
-    margin: 0px;
-    padding: 0px;
-    
-    text-align: center;
-    text-transform: none;
+	margin: 0px;
+	padding: 0px;
+	
+	text-align: center;
+	text-transform: none;
 }
 
 nav ul li ul a li:hover{
-    background: #525252;
-    border-bottom: solid rgba(255, 255, 255, 0.5) 1px;
-    color: skyblue;
+	background: #525252;
+	border-bottom: solid rgba(255, 255, 255, 0.5) 1px;
+	color: skyblue;
 }
 
 nav ul li ul a li{
-    float: none;
+	float: none;
 }
 
 nav ul a li:hover, nav ul li:hover .list-item{
-    color: white;
-    border-bottom-color: skyblue;
+	color: white;
+	border-bottom-color: skyblue;
 }
 
 .avatar{
-    float: left;
-    height: var(--nav-height);
+	float: left;
+	height: var(--nav-height);
 
-    margin-top: 1px;
-    margin-left: 2px;
+	margin-top: 1px;
+	margin-left: 2px;
 
-    overflow: hidden;
+	overflow: hidden;
 }
 
 .avatar img{
-    padding: 5px;
+	padding: 5px;
 
-    height: calc(var(--nav-height) - 10px);
-    width: calc(var(--nav-height) - 10px);
-    filter: invert(80%);
+	height: calc(var(--nav-height) - 10px);
+	width: calc(var(--nav-height) - 10px);
+	filter: invert(80%);
 }
 
 .name{
-    height: var(--nav-height);
-    text-transform: none;
+	height: var(--nav-height);
+	text-transform: none;
 }
 
 /* --- ostatní --- */
 
 h1{
-    text-align: center;
+	text-align: center;
 }
 
 .right{
-    float: right;
+	float: right;
 }
 
 .left{
-    float: left;
+	float: left;
+}
+
+.center{
+	text-align: center;
+}
+
+.relative{
+	position: relative;
 }
 
 .center{
@@ -178,227 +186,234 @@ h1{
 }
 
 .cls{
-    clear: both;
+	clear: both;
 }
 
 .error{
-    font-weight: bold;
+	font-weight: bold;
 }
 
 .r{
-    right: 0px;
+	right: 0px;
 }
 
 .l{
-    left: 0px;
+	left: 0px;
 }
 
 .number{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* --- tab panel --- */
 
 .tabpanel{
-    position: relative;
-    float: left;
-    --tab-title: 40px;
-    --border-color: gray;
-    --border-size: 1px;
+	position: relative;
+	float: left;
+	--tab-title: 40px;
+	--border-color: gray;
+	--border-size: 1px;
 
-    margin-top: var(--tab-title);
-    padding-right: 15px;
+	margin-top: var(--tab-title);
+	padding-right: 15px;
 
-    border-top: solid var(--border-color) var(--border-size);
+	border-top: solid var(--border-color) var(--border-size);
 }
 
 .tabpanel .title{
-    float: left;
-    cursor: pointer;
+	float: left;
+	cursor: pointer;
 
-    position: relative;
-    z-index: 2;
+	position: relative;
+	z-index: 2;
 
-    height: var(--tab-title);
+	height: var(--tab-title);
 
-    padding: 0px;
-    padding-left: 25px;
-    padding-right: 25px;
-    left: 5px;
-    top: -2px;
-    margin-top: calc(var(--tab-title) * -1);
+	padding: 0px;
+	padding-left: 25px;
+	padding-right: 25px;
+	left: 5px;
+	top: -2px;
+	margin-top: calc(var(--tab-title) * -1);
 
-    text-align: center;
-    line-height: var(--tab-title);
+	text-align: center;
+	line-height: var(--tab-title);
 
-    background: white;
-    border: solid var(--border-color) var(--border-size);
-    border-bottom: none
+	background: white;
+	border: solid var(--border-color) var(--border-size);
+	border-bottom: none
 }
 
 .tabpanel .title.selected{
-    height: calc(var(--tab-title) + 5px);
-    line-height: calc(var(--tab-title) + 5px);
-    top: -6px;
-    border-bottom: solid white 1px;
-    opacity: 1;
+	height: calc(var(--tab-title) + 5px);
+	line-height: calc(var(--tab-title) + 5px);
+	top: -6px;
+	border-bottom: solid white 1px;
+	opacity: 1;
 }
 
 .tabpanel .tab{
-    position: absolute;
-    visibility: hidden;
-    z-index: 1;
+	position: absolute;
+	visibility: hidden;
+	z-index: 1;
 
-    top: 0px;
-    left: 0px;
+	top: 0px;
+	left: 0px;
 }
 
 .tabpanel .title:hover{
-    background: rgba(250, 250, 250, 1);
+	background: rgba(250, 250, 250, 1);
 }
 
 .tabpanel .tab.selected{
-    visibility: visible;
-    display: block;
+	visibility: visible;
+	display: block;
 
-    width: auto;
-    height: auto;
+	width: auto;
+	height: auto;
 }
 
 .tabpanel .default{
-    position: relative;
-    width: 0px;
-    height: 0px;
-    float: left;
+	position: relative;
+	width: 0px;
+	height: 0px;
+	float: left;
 }
 
 /* --- tooltip --- */
 
 [tooltip]{
-    position: relative;
+	position: relative;
 }
 
 [tooltip]:after, [tooltip]:before{
-    pointer-events: none;
-    visibility: hidden;
-    position: absolute;
+	pointer-events: none;
+	visibility: hidden;
+	position: absolute;
+	opacity: 0;
+
+	-webkit-transition: all 0.1s ease-in-out;
+	-moz-transition: all 0.1s ease-in-out;
+	-o-transition: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
 }
 
 [tooltip]:before{
-    content: "";
+	content: "";
 
-    bottom: 100%;
-    left: calc(50% - 10px);
+	bottom: 100%;
+	left: calc(50% - 10px);
 
-    width: 0px;
-    height: 0px;
+	width: 0px;
+	height: 0px;
 
-    border: solid transparent 10px;
-    border-bottom-width: 0px;
-    border-top-color: rgba(0, 0, 0, 0.8);
+	border: solid transparent 10px;
+	border-bottom-width: 0px;
+	border-top-color: rgba(0, 0, 0, 0.8);
 }
 
 [tooltip]:after{
-    content: attr(tooltip);
-    
-    width: 100px;
+	content: attr(tooltip);
+	
+	width: 100px;
 
-    bottom: calc(100% + 10px);
-    left: calc(50% - 50px - 8px);
+	bottom: calc(100% + 10px);
+	left: calc(50% - 50px - 8px);
 
-    padding: 8px;
-    
-    text-transform: uppercase;
-    text-align: center;
+	padding: 8px;
+	
+	text-transform: uppercase;
+	text-align: center;
 
-    border-radius: 5px;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
+	border-radius: 5px;
+	background: rgba(0, 0, 0, 0.8);
+	color: white;
 }
 
 [tooltip]:hover:after, [tooltip]:hover:before{
-    visibility: visible;
+	visibility: visible;
+	opacity: 1;
 }
 
 /* --- seznam mapa --- */
 
 #map{
-    width: 100%;
-    height: 400px;
+	width: 100%;
+	height: 400px;
 }
 
 /* --- formuláře --- */
 
 .form{
-    padding: 40px;
-    margin: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0px 0px 20px #444444;
+	padding: 40px;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	box-shadow: 0px 0px 20px #444444;
 }
 
 .form th{
-    text-align: left;
-    font-weight: normal;
-    min-width: 200px;
+	text-align: left;
+	font-weight: normal;
+	min-width: 200px;
 }
 
 /* --- formulářové prvky --- */
 
 input{
-    outline: none;
+	outline: none;
 }
 
 .form input[type="text"], .form input[type="email"], .form input[type="password"], .form input[type="number"]{
-    min-width: 400px;
+	min-width: 400px;
 }
 
 input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="datetime"]{
-    border: solid transparent 0px;
-    border-right: solid skyblue 4px;
-    background: rgb(233, 233, 233);
-    padding: 15px;
-    font-family: "Alegreya Sans";
-    font-size: 15px;
+	border: solid transparent 0px;
+	border-right: solid skyblue 4px;
+	background: rgb(233, 233, 233);
+	padding: 15px;
+	font-family: "Alegreya Sans";
+	font-size: 15px;
 }
 
 input[type="text"]:invalid, input[type="email"]:invalid, input[type="password"]:invalid {
-    box-shadow: none;
+	box-shadow: none;
 }
 
 button, input[type="submit"], input[type="button"]{
-    cursor: pointer;
-    padding: 20px;
-    margin: 5px;
+	cursor: pointer;
+	padding: 20px;
+	margin: 5px;
 
-    font-size: 15px;
-    text-transform: uppercase;
-    font-weight: bold;
+	font-size: 15px;
+	text-transform: uppercase;
+	font-weight: bold;
 
-    color: crimson;
-    background: white;
-    border: solid crimson 2px;
-    border-radius: 3px;
+	color: crimson;
+	background: white;
+	border: solid crimson 2px;
+	border-radius: 3px;
 }
 
 button:hover, input[type="submit"]:hover, input[type="button"]:hover{
-    background: crimson;
-    color: white;
+	background: crimson;
+	color: white;
 }
 
 /* --- message box --- */
 
 .message_box{
-    visibility: hidden;
-    position: absolute;
-    z-index: 10;
+	visibility: hidden;
+	position: absolute;
+	z-index: 10;
 
-    background: white;
-    border: solid skyblue 2px;
+	background: white;
+	border: solid skyblue 2px;
 
-    left: 0px;
-    top: 0px;
+	left: 0px;
+	top: 0px;
 
-    margin: auto;
-    padding: 45px;
+	margin: auto;
+	padding: 45px;
 }

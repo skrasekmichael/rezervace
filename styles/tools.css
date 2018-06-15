@@ -1,10 +1,10 @@
 /* sprava u Admina */
 .stable table tr td {
-    border: 2px solid #16284C;
-    border: collapse;
+	border: 2px solid #16284C;
+	border: collapse;
 }
 
 #tableUser th{
-    text-align: left;
-    width: 150px;
+	text-align: left;
+	width: 150px;
 }

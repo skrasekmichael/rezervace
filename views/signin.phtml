@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <?php require("templates/head.phtml") ?>
-    </head>
-    <body>
-        <header>
-            <?php require("templates/nav.phtml") ?>
-        </header>
-        <article>
-            <form method="post">
-                <table class="form">
-                    <thead>
-                        <tr><th colspan="2"><h2>Přihlášení</h2></th></tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>Email: </th>
-                            <td><input type="email" name="email" required value="<?= $_POST["email"] ?? '' ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Heslo: </th>
-                            <td><input type="password" name="password" required></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><input class="right" type="submit" name="signin" value="přihlásit"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
-            <div class='error'><?= $signin_error ?? "" ?></div>
-        </article>
-        <footer>
-            <?= $footer ?>
-        </footer>
-    </body>
+	<head>
+		<?php require("templates/head.phtml") ?>
+	</head>
+	<body>
+		<header>
+			<?php require("templates/nav.phtml") ?>
+		</header>
+		<article>
+			<form method="post">
+				<table class="form">
+					<thead>
+						<tr><th colspan="2"><h2>Přihlášení</h2></th></tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>Email: </th>
+							<td><input type="email" name="email" required value="<?= $_POST["email"] ?? '' ?>"></td>
+						</tr>
+						<tr>
+							<th>Heslo: </th>
+							<td><input type="password" name="password" required></td>
+						</tr>
+						<tr>
+							<td colspan="2"><input class="right" type="submit" name="signin" value="přihlásit"></td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+			<div class='error'><?= $signin_error ?? "" ?></div>
+		</article>
+		<footer>
+			<?= $footer ?>
+		</footer>
+	</body>
 </html>

@@ -1,25 +1,25 @@
 <nav>
-    <ul>
-        <a href="<?= $root ?>"><li>hlavní strana</li></a>
-        <a href="reservation"><li>rezervace</li></a>
-        <a href="info"><li>info</li></a>
-        <?= 
-            ($user->type->level <= STAFF) ?
-            "<a href='tools'><li>nástroje</li></a>" : "";
-        ?>
-        <span class="right">
-        <?=
-            (isset($user) && $user->isLogged()) ?
-            "<li><span class='list-item'>" . $user->name() . "</span><ul>" .
-            "<a href='profile'><li>Profil</li></a>" . 
-            "<a href='addCredit'><li>Dobít kredit</li></a>" . 
-            "<a href='signout'><li>Odhlásit</li></a>" . "
-            <div class='cls'></div></ul></li>" . 
-            "<a href='profile'>" . $user->avatar() . "</a>":
-            "<a href='signin'><li>přihlásit</li></a>" .
-            "<a href='signup'><li>zaregistrovat</li></a>";  
-        ?>
-        </span>
-        <div class="cls"></div>
-    </ul>
+	<ul>
+		<a href="<?= $root ?>"><li>hlavní strana</li></a>
+		<a href="reservation"><li>rezervace</li></a>
+		<a href="info"><li>info</li></a>
+		<?= 
+			($user->type->level <= STAFF) ?
+			"<a href='tools'><li>nástroje</li></a>" : "";
+		?>
+		<span class="right">
+		<?=
+			(isset($user) && $user->isLogged()) ?
+			"<li><span class='list-item'>" . $user->name() . "</span><ul>" .
+			"<a href='profile'><li>Profil</li></a>" . 
+			"<a href='addCredit'><li>Dobít kredit</li></a>" . 
+			"<a href='signout'><li>Odhlásit</li></a>" . "
+			<div class='cls'></div></ul></li>" . 
+			"<a href='profile'>" . $user->avatar() . "</a>":
+			"<a href='signin'><li>přihlásit</li></a>" .
+			"<a href='signup'><li>zaregistrovat</li></a>";  
+		?>
+		</span>
+		<div class="cls"></div>
+	</ul>
 </nav>
