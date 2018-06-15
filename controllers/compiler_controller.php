@@ -27,7 +27,13 @@ class compiler_controller extends controller
 			else 
 				$this->redirect("error/404/1");
 
-			 //předávání parametrů mezi hlavním kontrolerem a kontrolerem podstránky
+			//pokud stránka obdrží více jak 1 argument
+			if (count($data[1]) > $this->controller->max_args)
+			{
+				$this->redirect("error/3");
+			}
+
+			//předávání parametrů mezi hlavním kontrolerem a kontrolerem podstránky
 			$this->controller->user = $user;
 			$this->controller->data = $this->data;
 			$this->controller->main($data);

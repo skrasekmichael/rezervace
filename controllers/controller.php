@@ -8,6 +8,7 @@ abstract class controller
 	protected $root;
 	protected $scripts = ["script", "gallery"];
 	protected $styles = ["style", "gallery"];
+	public $max_args = 0;
 	public $user;
 
 	function __construct()

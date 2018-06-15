@@ -34,3 +34,29 @@
 	max-width: 80px;
 	max-height: 80px;
 }
+
+.myres{
+	padding: 0px;
+	margin: 0px;
+}
+
+.myres li{
+	list-style-type: none;
+
+	width: calc(100% - 40px);
+
+	padding: 20px;
+	margin: 0px;
+
+	border-bottom: solid skyblue 2px;
+	vertical-align: middle;
+}
+
+.myres li .left div{
+	line-height: 30px;
+}
+
+h3{
+	text-transform: uppercase;
+	text-align: center;
+}

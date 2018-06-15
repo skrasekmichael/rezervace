@@ -31,7 +31,7 @@ class Place
 
 	public function toString()
 	{
-		return $this->sport . " " . $this->field;
+		return $this->sport . " - " . $this->field;
 	}
 
 	//vrátí místo podle ID

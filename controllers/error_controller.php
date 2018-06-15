@@ -3,6 +3,7 @@
 class error_controller extends controller
 {
 	protected $controller;
+	public $max_args = 2;
 	
 	public function main($data)
 	{	

@@ -80,6 +80,22 @@ table .blocked{
 
 /* --- tabulka rezervací --- */
 
+.res{
+	width: calc(100% - 430px);
+}
+
+@media screen and (max-width: 1450px) {
+	.res {
+		width: calc(100% - 130px);
+	}
+}
+
+@media screen and (max-width: 1150px) {
+	.res {
+		width: 100%;
+	}
+}
+
 #reservation #table table tr td{
 	position: relative;
 
@@ -90,6 +106,11 @@ table .blocked{
 	text-align: center;
 	margin: 1px;
 	padding: 0px;
+}
+
+#reservation #table table tr th{
+	height: var(--table-height);
+	width: var(--table-width);
 }
 
 #reservation .thead{

@@ -10,11 +10,11 @@
 		<article>
 			<div id="reservation"> 
 				<!-- tabulka s rezervacemi -->
-				<div class='left'> 
+				<div class='left res'> 
 					<div id="table" class="tabpanel" index="0"><?= $allreservation; ?></div>
 					<div class='cls'></div>
 				</div>
-				<div class="relative left">
+				<div class="left">
 					<div class="caption">
 						<div class="blocked" tooltip="nemožné rezervace"></div>
 						<div class="now" tooltip="aktuální čas"></div>
@@ -28,13 +28,13 @@
 					<div class="cls"></div>
 				</div>
 				<!-- kalendář -->
-				<div class='right'>
+				<div class='left'>
 					<div id="calendar"><?= $calendar ?></div>
 					<div class='cls'></div>
 				</div>
 				<div class='cls'></div>
 			</div>
-						
+
 			<!-- vytváření rezervací -->
 			<?php 
 				if ($user->isLogged()) require("templates/reservation.phtml"); 
