@@ -109,9 +109,11 @@ class User
 
 	public function deleteAccount($password)
 	{
-		echo "<br>$password != {$this->password}<br>";
+		$password = hash("SHA512", $password . $this->email);
 		if ($password == $this->password)
+		{
 			return User::DeleteUser($this->id);
+		}
 		else
 			return [false, "Nesprávně zadané heslo"];
 	}
@@ -173,6 +175,12 @@ class User
 	{
 		if (Db::query("SELECT iduser FROM user WHERE iduser=:id", [":id" => $id]) == 1)
 		{
+			//smazání rezervace uživatele
+			$res = Reservation::GetReservations(new User($id));
+			for ($i = 0; $i < count($res); $i++)
+				Reservation::Delete($res[$i]->id);
+
+			//smazání uživatel
 			Db::query("DELETE FROM user WHERE iduser=:id", [":id" => $id]);
 			return [true, "Vymazání se podařilo"];
 		}

@@ -7,6 +7,6 @@ class signout_controller extends controller
 	public function main($data)
 	{	
 		session_destroy();
-		$this->load_home();
+		$this->redirect("signin");
 	}
 }

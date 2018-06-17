@@ -70,7 +70,7 @@
 	opacity: 1;
 }
 
-#gallery  .to_left:before, #gallery  .to_right:after{
+#gallery  .to_left:before, #gallery .to_right:after{
 	position: absolute;
 	content: "<";
 

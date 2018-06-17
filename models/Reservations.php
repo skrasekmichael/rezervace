@@ -156,7 +156,7 @@ class Reservations
 				}
 
 				//pokud je naplňěn maximální počet rezervací místa
-				if ($np == $place->max) 
+				if ($np >= $place->max) 
 				{
 					$onclick = "";
 					$class .= " full";

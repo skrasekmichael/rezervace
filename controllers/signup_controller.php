@@ -6,7 +6,7 @@ class signup_controller extends controller
 	
 	public function main($data)
 	{	
-		$this->data["title"] = "Regisrtace uživatele";
+		$this->data["title"] = "Regisrace uživatele";
 
 		if (isset($_POST["signup"]))
 		{
