@@ -1,101 +1,21 @@
+h3{
+	text-transform: uppercase;
+	text-align: center;
+}
+
 /* --- seznam avatarů --- */
 
 .avatars{
 	width: auto;
 }
-#info {
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 30px;
-    font-size: 150%;
-    empty-cells: hide;
+
+.avatars{
+	padding: 0px;
+	margin: 0px;
+	float: left;
+	width: 100%;
 }
-#info td, th{
-	border: 1px solid #ddd;
-    padding: 8px;
-}
-#info tr:nth-child(even){background-color: #f2f2f2;}
-#info tr:hover {background-color: #ddd;}
-#info th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
-    color: white;
-}
-#nastaveniuc {
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 30px;
-    font-size: 150%;
-    empty-cells: hide;
-}
-#nastaveniuc td, th{
-	border: 1px solid #ddd;
-    padding: 8px;
-}
-#nastaveniuc tr:nth-child(even){background-color: #f2f2f2;}
-#nastaveniuc tr:hover {background-color: #ddd;}
-#nastaveniuc th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
-    color: white;
-}
-.odsaz{
-	margin-left: 400px;
-}
-.StylTlac{
-	border: none;
-}
-#nav{
-	background: linear-gradient(white 20%, skyblue 80%);
-	font-weight: bold; 
-	font-size: 140%;
-}
-#jmeno{
-	font-size: 270%; 
-	font-weight: bold;
-}
-#profil{
-	font-size: 250%;
-	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-}
-#odsazeni{
-	margin-top: 20px;
-}
-#tlac{
-	border: none;
-}
-.font{
-	font-size: 150%;
-	font-weight: bold;
-}
-.odsaz{
-	margin-left: 400px;
-}
-input[type="submit"]{
-	color: skyblue;
-	border: 2px solid skyblue;
-}
-table input[type="submit"]{
-	width: auto;
-	color: skyblue;
-	border: 2px solid skyblue;
-}
-table input {
-	width: 90%;
-}
-#border{
-	border: none;
-}
-.nazev{
-	font-weight: bold; 
-	font-size: 110%;
-}
+
 .avatars li{
 	float: left;
 	position: relative;
@@ -103,8 +23,11 @@ table input {
 
 	padding: 3px;
 
-	width: 80px;
+	width: calc(20% - 12px);
 	height: 80px;
+	min-width: 80px;
+
+	text-align: center;
 
 	background: white;
 	border: solid white 3px;
@@ -117,7 +40,6 @@ table input {
 	border-color: skyblue;
 }
 
-
 .avatars li.select{
 	border-color: skyblue;
 }
@@ -126,6 +48,8 @@ table input {
 	max-width: 80px;
 	max-height: 80px;
 }
+
+/* --- rezervace uživatele --- */
 
 .myres{
 	padding: 0px;
@@ -148,7 +72,32 @@ table input {
 	line-height: 30px;
 }
 
-h3{
-	text-transform: uppercase;
-	text-align: center;
+/* --- tabulky s informacemi --- */
+
+#profile table {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+	margin-top: 30px;
+	font-size: 150%;
+	empty-cells: hide;
+}
+
+#profile table tr td{
+	border: 1px solid #ddd;
+	padding: 10px;
+	width: 50%;
+}
+
+#profile table tr:nth-child(even){
+	background-color: #f2f2f2;
+}
+
+#profile table tr.transparent td{
+	background: white;
+	border: none;
+}
+
+input[type="password"]{
+	width: calc(100% - 40px);
 }

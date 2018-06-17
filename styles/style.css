@@ -178,12 +178,12 @@ h1{
 	position: relative;
 }
 
-.center{
-    text-align: center;
+.transparent{
+	background: transparent;
 }
 
-.relative{
-    position: relative;
+.max{
+	width: 100%;
 }
 
 .cls{
@@ -394,14 +394,14 @@ button, input[type="submit"], input[type="button"]{
 	text-transform: uppercase;
 	font-weight: bold;
 
-	color: crimson;
+	color: skyblue;
 	background: white;
-	border: solid crimson 2px;
+	border: solid skyblue 2px;
 	border-radius: 3px;
 }
 
 button:hover, input[type="submit"]:hover, input[type="button"]:hover{
-	background: crimson;
+	background: skyblue;
 	color: white;
 }
 

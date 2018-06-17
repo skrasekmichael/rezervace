@@ -55,6 +55,21 @@ class profile_controller extends controller
 			$this->redirect("profile/reservation");
 		}
 
+		if (isset($_POST["delete_account"]))
+		{
+			$result = $this->user->deleteAccount($_POST["password"]);
+			if ($result[0])
+			{
+				session_destroy();
+				$this->redirect("signup");
+			}
+			else
+			{
+				$this->data["delete_account_error"] = $result[1];
+				$this->data["tabpanel_index"] = 2;
+			}
+		}
+
 		$this->data["title"] = $this->user->firstName . " " . $this->user->lastName;
 		$this->data["avatars"] = $this->get_images();
 

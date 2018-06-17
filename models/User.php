@@ -107,9 +107,13 @@ class User
 		$this->update("avatar", $index);
 	}
 
-	public function getDay($date)
+	public function deleteAccount($password)
 	{
-		//vrátí pole s rezervacemi dne
+		echo "<br>$password != {$this->password}<br>";
+		if ($password == $this->password)
+			return User::DeleteUser($this->id);
+		else
+			return [false, "Nesprávně zadané heslo"];
 	}
 
 	public static function GetUsers()
