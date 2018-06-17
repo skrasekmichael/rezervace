@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!-- saved from url=(0028)http://90.176.253.40/profile -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+<!--<base href="/">--><base href=".">
+
+<link rel="stylesheet" type="text/css" href="./Michal Ruiner_files/style.css"><link rel="stylesheet" type="text/css" href="./Michal Ruiner_files/gallery.css"><link rel="stylesheet" type="text/css" href="./Michal Ruiner_files/profile.css"><script src="./Michal Ruiner_files/jquery.min.js.stažený soubor" type="text/javascript"></script>
+<script src="./Michal Ruiner_files/script.js.stažený soubor" type="text/javascript"></script><script src="./Michal Ruiner_files/gallery.js.stažený soubor" type="text/javascript"></script><script src="./Michal Ruiner_files/profile.js.stažený soubor" type="text/javascript"></script>
+<title>Michal Ruiner</title>
+	</head>
+	<body>
+		<header>
+			<nav>
+	<ul>
+		<a href="http://90.176.253.40/"><li>hlavní strana</li></a>
+		<a href="http://90.176.253.40/reservation"><li>rezervace</li></a>
+		<a href="http://90.176.253.40/info"><li>info</li></a>
+				<span class="right">
+		<li><span class="list-item"><span class="name">Michal&nbsp;Ruiner</span></span><ul><a href="http://90.176.253.40/profile"><li>Profil</li></a><a href="http://90.176.253.40/addCredit"><li>Dobít kredit</li></a><a href="http://90.176.253.40/signout"><li>Odhlásit</li></a>
+			<div class="cls"></div></ul></li><a href="http://90.176.253.40/profile"><span class="avatar"><img src="./Michal Ruiner_files/1.png"></span></a>		</span>
+		<div class="cls"></div>
+	</ul>
+</nav>
+		</header>
+		<article>
+			<h1 id="profil">Profil</h1>
+			<section>
+				<h2 id="jmeno">Michal Ruiner</h2>
+				<div class="tabpanel" index="0">
+					<div class="title selected" id="nav">Informace</div>
+					<div class="tab selected">
+						<table id="info">
+							<tr>
+								<td class="nazev">
+									Jméno:
+								</td> 
+								<td>
+									<span class="fname">Michal</span>	
+								</td>
+							</tr>
+							<tr>
+								<td class="nazev">
+									Přijmení: 
+								</td>
+								<td>
+									<span class="lname">Ruiner</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="nazev">
+									<class="nazev">E-mail: 
+								</td>
+								<td>
+									<span class="email">michal@seznam.cz</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="nazev">
+									Telefoní číslo: 
+								</td>
+								<td>
+									<span class="tel">123 456 789</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="title" id="nav">Moje rezervace</div>
+					<div class="tab">
+						<table>
+						<div class="myres"><ul class="myres"><li><form method="post"><div class="left"><div class="place">Místo: Tenis - kurt 1</div><div class="date">Datum: <a href="http://90.176.253.40/reservation/1529490600">Středa 20.06.2018</a></div><div class="time">Čas: 12:30 - 15:30</div><div class="for">Pro počet lidí: 2</div></div><input type="hidden" name="res_id" value="39"><input class="right" type="submit" name="cancel_reservation" value="zrušit rezervaci"></form><div class="cls"></div></li><li><form method="post"><div class="left"><div class="place">Místo: Tenis - kurt 2</div><div class="date">Datum: <a href="http://90.176.253.40/reservation/1530181800">Čtvrtek 28.06.2018</a></div><div class="time">Čas: 12:30 - 16:00</div><div class="for">Pro počet lidí: 4</div></div><input type="hidden" name="res_id" value="40"><input class="right" type="submit" name="cancel_reservation" value="zrušit rezervaci"></form><div class="cls"></div></li></ul></div>
+						</table>
+					</div>
+					<div class="title" id="nav">Nastavení účtu</div>
+					<div class="tab">
+						<form method="post">
+							<h3 class="font">avatar</h3>
+							<ul class="avatars"><li class="select" onclick="select_avatar(0)"><img src="./Michal Ruiner_files/1.png" alt="1"></li><li onclick="select_avatar(1)"><img src="./Michal Ruiner_files/2.png" alt="2"></li><li onclick="select_avatar(2)"><img src="./Michal Ruiner_files/3.png" alt="3"></li><li onclick="select_avatar(3)"><img src="./Michal Ruiner_files/4.png" alt="4"></li><li onclick="select_avatar(4)"><img src="./Michal Ruiner_files/5.png" alt="5"></li><li onclick="select_avatar(5)"><img src="./Michal Ruiner_files/6.png" alt="6"></li></ul><div class="cls"></div>							<input type="hidden" name="avatar_index" id="avatar_index" value="1">
+							<div id="odsazeni"><input type="submit" name="avatar" value="Změnit avatara"></div>
+						</form>
+						<form method="post">
+							<h3></h3>
+						</form>
+						<form method="post">
+							<h3 class="font">změna hesla</h3>
+							<table id="nastaveniuc">
+								<tbody><tr>
+									<td>Staré heslo: </td>
+									<td><input type="password" name="old_password"></td>
+								</tr>
+								<tr>
+									<td>Nové heslo: </td>
+									<td><input type="password" name="new_password"></td>
+								</tr>
+								<tr>
+									<td>Nové heslo znovu: </td>
+									<td><input type="password" name="check_new_password"></td>
+								</tr>
+								<tr style="background: transparent;">
+									<td colspan="2" id="border" style="border:none;"><input type="submit" name="change_password" value="Změnit heslo" style="float: right;"></td>
+								</tr>
+								</tbody></table>
+								<table>
+							<p></p>
+						</form>
+						<form method="post">
+							<h3 class="font">smazat účet</h3>
+							<table id="nastaveniuc">
+								<tbody><tr>
+									<td>Heslo:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+									<td><input type="password" name="password"></td>
+								</tr>
+								<tr style="background: transparent;">
+									<td style="border:none;"></td>
+									<td style="border:none;"><input type="submit" name="delete_account" value="smazat účet" style="float: right;"></td>
+								</tr>
+								</tbody></table>
+						</form>
+					</div>
+					<div class="title" id="nav">Statistiky rezervací</div>
+					<div class="tab">
+						Pracuje se na tom ... 
+					</div>
+				<span class="default" style="margin-left: -805px; width: 805px; height: 706px;"></span><span class="cls"></span></div>
+			</section>
+			<div class="cls"></div>
+		</article>
+		<footer>
+			© 2018 Michael Škrášek, Tomáš Szabó, Michal Ruiner, <s>Martin Bielik</s>		</footer>
+	
+
+<div id="gallery"><div onclick="gallery.hide()" pos="-1"><img alt="gallery image" src="./Michal Ruiner_files/undefined" style="top: calc(50% - 0px); left: calc(50% - 0px);"></div><div onclick="gallery.hide()" pos="0"><img alt="gallery image" src="./Michal Ruiner_files/undefined" style="top: calc(50% - 0px); left: calc(50% - 0px);"></div><div onclick="gallery.hide()" pos="1"><img alt="gallery image" src="./Michal Ruiner_files/undefined" style="top: calc(50% - 0px); left: calc(50% - 0px);"></div><div onclick="gallery.update(1)" class="to_left l"></div><div onclick="gallery.update(-1)" class="to_right r"></div></div></body></html>
